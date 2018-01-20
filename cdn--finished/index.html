@@ -34,6 +34,9 @@
         </li>
       </ul>
     </section>
+    <section class="searching" v-if="searching">
+      <p>Searching...</p>
+    </section>
     <section class="errors" v-if="errorHandling">
       <h2>{{errorMessage}}</h2>
     </section>
@@ -46,16 +49,18 @@
       data: {
         q: '',
         repos: [],
+        searching: false,
         errorHandling: false,
         errorMessage: "Oops, nothing here 💩"
       },
       methods: {
         search: async function () {
+          this.searching = true;
           this.resetSearch();
           const resp = await fetch(`https://api.github.com/search/repositories?q=${this.q}`);
 
           const json = await resp.json();
-          console.log(json.items);
+          this.searching = false
           if (json.items.length) {
             this.repos = json.items;
           } else {
