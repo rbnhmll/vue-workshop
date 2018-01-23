@@ -48,14 +48,5 @@ export default {
     padding: 10px
     border-radius: 5px
     border: 2px solid var(--grey)
-  ul
-    display: grid
-    grid-gap: 10px
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr))
-    list-style-type: none
-    margin: 0
-    padding: 0
-
-
 
 </style>
