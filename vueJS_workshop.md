@@ -55,7 +55,7 @@
   `$ npm run dev`
 * Vue plugin for Chrome and Firefox
 * Style scoping (and SASS with node-sass)
-  `$ npm install sass-loader node-sass style-loader --save-dev`
+  `$ npm install sass-loader node-sass --save-dev`
 * Single File Components
 * Props
 
