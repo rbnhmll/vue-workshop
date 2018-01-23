@@ -48,7 +48,7 @@
 
 ## Using vue-cli (like create-react-app)
 
-* Install vue-cli (https://github.com/vuejs/vue-cli)
+* Install vue-cli (https://github.com/vuejs/vue-cli), `$ npm install -g vue-cli`
 * Create project
   `$ vue init <template-name> <project-name>`
 * Start Server
