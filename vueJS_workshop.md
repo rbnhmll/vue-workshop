@@ -58,6 +58,9 @@
   `$ npm install sass-loader node-sass --save-dev`
 * Single File Components
 * Props
+* Notes and Gotchas: [
+  * In components, must use `data` as a function which returns an object, or it will not work
+    ]
 
 ## Run with it!
 
