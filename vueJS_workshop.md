@@ -34,9 +34,6 @@
   * el
   * data (state)
   * methods
-  * computed properties
-  * Components?
-  * Lifecycle Hooks?
 * Vue Directives (and arguments)
   * `v-if` (conditional rendering)
   * `v-for` (render loop)
@@ -53,11 +50,14 @@
   `$ vue init <template-name> <project-name>`
 * Start Server
   `$ npm run dev`
+* Download example project `cli--COMPLETE`
 * Vue plugin for Chrome and Firefox
 * Style scoping (and SASS with node-sass)
   `$ npm install sass-loader node-sass --save-dev`
 * Single File Components
 * Props
+* computed properties
+* Lifecycle Hooks?
 * Notes and Gotchas: [
   * In components, must use `data` as a function which returns an object, or it will not work
     ]
