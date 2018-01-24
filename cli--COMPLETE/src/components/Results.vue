@@ -42,6 +42,7 @@ export default {
   border: 2px solid var(--grey)
   border-radius: 5px
   transition: 0.3s
+  text-align: left
   &:hover
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3)
   a
@@ -60,8 +61,9 @@ export default {
 
 .repo__meta
   grid-column: 2 / -2
-  h3,
-  h4
+  display: grid
+  align-items: center
+  p
     margin: 0
 
 </style>
