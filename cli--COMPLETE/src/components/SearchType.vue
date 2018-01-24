@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3>Search Type</h3>
+    <h2>Search Type</h2>
     <label v-for="(type, i) in searchTypes" :key="i" :for="type">{{ type }}
       <input type="radio" name="searchType" :id="type" :value="type" @change='updateSearchType' :checked="searchType === type">
     </label>
@@ -27,6 +27,9 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+  h2
+    font-size: 2rem
+    margin-bottom: 0
   label
     margin: 0 10px
 </style>
