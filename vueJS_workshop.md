@@ -30,6 +30,7 @@
 
 ## Get started with just the CDN
 
+* Grab the CDN or download the .js file
 * Setting up new Vue Instance
   * el
   * data (state)

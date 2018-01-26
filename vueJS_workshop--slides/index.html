@@ -40,7 +40,7 @@
 			<section data-markdown data-background="./assets/Vue.js_Logo.svg">
 				<textarea data-template>
 					# Getting started with Vue.js
-					### for people who hear React is cool
+					#### [for people who hear React is cool]
 				</textarea>
 			</section>
 			<section data-markdown class="whoAmI">
@@ -51,21 +51,19 @@
 
 					``` javascript
 					const me = {
-						occupation: ['Freelance developer', 'Educator'],
+						occupation: ['Freelance developer', 'Instructor'],
 						url: 'http://www.robinhamill.com',
 						cohort: [ 7, 'Flexclub', '💪' ],
-						social: [ 'twitter', 'instagram' ],
+						social: [ 'twitter', 'instagram', 'codepen', 'github' ],
 						follow() {
-							this.social.map( mode => {
-								return '@rbnhmll';
-							});
+							this.social.map( () => '@rbnhmll');
 						},
 					};
 					```
 				</textarea>
 			</section>
 			<section>
-				<h2>What is Vue?</h2>
+				<h2>What is Vue.js?</h2>
 				<ul class="fragment">
 					<li>Javascript framework from building front-end UI</li>
 					<li class="fragment">In the same category as React, Preact, Angular and Ember</li>
@@ -101,12 +99,113 @@
 				</section>
 			</section>
 			<section>
-				<h2>Features</h2>
+				<h2>🔥 Features</h2>
 				<ul>
 					<li class="fragment">Progressive Javascript framework (can add to just one part of your application)</li>
 					<li class="fragment">Scalable eco-system</li>
 					<li class="fragment">Reusable components, with its own template, scripts and styles</li>
 					<li class="fragment">All the best parts of React and Angular, without the bloat.</li>
+				</ul>
+			</section>
+			<section>
+				<section>
+					<h2>Get started with just the CDN</h2>
+				</section>
+				<section>
+					<h3>Grab the CDN or download the .js file</h3>
+					<ul>
+						<li class="fragment">Go to
+							<a href="https://vuejs.org/v2/guide/installation.html">https://vuejs.org/v2/guide/installation.html</a> to download the files.
+						</li>
+						<li class="fragment">or use the CDN:
+							<pre>
+								<code>https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js</code>
+							</pre>
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Setting up new Vue Instance</h3>
+					<ul>
+						<li class="fragment">el</li>
+						<li class="fragment">data (ie. state)</li>
+						<li class="fragment">methods</li>
+					</ul>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						### The Vue instance
+						```html
+						<!-- HTML -->
+						...
+
+						<div id="app"></div>
+
+						...
+						```
+						```javascript
+						// javascript
+						const app = new Vue({
+							el: '#app',
+							data: {},
+							methods: {}
+						});
+						```
+					</textarea>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h2>using vue-cli (like create-react-app</h2>
+				</section>
+				<section>
+					<h3>Vue CLI</h3>
+					<ul>
+						<li class="fragment">Install vue-cli (https://github.com/vuejs/vue-cli),
+							<pre>
+								<code data-trim>$ npm install -g vue-cli</code>
+							</pre>
+						</li>
+						<li class="fragment">Create project
+							<pre>
+								<code data-trim>$ $ vue init [template-name] [project-name]
+								</code>
+							</pre>
+						</li>
+						<li class="fragment">Start Server
+							<pre>
+								<code data-trim>$ npm run dev</code>
+							</pre>
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Vue CLI</h3>
+					<ul>
+						<li class="fragment">Download example project
+							<code>cli--COMPLETE</code> from github repo
+							<a href="https://github.com/rbnhmll/vue-workshop/">https://github.com/rbnhmll/vue-workshop/</a>
+						</li>
+						<li class="fragment">Vue plugin for Chrome and Firefox</li>
+						<li class="fragment">Style scoping (and SASS with node-sass)
+							<pre>
+								<code data-trim>$ npm install sass-loader node-sass --save-dev</code>
+							</pre>
+						</li>
+						<li class="fragment">Single File Components</li>
+						<li class="fragment">Props</li>
+						<li class="fragment">computed properties</li>
+						<li class="fragment">Lifecycle Hooks?</li>
+					</ul>
+				</section>
+			</section>
+			<section>
+				<h3>Run with it!</h3>
+				<p class="fragment">Vue has a bunch of additional tools which parallel other popular frameworks</p>
+				<ul>
+					<li class="fragment">Vuex (like Redux)</li>
+					<li class="fragment">Vue-router (like React Router)</li>
+					<li class="fragment">Nuxt.js (SSR)</li>
 				</ul>
 			</section>
 		</div>
