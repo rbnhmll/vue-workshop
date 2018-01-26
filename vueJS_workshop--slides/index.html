@@ -5,13 +5,33 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-	<title>reveal.js</title>
+	<title>Getting started with Vue.js</title>
 
 	<link rel="stylesheet" href="css/reveal.css">
 	<link rel="stylesheet" href="css/theme/solarized.css">
 
 	<!-- Theme used for syntax highlighting of code -->
 	<link rel="stylesheet" href="lib/css/zenburn.css">
+
+	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+
+	<style>
+		.reveal .whoAmI img {
+			border-radius: 50%;
+			max-width: 180px;
+		}
+
+		.reveal .title_slide img {
+			max-width: 300px;
+			border: none;
+			background: 0;
+			box-shadow: none;
+		}
+
+		li {
+			list-style-image: url('./assets/vue_logo--list.svg');
+		}
+	</style>
 
 	<!-- Printing and PDF exports -->
 	<script>
@@ -26,23 +46,78 @@
 <body>
 	<div class="reveal">
 		<div class="slides">
-			<section data-markdown>
+			<section data-markdown class="title_slide">
 				<textarea data-template>
-					# Getting started with Vue.js
-					## for people who hear React is cool
+					## Getting started with Vue.js
+					### for people who hear React is cool
+					![Vue Logo](./assets/Vue.js_Logo.svg)
 				</textarea>
 			</section>
-			<section data-markdown>
+			<section data-markdown class="whoAmI">
 				<textarea data-template>
-					## What is Vue?
+					### Who am I?
+
+					![Robin Hamill Headshot](https://www.dropbox.com/s/na2av7oeakzghds/robinHeadshotSquare.jpg?raw=1)
+
+					``` javascript
+					const me = {
+						occupation: 'Freelance front-end developer',
+						url: 'http://www.robinhamill.com',
+						cohort: [ 7, 'Flexclub', '💪' ],
+						social: [ 'twitter', 'instagram' ],
+						follow() {
+							this.social.map( mode => {
+								return '@rbnhmll';
+							});
+						},
+					};
+					```
 				</textarea>
 			</section>
-			<section data-markdown>
-				<textarea data-template>
-					* Javascript framework from building front-end UI
-					* In the same category as React, Preact, Angular and Ember
-					* Create more maintainable codebase
-				</textarea>
+			<section>
+				<h2>What is Vue?</h2>
+				<ul class="fragment">
+					<li>Javascript framework from building front-end UI</li>
+					<li class="fragment">In the same category as React, Preact, Angular and Ember</li>
+					<li class="fragment">Create more maintainable codebase</li>
+				</ul>
+			</section>
+			<section>
+				<section>
+					<h2>Why Vue?</h2>
+					<ul>
+						<li class="fragment">Easy to learn</li>
+						<li class="fragment">It's just JavaScript</li>
+						<li class="fragment">Reactive</li>
+						<li class="fragment">Components</li>
+						<li class="fragment">Size</li>
+					</ul>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						## Size
+						_Relatively small library compared with others_
+						
+						| Library | Minified | GZipped |
+						| --------|:--------:| :------:|
+						| Angular 2 | 566K | 111K |
+						| Ember 2.2.0 | 435K | 111K |
+						| React 16.2.0 + React DOM | 97.5K | 31.8K |
+						| **Vue 2.4.2** | **58.8K** | **20.9K** |
+						| Preact 7.2.0 | 16K | 4K |
+
+						<small>\* Source: https://gist.github.com/Restuta/cda69e50a853aa64912d</small>
+					</textarea>
+				</section>
+			</section>
+			<section>
+				<h2>Features</h2>
+				<ul>
+					<li class="fragment">Progressive Javascript framework (can add to just one part of your application)</li>
+					<li class="fragment">Scalable eco-system</li>
+					<li class="fragment">Reusable components, with its own template, scripts and styles</li>
+					<li class="fragment">All the best parts of React and Angular, without the bloat.</li>
+				</ul>
 			</section>
 		</div>
 	</div>
