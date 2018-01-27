@@ -22,6 +22,10 @@
 		li {
 			list-style-image: url('./assets/vue_logo--list.svg');
 		}
+
+		.react--blue {
+			color: #25D8FD;
+		}
 	</style>
 
 	<!-- Printing and PDF exports -->
@@ -37,11 +41,10 @@
 <body>
 	<div class="reveal">
 		<div class="slides">
-			<section data-markdown data-background="./assets/Vue.js_Logo.svg">
-				<textarea data-template>
-					# Getting started with Vue.js
-					#### [for people who hear React is cool]
-				</textarea>
+			<section data-background="./assets/Vue.js_Logo.svg">
+				<h1>Getting started with Vue.js</h1>
+				<h3 class="fragment">[for people who hear
+					<span class="react--blue">React</span> is cool]</h3>
 			</section>
 			<section data-markdown class="whoAmI">
 				<textarea data-template>
@@ -80,7 +83,8 @@
 				<h2>What is Vue.js?</h2>
 				<ul class="fragment">
 					<li>Javascript framework for building front-end UI</li>
-					<li class="fragment">In the same category as React, Preact, Angular and Ember</li>
+					<li class="fragment">In the same category as
+						<span class="react--blue">React</span>, Preact, Angular and Ember</li>
 					<li class="fragment">Ability to organize and simplify development</li>
 				</ul>
 			</section>
@@ -147,7 +151,10 @@
 						</tbody>
 					</table>
 
-					<small>\* Source: https://gist.github.com/Restuta/cda69e50a853aa64912d</small>
+					<small>
+						<sup>*</sup> Source:
+						<a href="https://gist.github.com/Restuta/cda69e50a853aa64912d">https://gist.github.com/Restuta/cda69e50a853aa64912d</a>
+					</small>
 				</section>
 			</section>
 			<section>
@@ -156,7 +163,8 @@
 					<li class="fragment">Progressive Javascript framework (can add to just one part of your application)</li>
 					<li class="fragment">Scalable eco-system</li>
 					<li class="fragment">Reusable components, with its own template, scripts and styles</li>
-					<li class="fragment">All the best parts of React and Angular, without the bloat.</li>
+					<li class="fragment">All the best parts of
+						<span class="react--blue">React</span> and Angular, without the bloat.</li>
 				</ul>
 			</section>
 			<section>
@@ -215,13 +223,13 @@
 				</section>
 				<section>
 					<h3>Example 1 - Using the Vue CDN</h3>
-					<p>Open`
+					<p>Open
 						<code class="fragment highlight-green">cdn--START</code> in your code editor</p>
 					<p class="fragment">We're going to make an application to search Github repos.</p>
 				</section>
 			</section>
 			<section>
-				<h2>Vue.js devtools plugins</h2>
+				<h2>Vue.js devtools</h2>
 				<ul>
 					<li>
 						<a href="https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd?hl=en">Chrome</a>
@@ -234,7 +242,8 @@
 			<section>
 				<section>
 					<h2>using vue-cli</h2>
-					<h3>[It's like create-react-app]</h3>
+					<h3>[It's like
+						<span class="react--blue">create-react-app</span>]</h3>
 				</section>
 				<section>
 					<h3>Vue CLI</h3>
@@ -290,8 +299,10 @@
 				<h3>Run with it!</h3>
 				<p class="fragment">Vue has a bunch of additional tools which parallel other popular frameworks</p>
 				<ul>
-					<li class="fragment">Vue-router [like React Router]</li>
-					<li class="fragment">Vuex [like Redux]</li>
+					<li class="fragment">Vue-router [like
+						<span class="react--blue">React Router</span>]</li>
+					<li class="fragment">Vuex [like
+						<span class="react--blue">Redux</span>]</li>
 					<li class="fragment">Nuxt.js [SSR]</li>
 				</ul>
 			</section>
@@ -323,7 +334,7 @@
 				<textarea data-template>
 					### Thank you!
 
-					![Robin Hamill Headshot](./assets/robinHeadshotSquare.jpg)
+					<!-- ![Robin Hamill Headshot](./assets/robinHeadshotSquare.jpg) -->
 
 					``` javascript
 					const robinHamill = new Vue({
