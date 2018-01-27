@@ -16,7 +16,7 @@
 	<style>
 		.reveal .whoAmI img {
 			border-radius: 50%;
-			max-width: 180px;
+			max-width: 150px;
 		}
 
 		li {
@@ -50,9 +50,9 @@
 					![Robin Hamill Headshot](./assets/robinHeadshotSquare.jpg)
 
 					``` javascript
-					const me = {
+					const robinHamill = {
 						occupation: ['Freelance developer', 'Instructor'],
-						url: 'http://www.robinhamill.com',
+						url: 'https://www.robinhamill.com',
 						cohort: [ 7, 'Flexclub', '💪' ],
 						social: [ 'twitter', 'instagram', 'codepen', 'github' ],
 						follow() {
@@ -63,39 +63,91 @@
 				</textarea>
 			</section>
 			<section>
+				<h3>Slides + Starter Files</h3>
+				<a href="https://github.com/rbnhmll/vue-workshop/">https://github.com/rbnhmll/vue-workshop/</a>
+				<pre>
+					<code data-trim>
+						vue-workshop
+						|__ cdn--COMPLETE
+						|__ cdn--START
+						|__ cli--COMPLETE
+						|__ vueJS_workshop--slides
+							|__ index.html [these slides]
+					</code>
+				</pre>
+			</section>
+			<section>
 				<h2>What is Vue.js?</h2>
 				<ul class="fragment">
-					<li>Javascript framework from building front-end UI</li>
+					<li>Javascript framework for building front-end UI</li>
 					<li class="fragment">In the same category as React, Preact, Angular and Ember</li>
-					<li class="fragment">Create more maintainable codebase</li>
+					<li class="fragment">Ability to organize and simplify development</li>
 				</ul>
 			</section>
 			<section>
 				<section>
 					<h2>Why Vue?</h2>
 					<ul>
-						<li class="fragment">Easy to learn</li>
+						<li class="fragment">Easy to learns
+							<sup>*</sup>
+						</li>
 						<li class="fragment">It's just JavaScript</li>
 						<li class="fragment">Reactive</li>
 						<li class="fragment">Components</li>
 						<li class="fragment">Size</li>
 					</ul>
+					<small class="fragment">
+						<sup>*</sup> YMMV
+					</small>
 				</section>
-				<section data-markdown>
-					<textarea data-template>
-						## Size
-						_Relatively small library compared with others_
-						
-						| Library | Minified | GZipped |
-						| --------|:--------:| :------:|
-						| Angular 2 | 566K | 111K |
-						| Ember 2.2.0 | 435K | 111K |
-						| React 16.2.0 + React DOM | 97.5K | 31.8K |
-						| **Vue 2.4.2** | **58.8K** | **20.9K** |
-						| Preact 7.2.0 | 16K | 4K |
+				<section>
+					<h2>Size</h2>
+					<em>Relatively small library compared with others</em>
 
-						<small>\* Source: https://gist.github.com/Restuta/cda69e50a853aa64912d</small>
-					</textarea>
+					<table>
+						<thead>
+							<tr>
+								<th>Library</th>
+								<th style="text-align:center">Minified</th>
+								<th style="text-align:center">GZipped</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Angular 2</td>
+								<td style="text-align:center">566K</td>
+								<td style="text-align:center">111K</td>
+							</tr>
+							<tr>
+								<td>Ember 2.2.0</td>
+								<td style="text-align:center">435K</td>
+								<td style="text-align:center">111K</td>
+							</tr>
+							<tr>
+								<td>React 16.2.0 + React DOM</td>
+								<td style="text-align:center">97.5K</td>
+								<td style="text-align:center">31.8K</td>
+							</tr>
+							<tr class="fragment highlight-green">
+								<td>
+									<strong>Vue 2.4.2</strong>
+								</td>
+								<td style="text-align:center">
+									<strong>58.8K</strong>
+								</td>
+								<td style="text-align:center">
+									<strong>20.9K</strong>
+								</td>
+							</tr>
+							<tr>
+								<td>Preact 7.2.0</td>
+								<td style="text-align:center">16K</td>
+								<td style="text-align:center">4K</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<small>\* Source: https://gist.github.com/Restuta/cda69e50a853aa64912d</small>
 				</section>
 			</section>
 			<section>
@@ -109,27 +161,35 @@
 			</section>
 			<section>
 				<section>
-					<h2>Get started with just the CDN</h2>
+					<h2>Getting started with just the CDN</h2>
 				</section>
 				<section>
 					<h3>Grab the CDN or download the .js file</h3>
 					<ul>
-						<li class="fragment">Go to
-							<a href="https://vuejs.org/v2/guide/installation.html">https://vuejs.org/v2/guide/installation.html</a> to download the files.
-						</li>
-						<li class="fragment">or use the CDN:
+						<li class="fragment">Use the CDN:
 							<pre>
 								<code>https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js</code>
 							</pre>
 						</li>
+						<li class="fragment">or go to
+							<a href="https://vuejs.org/v2/guide/installation.html">https://vuejs.org/v2/guide/installation.html</a> to download the files.
+						</li>
 					</ul>
+					<small class="fragment">[
+						<strong>Note:</strong> there are two versions -- development & production. We will be using development]</small>
 				</section>
 				<section>
 					<h3>Setting up new Vue Instance</h3>
 					<ul>
-						<li class="fragment">el</li>
-						<li class="fragment">data (ie. state)</li>
-						<li class="fragment">methods</li>
+						<li class="fragment">
+							<code>el === element</code>
+						</li>
+						<li class="fragment">
+							<code>data === state</code>
+						</li>
+						<li class="fragment">
+							<code>methods === functions</code>
+						</li>
 					</ul>
 				</section>
 				<section data-markdown>
@@ -153,10 +213,17 @@
 						```
 					</textarea>
 				</section>
+				<section>
+					<h3>Example 1 - Using the Vue CDN</h3>
+					<p>Open
+						<code class="fragment highlight-green">cdn--START</code> in your code editor</p>
+					<p class="fragment">We're going to make an application to search Github repos.</p>
+				</section>
 			</section>
 			<section>
 				<section>
-					<h2>using vue-cli (like create-react-app</h2>
+					<h2>using vue-cli</h2>
+					<h3>[It's like create-react-app]</h3>
 				</section>
 				<section>
 					<h3>Vue CLI</h3>
@@ -168,14 +235,24 @@
 						</li>
 						<li class="fragment">Create project
 							<pre>
-								<code data-trim>$ $ vue init [template-name] [project-name]
+								<code data-trim>$ vue init [template-name] [project-name]
 								</code>
 							</pre>
 						</li>
+						<li class="fragment">
+							<code>[template-name]</code> can be webpack || webpack-simple || browserify || browserify-simple || pwa || simple</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Vue CLI</h3>
+					<ul>
 						<li class="fragment">Start Server
 							<pre>
 								<code data-trim>$ npm run dev</code>
 							</pre>
+						</li>
+						<li class="fragment">Go to
+							<a href="localhost:8080">localhost:8080</a>
 						</li>
 					</ul>
 				</section>
@@ -183,10 +260,19 @@
 					<h3>Vue CLI</h3>
 					<ul>
 						<li class="fragment">Download example project
-							<code>cli--COMPLETE</code> from github repo
+							<code>cli--START</code> from github repo
 							<a href="https://github.com/rbnhmll/vue-workshop/">https://github.com/rbnhmll/vue-workshop/</a>
 						</li>
-						<li class="fragment">Vue plugin for Chrome and Firefox</li>
+						<li class="fragment">Vue.js devtools plugin:
+							<ul>
+								<li>
+									<a href="https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd?hl=en">Chrome</a>
+								</li>
+								<li>
+									<a href="https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/">Firefox</a>
+								</li>
+							</ul>
+						</li>
 						<li class="fragment">Style scoping (and SASS with node-sass)
 							<pre>
 								<code data-trim>$ npm install sass-loader node-sass --save-dev</code>
@@ -203,10 +289,58 @@
 				<h3>Run with it!</h3>
 				<p class="fragment">Vue has a bunch of additional tools which parallel other popular frameworks</p>
 				<ul>
-					<li class="fragment">Vuex (like Redux)</li>
-					<li class="fragment">Vue-router (like React Router)</li>
-					<li class="fragment">Nuxt.js (SSR)</li>
+					<li class="fragment">Vue-router [like React Router]</li>
+					<li class="fragment">Vuex [like Redux]</li>
+					<li class="fragment">Nuxt.js [SSR]</li>
 				</ul>
+			</section>
+			<section>
+				<h3>Resources</h3>
+				<ul>
+					<li>Vue docs:
+						<a href="https://vuejs.org/v2/guide/">https://vuejs.org/v2/guide/</a>
+					</li>
+					<li>vue-cli:
+						<a href="https://github.com/vuejs/vue-cli">https://github.com/vuejs/vue-cli</a>
+					</li>
+					<li>Vue Router:
+						<a href="https://router.vuejs.org/en/">https://router.vuejs.org/en/</a>
+					</li>
+					<li>Vuex:
+						<a href="https://vuex.vuejs.org/en/intro.html">https://vuex.vuejs.org/en/intro.html</a>
+					</li>
+					<li>Nuxt:
+						<a href="https://nuxtjs.org/">https://nuxtjs.org/</a>
+					</li>
+					<li>Intro to Vue, by
+						<a href="https://sarahdrasnerdesign.com/">Sarah Drasner</a>:
+						<a href="https://css-tricks.com/intro-to-vue-1-rendering-directives-events/">https://css-tricks.com/intro-to-vue-1-rendering-directives-events/</a>
+					</li>
+				</ul>
+			</section>
+			<section data-markdown class="whoAmI">
+				<textarea data-template>
+					### Thank you!
+
+					![Robin Hamill Headshot](./assets/robinHeadshotSquare.jpg)
+
+					``` javascript
+					const robinHamill = new Vue({
+						el: '#yourPresenter',
+						data: {
+							occupation: ['Freelance developer', 'Instructor'],
+							url: 'https://www.robinhamill.com',
+							cohort: [ 7, 'Flexclub', '💪' ],
+							social: [ 'twitter', 'codepen', 'github' ],
+						},
+						methods: {
+							follow() {
+								this.social.map( () => '@rbnhmll');
+							},
+						}
+					});
+					```
+				</textarea>
 			</section>
 		</div>
 	</div>
