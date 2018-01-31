@@ -4,6 +4,6 @@
 
 ## Contains:
 
-* CDN example and finished files
-* vue-cli finished files
+* CDN starter and completed files
+* vue-cli starter and completed files
 * Slides
