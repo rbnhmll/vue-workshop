@@ -1,6 +1,10 @@
 <template>
   <div id="app" class="wrapper">
-    <Search :handleFlags='handleFlags' :handleChange='handleChange' :resetSearch='resetSearch' :selectedSearchMethod='selectedSearchMethod'/>
+    <Search
+      :handleFlags='handleFlags'
+      :handleChange='handleChange'
+      :resetSearch='resetSearch' :selectedSearchMethod='selectedSearchMethod'
+    />
     <Results :repos='repos'/>
     <Searching :flags='flags'/>
     <Errors :flags='flags'/>

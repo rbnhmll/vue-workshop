@@ -1,6 +1,11 @@
 <template>
   <div id="app" class="wrapper">
-    <Search :handleFlags='handleFlags' :handleChange='handleChange' :resetSearch='resetSearch'/>
+    <Search
+      :handleFlags='handleFlags'
+      :handleChange='handleChange'
+      :resetSearch='resetSearch'
+    />
+    <!-- 👆 Pass down props to search -->
     <Results :repos='repos'/>
     <Searching :flags='flags'/>
     <Errors :flags='flags'/>
@@ -23,6 +28,7 @@ export default {
   },
   data() {
     return {
+      // add selectedSearchMethod type to state
       repos: [],
       flags: {
         searching: false,

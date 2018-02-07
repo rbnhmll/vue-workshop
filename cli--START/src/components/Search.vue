@@ -1,15 +1,20 @@
 <template>
   <section class="search">
-    <h1>Search for Github searchType</h1>
+    <h1>Search for Github [[ selected Search Method ]]</h1>
     <form @submit.prevent="search">
-      <input type="search" name="search" id="search" :placeholder="`searchType search`" v-model="q">
+      <input type="search" name="search" id="search" :placeholder="`selectedSearchMethod`" v-model="q">
+      <!-- Add component to template -->
+      <!-- Continue to pass down props -->
     </form>
   </section>
 </template>
 
 <script>
+// import component
+
 export default {
   name: 'Search',
+  // components: { add component to component object },
   data() {
     return {
       q: '',
@@ -23,6 +28,16 @@ export default {
       const resp = await fetch(this.searchEndpoint);
       const json = await resp.json();
 
+      // We need to define object based on search type,
+      // since it returns a different data structure
+
+      // let items;
+      // if (this.selectedSearchMethod === 'repo') {
+      //   items = json.items;
+      // } else if (this.selectedSearchMethod === 'developer') {
+      //   items = json;
+      // }
+
       this.handleFlags('searching', false);
 
       if (items.length) {
@@ -34,7 +49,10 @@ export default {
   },
   computed: {
     searchEndpoint() {
-      return `https://api.github.com/search/repositories?q=${this.q}`;
+      if (this.selectedSearchMethod === 'repo') {
+        return `https://api.github.com/search/repositories?q=${this.q}`;
+      }
+      // Return a different endpoint if the search method changes
       // Developer endpint: https://api.github.com/users/${this.q}/repos
     },
   },
