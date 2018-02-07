@@ -13,34 +13,39 @@
   <div id="app" class="wrapper">
     <section class="search">
       <h1>Search for Github repo</h1>
+      <!-- Handle form submit -->
       <form>
+        <!-- Bind search query to data -->
         <input type="search" name="search" id="search" placeholder="Repo Search">
       </form>
     </section>
+    <!-- Show conditionally with v-if -->
     <section class="results">
       <ul>
         <li class="repo">
-          <a href="" class="repo__link">
+          <a href="[[ repo html_url ]]" class="repo__link">
             <div class="repo__image">
-              <img src="" alt="DEV IMAGE GOES HERE">
+              <img src="[[ repo owner avatar_url ]]" alt="[[ repo full_name ]]">
             </div>
             <div class="repo__meta">
               <p>
-                <strong>Dev:</strong> DEVELOPER NAME
+                <strong>Dev:</strong> [[ repo owner login ]]
               </p>
               <p>
-                <strong>Repo:</strong> REPO NAME
+                <strong>Repo:</strong> [[ repo name ]]
               </p>
             </div>
           </a>
         </li>
       </ul>
     </section>
+    <!-- Show conditionally with v-if -->
     <section class="searching">
       <p>Searching...</p>
     </section>
+    <!-- Show conditionally with v-if -->
     <section class="errors">
-      <h2>AN ERROR MESSAGE</h2>
+      <h2>[[ AN ERROR MESSAGE ]]</h2>
     </section>
   </div>
 
@@ -49,9 +54,8 @@
   <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
   <!-- <script src="scripts/vue.js"></script> -->
   <script>
-   // Vue code will go here
+  // Vue code will go here
   //  Our API endpoint: https://api.github.com/search/repositories?q={query}
-
   </script>
 </body>
 
