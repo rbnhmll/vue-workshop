@@ -1,6 +1,6 @@
 <template>
   <div id="app" class="wrapper">
-    <Search :handleFlags='handleFlags' :handleChange='handleChange' :resetSearch='resetSearch' :searchType='searchType'/>
+    <Search :handleFlags='handleFlags' :handleChange='handleChange' :resetSearch='resetSearch' :selectedSearchMethod='selectedSearchMethod'/>
     <Results :repos='repos'/>
     <Searching :flags='flags'/>
     <Errors :flags='flags'/>
@@ -23,7 +23,7 @@ export default {
   },
   data() {
     return {
-      searchType: 'repo',
+      selectedSearchMethod: 'repo',
       repos: [],
       flags: {
         searching: false,

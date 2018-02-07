@@ -1,8 +1,8 @@
 <template>
   <div>
     <h2>Search Type</h2>
-    <label v-for="(type, i) in searchTypes" :key="i" :for="type">{{ type }}
-      <input type="radio" name="searchType" :id="type" :value="type" @change='updateSearchType' :checked="searchType === type">
+    <label v-for="(type, i) in searchMethods" :key="i" :for="type">{{ type }}
+      <input type="radio" name="selectedSearchMethod" :id="type" :value="type" @change='updateSearchType' :checked="selectedSearchMethod === type">
     </label>
   </div>
 </template>
@@ -12,10 +12,10 @@ export default {
   name: 'SearchType',
   data() {
     return {
-      searchTypes: ['repo', 'developer'],
+      searchMethods: ['repo', 'developer'],
     };
   },
-  props: ['handleChange', 'searchType'],
+  props: ['handleChange', 'selectedSearchMethod'],
   methods: {
     updateSearchType(e) {
       const name = e.target.name;
