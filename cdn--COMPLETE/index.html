@@ -62,7 +62,7 @@
           const resp = await fetch(`https://api.github.com/search/repositories?q=${this.q}`);
 
           const json = await resp.json();
-          this.searching = false
+          this.searching = false;
           if (json.items.length) {
             this.repos = json.items;
           } else {

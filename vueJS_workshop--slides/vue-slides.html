@@ -173,7 +173,7 @@
 					<h2>Getting started with just the CDN</h2>
 				</section>
 				<section>
-					<h3>Grab the CDN or download the .js file</h3>
+					<h3>Grab the CDN or download the js file</h3>
 					<ul>
 						<li class="fragment">Use the CDN:
 							<pre>
@@ -227,6 +227,171 @@
 					<p>Open
 						<code class="fragment highlight-green">cdn--START</code> in your code editor</p>
 					<p class="fragment">We're going to make an application to search Github repos.</p>
+				</section>
+				<section>
+					## Set up Vue State
+					<pre>
+						<code data-trim>
+							<script>
+								const app = new Vue({
+									el: '#app',
+									data: {
+										q: '',
+										repos: [],
+										searching: false,
+										errorHandling: false,
+										errorMessage: "Oops, nothing here 💩"
+									}
+								});
+							</script>
+						</code>
+					</pre>
+				</section>
+				<section>
+					<h2>Set up Vue methods: Search</h2>
+					<pre>
+						<code data-trim>
+							<script>
+							...
+								methods: {
+									search: async function () {
+										this.searching = true;
+										this.resetSearch();
+										const resp = await fetch(`https://api.github.com/search/repositories?q=${this.q}`);
+
+										const json = await resp.json();
+										this.searching = false;
+										if (json.items.length) {
+											this.repos = json.items;
+										} else {
+											this.errorHandling = true;
+										}
+									}
+								}
+							...
+							</script>
+						</code>
+					</pre>
+				</section>
+				<section>
+					<h2>Set up Vue methods: Reset Search</h2>
+					<pre>
+							<code data-trim>
+								<script>
+								...
+									methods: {
+									...
+										resetSearch() {
+											this.errorHandling = false;
+											this.repos = [];
+										}
+									}
+								...
+								</script>
+							</code>
+						</pre>
+				</section>
+				<section>
+					<h2>Two-way data binding</h2>
+					<pre>
+						<code data-trim>
+							<template>
+							...
+							<input type="search" v-model="q">
+							...
+							</template>
+						</code>
+					</pre>
+				</section>
+				<section>
+					<h2>Input Handling</h2>
+					<pre>
+						<code data-trim>
+							<template>
+							...
+							<form @submit.prevent="search">
+								<input type="search" name="search" id="search" placeholder="Repo Search" v-model="q">
+							</form>
+							...
+							</template>
+						</code>
+					</pre>
+				</section>
+				<section>
+					<h2>Looping</h2>
+					<pre>
+						<code data-trim>
+							<template>
+							...
+							<ul>
+								<li v-for="repo in repos" class="repo">
+									...
+								</li>
+							</ul>
+							...
+							</template>
+						</code>
+					</pre>
+				</section>
+				<section>
+					<h2>Declarative Rendering</h2>
+					<pre>
+						<code data-trim>
+							<template>
+							...
+							<p>
+								<strong>Dev:</strong> {{ repo.owner.login }}
+							</p>
+							<p>
+								<strong>Repo:</strong> {{ repo.name }}
+							</p>
+							...
+							<h2>{{errorMessage}}</h2>
+							...
+							</template>
+						</code>
+					</pre>
+				</section>
+				<section>
+					<h2>Attribute Binding</h2>
+					<pre>
+						<code data-trim>
+							<template>
+							...
+							<ul>
+								<li v-for="repo in repos" class="repo">
+									<a :href="repo.html_url" class="repo__link">
+										<div class="repo__image">
+											<img :src="repo.owner.avatar_url" :alt="repo.full_name">
+										</div>
+										...
+									</a>
+								</li>
+							</ul>
+							...
+							</template>
+						</code>
+					</pre>
+				</section>
+				<section>
+					<h2>Conditional Rendering</h2>
+					<pre>
+						<code data-trim>
+							<template>
+							...
+							<Element class="results" v-if="repos.length">
+								...
+							</Element>
+							<Element class="searching" v-if="searching">
+								...
+							</Element>
+							<Element class="errors" v-if="errorHandling">
+								...
+							</Element>
+							...
+							</template>
+						</code>
+					</pre>
 				</section>
 			</section>
 			<section>
