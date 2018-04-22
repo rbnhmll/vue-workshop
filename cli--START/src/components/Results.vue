@@ -1,5 +1,6 @@
 <template>
   <section class="results" v-if="repos.length">
+    <h2>Matching Repos</h2>
     <ul>
       <li v-for="(repo, i) in repos" :key='i' class="repo">
         <a :href="repo.html_url" class="repo__link">

@@ -1,5 +1,6 @@
 <template>
   <section class="results" v-if="repos.length">
+    <h2>Matching Repos</h2>
     <ul>
       <li v-for="(repo, i) in repos" :key='i' class="repo">
         <a :href="repo.html_url" class="repo__link">
@@ -49,7 +50,7 @@ export default {
     display: grid
     grid-gap: 0 20px
     color: inherit
-    padding: 10px 20px
+    padding: 10px
     grid-template-columns: 80px 1fr
     text-decoration: none
 
