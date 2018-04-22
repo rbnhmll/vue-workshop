@@ -395,15 +395,32 @@
 				</section>
 			</section>
 			<section>
-				<h2>Vue.js devtools</h2>
-				<ul>
-					<li>
-						<a href="https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd?hl=en">Chrome</a>
-					</li>
-					<li>
-						<a href="https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/">Firefox</a>
-					</li>
-				</ul>
+				<section>
+					<h2>Vue.js devtools</h2>
+					<ul>
+						<li>
+							<a href="https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd?hl=en">Chrome</a>
+						</li>
+						<li>
+							<a href="https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/">Firefox</a>
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Devtools gotchas
+						<sup>*</sup>
+					</h3>
+					<ul>
+						<li>If the page uses a production/minified build of Vue.js, devtools inspection is disabled by default so the Vue pane
+							won't show up.</li>
+						<li>To make it work for pages opened via
+							<code>file://</code> protocol, you need to check "Allow access to file URLs" for this extension in Chrome's extension management panel.</li>
+					</ul>
+					<small>
+						<sup>*</sup>From Vue-devtools documentation:
+						<a href="https://github.com/vuejs/vue-devtools">https://github.com/vuejs/vue-devtools</a>
+					</small>
+				</section>
 			</section>
 			<section>
 				<section>
