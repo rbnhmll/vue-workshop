@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>Search Type</h2>
-    <label v-for="(type, i) in searchMethods" :key="i" :for="type">{{ type }}
+    <label v-for="(type, i) in searchMethods" :key="i" :for="type">{{ type | capitalize }}
       <input type="radio" name="selectedSearchMethod" :id="type" :value="type" @change='updateSearchType' :checked="selectedSearchMethod === type">
     </label>
   </div>
