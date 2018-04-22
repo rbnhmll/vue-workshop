@@ -15,7 +15,8 @@
     <section class="search">
       <h1>Search for Github repo</h1>
       <form @submit.prevent="search">
-        <input type="search" name="search" id="search" placeholder="Repo Search" v-model="q">
+        <input type="search" name="search" id="search" v-model="q" required>
+        <label for="search">Repo search</label>
       </form>
     </section>
     <section class="results" v-if="repos.length">

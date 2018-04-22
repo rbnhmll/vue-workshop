@@ -62,3 +62,38 @@
   text-align: center;
   font-weight: 600;
 }
+
+.search {
+  display: grid;
+  justify-content: center;
+}
+
+.search form {
+  position: relative;
+}
+
+.search form label {
+  position: absolute;
+  left: 6px;
+  top: 10px;
+  color: var(--grey);
+  background: white;
+  padding: 5px;
+  line-height: 1;
+  transition: 0.25s ease;
+}
+
+.search form input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  border-radius: 5px;
+  border: 2px solid var(--grey);
+}
+
+.search form input:hover ~ label,
+.search form input:active ~ label,
+.search form input:focus ~ label,
+.search form input:valid ~ label {
+  top: -13px;
+}
