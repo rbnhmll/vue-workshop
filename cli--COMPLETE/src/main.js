@@ -3,7 +3,9 @@
 import Vue from 'vue';
 import App from './App';
 
+// We want production tips, so I've commented this out for now
 // Vue.config.productionTip = false;
+
 Vue.filter('capitalize', function(value) {
   if (!value) return '';
   value = value.toString();
