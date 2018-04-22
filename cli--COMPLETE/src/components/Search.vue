@@ -2,7 +2,7 @@
   <section class="search">
     <h1>Search for Github {{selectedSearchMethod}}</h1>
     <form @submit.prevent="search">
-      <input type="search" name="search" id="search" :placeholder="`${selectedSearchMethod} search`" v-model="q">
+      <input type="search" name="search" id="search" :placeholder="`${selectedSearchMethod} search` | capitalize" v-model="q">
       <SearchType :handleChange='handleChange' :selectedSearchMethod='selectedSearchMethod'/>
     </form>
   </section>
