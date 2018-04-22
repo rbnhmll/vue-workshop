@@ -203,7 +203,7 @@ html {
 }
 
 body {
-  background: url('../assets/wifi_background.png'),
+  background: url('../wifi_background.png'),
     linear-gradient(
       110deg,
       hsl(295.83, 100%, 45.1%) 0%,

@@ -51,7 +51,7 @@ export default {
 </script>
 
 <style>
-@import './assets/styles/style.css';
+@import '../../sharedAssets/styles/cli-style.css';
 
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
