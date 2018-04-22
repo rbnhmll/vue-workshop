@@ -2,7 +2,8 @@
   <section class="search">
     <h1>Search by Github [[ selected Search Method ]]</h1>
     <form @submit.prevent="search">
-      <input type="search" name="search" id="search" :placeholder="`selectedSearchMethod`" v-model="q">
+      <input type="search" name="search" id="search" v-model="q" required>
+      <label for="search">[[selectedSearchMethod]] search</label>
       <!-- Add component to template -->
       <!-- Continue to pass down props -->
     </form>
@@ -65,11 +66,28 @@ export default {
 .search
   display: grid
   justify-content: center
-  form input
-    width: 100%
-    box-sizing: border-box
-    padding: 10px
-    border-radius: 5px
-    border: 2px solid var(--grey)
+  form
+    position: relative
+    label
+      position: absolute
+      left: 6px
+      top: 10px
+      color: var(--grey)
+      background: white
+      padding: 5px
+      line-height: 1
+      transition: 0.25s ease;
+    input
+      width: 100%
+      box-sizing: border-box
+      padding: 10px
+      border-radius: 5px
+      border: 2px solid var(--grey)
+      &:hover,
+      &:active,
+      &:focus,
+      &:valid
+        &~ label
+          top: -13px
 
 </style>
