@@ -4,7 +4,7 @@
     <form @submit.prevent="search">
       <input type="search" name="search" id="search" v-model="q" required>
       <label for="search">{{ selectedSearchMethod | capitalize }} search</label>
-      <SearchType :handleChange='handleChange' :selectedSearchMethod='selectedSearchMethod'/>
+      <SearchType @handleChange="$emit('handleChange', $event)" :selectedSearchMethod='selectedSearchMethod'/>
     </form>
   </section>
 </template>
@@ -20,11 +20,14 @@ export default {
       q: '',
     };
   },
-  props: ['handleFlags', 'handleChange', 'resetSearch', 'selectedSearchMethod'],
+  props: ['selectedSearchMethod'],
   methods: {
     search: async function() {
-      this.handleFlags('searching', true);
-      this.resetSearch();
+      this.$emit('handleFlags', {
+        key: 'searching',
+        val: true
+      });
+      this.$emit('resetSearch');
       const resp = await fetch(this.searchEndpoint);
       const json = await resp.json();
 
@@ -35,12 +38,21 @@ export default {
         items = json;
       }
 
-      this.handleFlags('searching', false);
+      this.$emit('handleFlags', {
+        key: 'searching',
+        val: false
+      });
 
       if (items.length) {
-        this.handleChange('repos', items);
+        this.$emit('handleChange', {
+          key: 'repos',
+          val: items
+        });
       } else {
-        this.handleFlags('errorHandling', true);
+        this.$emit('handleFlags', {
+          key: 'errorHandling',
+          val: true
+        });
       }
     },
   },

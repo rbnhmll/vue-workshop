@@ -15,12 +15,13 @@ export default {
       searchMethods: ['repo', 'developer'],
     };
   },
-  props: ['handleChange', 'selectedSearchMethod'],
+  props: ['selectedSearchMethod'],
   methods: {
     updateSearchType(e) {
-      const name = e.target.name;
-      const val = e.target.value;
-      this.handleChange(name, val);
+      this.$emit('handleChange', {
+        key: e.target.name,
+        val: e.target.value
+      });
     },
   },
 };

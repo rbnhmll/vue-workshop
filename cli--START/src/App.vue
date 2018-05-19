@@ -1,9 +1,9 @@
 <template>
   <div id="app" class="wrapper">
     <Search
-      :handleFlags='handleFlags'
-      :handleChange='handleChange'
-      :resetSearch='resetSearch'
+      @handleFlags="handleFlags($event)"
+      @handleChange="handleChange($event)"
+      @resetSearch="resetSearch"
     />
     <!-- 👆 Pass down props to search -->
     <Results :repos='repos'/>

@@ -1,9 +1,10 @@
 <template>
   <div id="app" class="wrapper">
     <Search
-      :handleFlags='handleFlags'
-      :handleChange='handleChange'
-      :resetSearch='resetSearch' :selectedSearchMethod='selectedSearchMethod'
+      @handleFlags="handleFlags($event)"
+      @handleChange="handleChange($event)"
+      @resetSearch="resetSearch"
+      :selectedSearchMethod="selectedSearchMethod"
     />
     <Results :repos='repos'/>
     <Searching :flags='flags'/>
@@ -36,10 +37,10 @@ export default {
     };
   },
   methods: {
-    handleFlags(key, val) {
+    handleFlags({key, val}) {
       this.flags[key] = val;
     },
-    handleChange(key, val) {
+    handleChange({key, val}) {
       this[key] = val;
     },
     resetSearch() {
