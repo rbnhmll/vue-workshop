@@ -54,10 +54,7 @@
             <li v-for="repo in repos" class="repo">
               <a :href="repo.html_url" class="repo__link">
                 <div class="repo__image">
-                  <img
-                    :src="repo.owner.avatar_url"
-                    :alt="repo.full_name"
-                  >
+                  <img :src="repo.owner.avatar_url" :alt="repo.full_name">
                 </div>
                 <div class="repo__meta">
                   <p>
