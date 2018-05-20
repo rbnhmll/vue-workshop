@@ -13,10 +13,10 @@
 <body>
   <div id="app" class="wrapper">
     
-    <Search @search="search($event)"></Search>
-    <Results :repos="repos" v-if="repos.length"></Results>
-    <Searching v-if="searching"></Searching>
-    <Errors v-if="errorHandling"></Errors>
+    <search @search="search($event)"></search>
+    <results :repos="repos" v-if="repos.length"></results>
+    <searching v-if="searching"></searching>
+    <errors v-if="errorHandling"></errors>
     
   </div>
 
@@ -24,7 +24,7 @@
 
   <script>
     
-    Vue.component('Search', {
+    Vue.component('search', {
       template: `
         <section class="search">
           <h1>Search for Github repo</h1>
@@ -47,7 +47,7 @@
       }
     });
 
-    Vue.component('Results', {
+    Vue.component('results', {
       template: `
         <section class="results">
           <ul>
@@ -75,7 +75,7 @@
       props: ['repos'],
     });
 
-    Vue.component('Searching', {
+    Vue.component('searching', {
       template: `
         <section class="searching">
           <p>{{searchingMessage}}</p>
@@ -88,7 +88,7 @@
       },
     });
 
-    Vue.component('Errors', {
+    Vue.component('errors', {
       template: `
         <section class="errors">
           <h2>{{errorMessage}}</h2>
