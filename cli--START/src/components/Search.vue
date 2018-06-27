@@ -23,14 +23,14 @@ export default {
   },
   props: [],
   methods: {
-    search: async function() {
+    async search() {
       this.$emit('handleFlags', {
         key: 'searching',
-        val: true
+        val: true,
       });
       this.$emit('resetSearch');
-      const resp = await fetch(this.searchEndpoint);
-      const json = await resp.json();
+      const response = await fetch(this.searchEndpoint);
+      const json = await response.json();
 
       // We need to define object based on search type,
       // since it returns a different data structure
@@ -44,18 +44,18 @@ export default {
 
       this.$emit('handleFlags', {
         key: 'searching',
-        val: false
+        val: false,
       });
 
       if (items.length) {
         this.$emit('handleChange', {
           key: 'repos',
-          val: items
+          val: items,
         });
       } else {
         this.$emit('handleFlags', {
           key: 'errorHandling',
-          val: true
+          val: true,
         });
       }
     },
