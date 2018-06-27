@@ -12,18 +12,18 @@
 
 <body>
   <div id="app" class="wrapper">
-    
+
     <search @search="search($event)"></search>
     <results :repos="repos" v-if="repos.length"></results>
     <searching v-if="searching"></searching>
     <errors v-if="errorHandling"></errors>
-    
+
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
   <script>
-    
+
     Vue.component('search', {
       template: `
         <section class="search">
@@ -97,7 +97,7 @@
         };
       },
     });
-    
+
     const app = new Vue({
       el: '#app',
       data: {
@@ -106,7 +106,7 @@
         errorHandling: false,
       },
       methods: {
-        search: async function (q) {
+        async search(q) {
           this.searching = true;
           this.resetSearch();
           const resp = await fetch(`https://api.github.com/search/repositories?q=${q}`);
