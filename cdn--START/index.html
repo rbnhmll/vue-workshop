@@ -5,24 +5,28 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Vue!</title>
+  <title>Vue! - CDN Start</title>
+  <!-- Base styles -->
   <link rel="stylesheet" href="../sharedAssets/styles/style.css">
   <link rel="stylesheet" href="../sharedAssets/styles/cdn-style.css">
 </head>
 
 <body>
-  <div id="app" class="wrapper">
+  <div class="wrapper">
+    <!-- Add ID for app -->
+
     <section class="search">
       <h1>Search for Github repo</h1>
-      <!-- Handle form submit -->
       <form>
-        <!-- Bind search query to data -->
+        <!-- Handle form submit -->
         <input type="search" name="search" id="search" required>
+        <!-- Bind search query to data -->
         <label for="search">Repo search</label>
       </form>
     </section>
-    <!-- Show conditionally with v-if -->
+
     <section class="results">
+      <!-- Show conditionally with v-if -->
       <ul>
         <li class="repo">
           <a href="[[ repo html_url ]]" class="repo__link">
@@ -41,14 +45,17 @@
         </li>
       </ul>
     </section>
-    <!-- Show conditionally with v-if -->
+
     <section class="searching">
-      <p>Searching...</p>
+      <!-- Show conditionally with v-if -->
+      <p>[[ A Searching... MESSAGE ]]</p>
     </section>
-    <!-- Show conditionally with v-if -->
+
     <section class="errors">
+      <!-- Show conditionally with v-if -->
       <h2>[[ AN ERROR MESSAGE ]]</h2>
     </section>
+
   </div>
 
   <!-- Vue.js Docs: https://vuejs.org/v2/guide/ -->
@@ -56,7 +63,7 @@
   <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
   <script>
   // Vue code will go here
-  //  Our API endpoint: https://api.github.com/search/repositories?q={query}
+  // Our API endpoint: https://api.github.com/search/repositories?q={query}
   </script>
 </body>
 
