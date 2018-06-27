@@ -228,7 +228,7 @@
 					<p class="fragment">We're going to make an application to search Github repos.</p>
 				</section>
 				<section>
-					## Set up Vue State
+					<h2>Set up Vue State</h2>
 					<pre>
 						<code data-trim>
 							<script>
@@ -238,6 +238,7 @@
 										q: '',
 										repos: [],
 										searching: false,
+										searchingMessage: "Searching...",
 										errorHandling: false,
 										errorMessage: "Oops, nothing here 💩"
 									}
@@ -253,7 +254,7 @@
 							<script>
 							...
 								methods: {
-									search: async function () {
+									async search() {
 										this.searching = true;
 										this.resetSearch();
 										const resp = await fetch(`https://api.github.com/search/repositories?q=${this.q}`);
