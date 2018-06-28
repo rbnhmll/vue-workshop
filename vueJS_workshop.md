@@ -59,7 +59,19 @@ Open this package up in your code editor of choice.
 
 We're going to styart by opening up the project **cdn--START**. Here we have some pre-built styles and HTML to get us started building our application.
 
-### Vue Devtools
+### Vue.js devtools
+Install the Vue Devtools for you preferred browser
+
+[Chrome](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd?hl=en)
+[Firefox](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
+
+Open up the browser inspector/devtools, and click on the Vue tab.
+
+### Devtools gotchas
+  * If the page uses a production/minified build of Vue.js, devtools inspection is disabled by default so the Vue pane won't show up.
+  * To make it work for pages opened via `file://` protocol, you need to check "Allow access to file URLs" for this extension in Chrome's extension management panel.
+
+  <small>* From Vue-devtools documentation: [https://github.com/vuejs/vue-devtools](https://github.com/vuejs/vue-devtools)</small>
 
 ### The Vue Instance
 
@@ -73,8 +85,8 @@ We're going to styart by opening up the project **cdn--START**. Here we have som
 * `v-model` (two-way data binding)
 * `v-if` (conditional rendering)
 * `v-for` (render loop)
-* `v-bind` (attributes) [shortcut: `:`]
 * `v-on` (event binding) [shortcut: `@`]
+* `v-bind` (attributes) [shortcut: `:`]
 
 ### Directives: `v-model`
 
@@ -108,17 +120,15 @@ We're going to styart by opening up the project **cdn--START**. Here we have som
 ### Emit events
 
 
-### Using vue-cli (like create-react-app)
+### Using vue-cli (like create-react-app) [*To-Do: Update projects to Vue CLI 3]
 
-* Install vue-cli [https://github.com/vuejs/vue-cli](https://github.com/vuejs/vue-cli), `$ npm install -g vue-cli`
+* Install vue-cli [https://github.com/vuejs/vue-cli](https://github.com/vuejs/vue-cli), `$ npm install -g @vue/cli`
 * Create project
-  `$ vue init <template-name> <project-name>`
+  `$ vue init <project-name>`
 * Start Server
-  `$ npm run dev`
+  `$ npm run serve`
 * Download example project `cli--COMPLETE`
 * Vue plugin for Chrome and Firefox
-* Style scoping (and SASS with node-sass)
-  `$ npm install sass-loader node-sass --save-dev`
 * Single File Components
 * Props
 * computed properties
