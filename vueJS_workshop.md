@@ -58,24 +58,55 @@ Open this package up in your code editor of choice.
   * **Production** version is optimized for size and speed
 
 We're going to styart by opening up the project **cdn--START**. Here we have some pre-built styles and HTML to get us started building our application.
-### Setting up new Vue Instance
+
+### Vue Devtools
+
+### The Vue Instance
 
 * el
 * data
-* methods, etc.
+
+### Declarative Rendering
 
 ### Vue Directives (and arguments)
 
+* `v-model` (two-way data binding)
 * `v-if` (conditional rendering)
 * `v-for` (render loop)
-* `v-on` (event binding) [shortcut: `@`]
-* `v-model` (two-way data binding)
 * `v-bind` (attributes) [shortcut: `:`]
+* `v-on` (event binding) [shortcut: `@`]
 
-### Directive modifiers
+### Directives: `v-model`
+
+### Methods
+
+### Directives: Conditional Rendering with `v-if`
+
+### Listening for Events
+
+### Event modifiers
 
 * `v-on:submit.prevent="onSubmit"`
 * `v-model.number="example"`
+
+### Directives: `v-for`
+
+### Directives: `v-bind`
+  * cabab-case
+
+### Directive shorthands
+
+### Component Registration: `Vue.component`
+
+### Component Data
+
+### Props
+  * `[]` vs `{}`
+  * Sataic vs dynamic
+  * cabab-case
+
+### Emit events
+
 
 ### Using vue-cli (like create-react-app)
 
