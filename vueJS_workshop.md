@@ -124,7 +124,7 @@ Open up the browser inspector/devtools, and click on the Vue tab.
 
 * Install vue-cli [https://github.com/vuejs/vue-cli](https://github.com/vuejs/vue-cli), `$ npm install -g @vue/cli`
 * Create project
-  `$ vue init <project-name>`
+  `$ vue create <project-name>`
 * Start Server
   `$ npm run serve`
 * Download example project `cli--COMPLETE`
