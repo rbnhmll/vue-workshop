@@ -200,7 +200,7 @@ data: {
   searchingMessage: "Searching...",
   errorHandling: false,
   errorMessage: "Oops, nothing here 💩"
-}
+},
 ```
 
 Let's build our `search` method which will take care of the following steps:
@@ -244,14 +244,6 @@ methods: {
   }
 }
 ```
-
-Remove `e.preventDefault()` from our search method
-
-```javascript
-methods: {
-  async search() {
-    ...
-```
 >**Note** ☝ 
 >Notice the `this` keyword in our methods? This is how we will reference any data property or method from within another part of our app, instead of referencing `app`.
 
@@ -282,6 +274,15 @@ We can tack on a modifier to the event handler, instead of stating it in the met
 <form v-on:submit.prevent="search">
   ...
 </form>
+```
+
+Remove `e.preventDefault()` from our search method
+
+```javascript
+methods: {
+  async search() {
+    // e.preventDefault(); <== Remove this line!
+    ...
 ```
 
 ### Directives: Conditional Rendering with `v-if`
@@ -407,7 +408,7 @@ Vue.component('searching', {
   template: "",
   data() {
     return {};
-  },
+  }
 });
 ```
 
@@ -443,6 +444,9 @@ Vue.component('searching', {
   },
 });
 ```
+
+>**Note** ☝ 
+> Since we are now including the `searchingMessage` in this component, we need to remember to remove it from the main Vue Object.
 
 Finally, we can render our component in our app, by using the component name as the element. Let's also include the `v-if` from before, but this time at the component level.
 
@@ -481,15 +485,152 @@ Vue.component('errors', {
 });
 ```
 
-### Component Data
+>**Note** ☝ 
+> Since we are now including the `errorMessage` in this component, we need to remember to remove it from the main Vue Object.
 
-### Props
-  * `[]` vs `{}`
-  * Sataic vs dynamic
-  * cabab-case
+Now that we have a little practice building components, let's take care of the more complex components of our app: _Search_, and _Results_!
+
+```html
+<search></search>
+```
+
+```javascript
+Vue.component('search', {
+  template: `
+    <section class="search">
+      <h1>Search for Github repo</h1>
+      <form @submit.prevent="search">
+        <input
+          type="search"
+          name="search"
+          id="search"
+          required
+          v-model="q"
+        >
+        <label for="search">Repo search</label>
+      </form>
+    </section>
+  `,
+  data() {
+    return {
+      q: '',
+    }
+  }
+});
+```
+
+>**Note** ☝ 
+> Since we are now including the `q` in this component, we need to remember to remove it from the main Vue Object.
+
+Let's try out the app and make sure it still works! **Uh oh!** We nothing is happening when we search, and we have an error in the console which looks like `[Vue warn]: Property or method "search" is not defined on the instance but referenced during render. Make sure that this property is reactive, either in the data option, or for class-based components, by initializing the property` 🤔. But isn't it thought?
+
+The problem is that we are trying to call a function that doesn't exist on this component. We need to find a way to call up to the main Vue Object to trigger our `search method`, and send along our query, `q`.
 
 ### Emit events
 
+Vue has an elegent way of handling these sorts of events, where we need to trigger soemthing in the parent Object, and pass along some arguments, using `$emit`.
+
+We can start by replacing the name of the method we were trying to call directly, with `$emit()`. This can take two arguments: an `eventName`, so we can reference the event by it later, and the `[...args]` or payload. We'll call our event "search", and pass our query `q` as the argument. 
+
+```javascript
+Vue.component('search', {
+  template: `
+    ...
+    <form @submit.prevent="$emit('search', q)">
+      ...
+    </form>
+    ...
+  `,
+  ...
+});
+```
+
+Now in our HTML where we reference the search component, we can listed for our custom event called `search`. This is done the same way we listen for standard events with `v-on` or `@`, but referencing the custom name of the event, `search`. The argument that is expected is represented by the special `$event` property, containing whatever was passed through.
+
+```html
+<search @search="search($event)"></search>
+```
+
+By doing so we are passing the `q` to the `search method`.
+
+Let's convert our remaining _Results_ section into it's own component.
+
+```html
+<results v-if="repos.length"></results>
+```
+
+```javascript
+Vue.component('results', {
+  template: `
+    <section class="results">
+      <ul>
+        <li v-for="repo in repos" class="repo">
+          <a :href="repo.html_url" class="repo__link">
+            <div class="repo__image">
+              <img :src="repo.owner.avatar_url" :alt="repo.full_name">
+            </div>
+            <div class="repo__meta">
+              <p>
+                <strong>Dev:</strong> {{ repo.owner.login }}
+              </p>
+              <p>
+                <strong>Repo:</strong> {{ repo.name }}
+              </p>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </section>
+  `
+});
+```
+
+We must also update our `search` method to expect `$event` payload to be passed in. We'll name it `q`, and since we are longer referencing `q` on the `data` Object, we can remove the `this.` from the url template string.
+
+```javascript
+methods: {
+  async search(q) {
+   ...
+    const response = await fetch(`https://api.github.com/search/repositories?q=${q}`);
+    ...
+  },
+  ...
+}
+```
+
+Let's try out the app and make sure it still works! **Uh oh!**, another error, similar to before `[Vue warn]: Property or method "repos" is not defined on the instance but referenced during render. Make sure that this property is reactive, either in the data option, or for class-based components, by initializing the property`.
+
+Here we are referencing `repos`, but this component does not have access to it in the component. Let's solve this in the next step.
+
+### Props
+
+In order to allow our `results` component access to the `repos` in the mina Vue Object, we need to pass "props" to the component.
+
+We do this using `v-bind`, similar to when we need to dynamically update an attribute. We start be giving our `results` element an attribute with the name we want to represent it, and pass in the `repos` in our data object as the argument. We can also use the short-form, as follows:
+
+```html
+<results :repos="repos" v-if="repos.length"></results>
+```
+
+Then in the component itself, we need to register the prop, so that the component knows what to expect. In its simplest form, props can be represented by an `Array` of `Strings`. However, you can also make props an `Object`, with the key being the name of the prop, and the value being the prop type, such as `String`, `Array`, etc. This can help offer useful warnings if passing the wrong type of prop.
+
+```javascript
+Vue.component('results', {
+  template: `
+    <section class="results">
+     ...
+    </section>
+  `,
+  props: {
+    repos: Array
+  },
+});
+```
+
+>**Note** ☝ 
+> It's worth nothing that HTML attribute names are case sensitive, and the browser will treat any uppercase letters as lowercase. So when using in-DOM templates like with the CDN, we must remember to use kabab-case on prop attributes.
+
+Yay, our application works again!
 
 ### Using vue-cli (like create-react-app)
 
