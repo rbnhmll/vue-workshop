@@ -136,7 +136,8 @@ We can then render these messages inside of our `app` template using the `{{ pro
   ...
 ```
 
-> ☝ Note: Notice that we can reference the property on the data object directly, without having to reference the main `app` object, like `app.data.searchingMessage`.
+> **Note** ☝
+> Notice that we can reference the property on the data object directly, without having to reference the main `app` object, like `app.data.searchingMessage`.
 
 ### Vue Directives (and arguments)
 
@@ -251,8 +252,8 @@ methods: {
   async search() {
     ...
 ```
-
->☝ Note: Notice the `this` keyword in our methods? This is how we will reference any data property or method from within another part of our app, instead of referencing `app`.
+>**Note** ☝ 
+>Notice the `this` keyword in our methods? This is how we will reference any data property or method from within another part of our app, instead of referencing `app`.
 
 ### Directives: Event Handling with `v-on`
 
@@ -338,13 +339,16 @@ Now we have a variable `repo` which represents each iteration. We can use this t
 ...
 ```
 
->☝ Note: While we can use the `{{ }}` syntax to render text content, we cannot use this within attributes. Follow along to the next step to see how we `bind` data to these attributes.
+>**Note** ☝ 
+>While we can use the `{{ }}` syntax to render text content, we cannot use this _within_ attributes. Follow along to the next step to see how we `bind` data to these attributes.
 
 ### Directives: `v-bind`
 
 In order to bind data to attributes in vue, we have to use another directive called (you guess it) `v-bind`. This will allow us to dynamically update attributes.
 
-In our cards above, we still need to hook up the `<a href="">`, and `<img src="" alt="`.
+In our cards above, we still need to hook up the `<a href="">`, and `<img src="" alt=">`.
+
+When using `v-bind`, the contents of the attribute will be treated as javascript. So we can pass variables right into it.
 
 ```javascript
 ...
@@ -364,7 +368,7 @@ In our cards above, we still need to hook up the `<a href="">`, and `<img src=""
 Writing `v-on` and `v-bind` on everything can get a little tedious after a while, so there are some convenient shortcuts we can use to save some space/time.
 
   * `v-on:` can be replaced with `@`
-  * `v-bind:` can be written as just `:`
+  * `v-bind:` can be written as simply `:`
 
 Let's update our code as follows:
 
@@ -386,9 +390,9 @@ Let's update our code as follows:
 
 ### Component Registration: `Vue.component`
 
-Now that we have a working application, we can think about splitting the parts of our app into smaller components, in order to make them easier to manage. It might not seem very necessary at this scale, but becomes increasingly helpful as your application expands.
+Now that we have a working application, we can think about splitting the parts of our app into smaller components, in order to make them easier to maintain. It might not seem necessary at this scale, but becomes increasingly helpful as your application expands.
 
-Let's start by separating some of the smaller parts of our app into componets, such as the `searching` and `errors` sections.
+Let's start by separating some of the smaller parts of our app into components, such as the `searching` and `errors` sections.
 
 First, we need to Register a new component, using `Vue.component()`. This method takes two arguments: a `name: String`, and a `config: Object`.
 
@@ -396,7 +400,7 @@ First, we need to Register a new component, using `Vue.component()`. This method
 Vue.component('searching', {});
 ```
 
-Inside the congig Object, we can add data specific to this component, such as a `template` and `data` Object.
+Inside the config Object, we can add data specific to this component, such as a `template: String` and `data: Function`.
 
 ```javascript
 Vue.component('searching', {
@@ -407,8 +411,8 @@ Vue.component('searching', {
 });
 ```
 
-> ☝ Note: Notice that the `data` property on our component looks a little different than before? Because components are reusable, we can no longer declare our state as an `Object`. If we did, every instance of that component would share the same data.
-> Instead, we made `data` a `function`, which returns an `Object`. This way, each component will have unique data.
+>**Note** ☝ 
+>Notice that the `data` property on our component look a little different than before? Because components are reusable, we can no longer declare our state as an `Object`. If we did, every instance of that component would share the same data. Instead, we make `data` a `function`, which _returns_ an `Object`. This way, each component will have unique data!
 
 Now, we can move the HTML `searchingMessage` in our `app` to the `data` in our component.
 
@@ -440,7 +444,7 @@ Vue.component('searching', {
 });
 ```
 
-Finally, we can render our component in our app, by using the component name as the element. Let's also include the `v-if` from before.
+Finally, we can render our component in our app, by using the component name as the element. Let's also include the `v-if` from before, but this time at the component level.
 
 ```html
 <div id="app" class="wrapper">
@@ -449,9 +453,8 @@ Finally, we can render our component in our app, by using the component name as 
   ...
 </div>
 ```
-
-> ☝ Note: You can't use self-closing components like `<my-component />` in Vue DOM templates, because it is not valid HTML. Still valid and recommended in single-file components.
-> Components must also be lower-case, and cabab-case.
+>**Note** ☝ 
+>You can't use self-closing components like `<my-component />` in Vue DOM templates (CDN), because it is not valid HTML. But it is still valid and recommended in single-file components (CLI). Components must also be lower-case, and cabab-case.
 
 Let's do the same thing for the `errors` section.
 
