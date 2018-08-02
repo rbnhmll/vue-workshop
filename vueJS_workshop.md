@@ -50,7 +50,9 @@ Open this package up in your code editor of choice.
 * Reusable components, with their own template, scripts and styles.
 * All the best parts of React and Angular, without the bloat.
 
-### Get started with just the CDN
+---
+
+## Get started with the Vue CDN
 
 * Grab the [CDN](https://vuejs.org/v2/guide/#Getting-Started) or [download](https://vuejs.org/v2/guide/installation.html#Direct-lt-script-gt-Include) the .js file
 * Note: there are Development and Production versions of both.
@@ -632,22 +634,138 @@ Vue.component('results', {
 
 Yay, our application works again!
 
-### Using vue-cli (like create-react-app)
+---
 
-* Install vue-cli [https://github.com/vuejs/vue-cli](https://github.com/vuejs/vue-cli), `$ npm install -g @vue/cli`
-* Create project
-  `$ vue create <project-name>`
-* Start Server
-  `$ npm run serve`
-* Download example project `cli--COMPLETE`
-* Vue plugin for Chrome and Firefox
-* Single File Components
-* Props
-* computed properties
-* Lifecycle Hooks?
-* Notes and Gotchas:
-  * In components, must use `data` as a function which returns an object, or it will not work
-  * You can't use self-closing components like `<my-component />` in Vue DOM templates, because it is not valid HTML. Still valid and recommended in single-file components.
+## Using Vue CLI 3
+
+The **Vue CLI** (**C**ommand **L**ine **I**nterface) is the official tooling for spinning up a project with all the boilerplate needed for a fully functional web-application. If you have used `create-react-app` before, it is similar to this.
+
+### Install Vue CLI
+
+In order to create a project with the Vue CLI, we need to first install it with `npm` or `yarn` in your terminal. We'll be using `npm` for all of these examples.
+
+Getting started instructions: [https://cli.vuejs.org/](https://cli.vuejs.org/),
+
+```bash
+npm install -g @vue/cli
+# OR
+yarn global add @vue/cli
+```
+
+### Creating a project
+
+There are two ways to create a new project with Vue CLI:
+  1. Using `vue create`
+  2. Using the **brand new** `vue ui`
+
+Let's take a look at both!
+
+### Creating a project -- `vue create`
+
+To create a vue app we type `vue create` followed by the name of the project, giving you options to select a default template, or folly configure it to your needs.
+
+```bash
+vue create <project-name>
+```
+
+Let's create a `test` project
+
+This will begin a series of steps in your terminal to create your project. For this example, we will just choose the `default` option.
+
+### Creating a project -- `vue ui`
+
+The **new** Vue UI will launch a localhost with a GUI (**G**raphical **U**ser **I**nterface), which makes setting up a project a bit more user friendly.
+
+```bash
+vue ui
+```
+
+Once opened, you will see many of the same options as in the console, but in a more clickable fashion.
+
+Let's create a `test` project again.
+
+### Start Server
+
+With a project created, we can now start our Vue server, and see the. The CLI Service is built on top of webpack, but luckily we won't have to do anything to get it up and running, it's pre configured.
+
+`cd` into your project and run
+
+```bash
+npm run serve
+```
+
+Your application is running at `localhost:8080/`
+
+>**Note** ☝ 
+>To kill the server at any time, hit `constrol + c`
+
+### Download example project starter files: `cli--START`
+
+To make the process more efficient, I have created a starter project for you, with all the work we have done previously.
+
+Open up `cli--START` in the starter files, or download them at [https://github.com/rbnhmll/vue-workshop](https://github.com/rbnhmll/vue-workshop)
+
+Locate and `cd` into this folder and run
+
+```bash
+npm run serve
+```
+
+The application is running at `localhost:8080/`
+
+>**Note** ☝ 
+>To kill the server at any time, hit `constrol + c`
+
+### Getting to know the starter files
+
+- `/public`
+- `/src`
+  - `App.vue`
+  - `main.js`
+  - `/components`
+    - `Errors.vue`
+    - `Results.vue`
+    - `Search.vue`
+    - `Searching.vue`
+    - `SearchType.vue` <== We'll be adding this component
+
+### Single File Components
+
+Single file components are written in `.vue` files, and consist of three sections: `<template>`, `<script>`, and `<style>`. These represent the component's `HTML`, `JavaScript`, and `CSS`.
+
+A typical start file will look like this:
+
+```html
+<template>
+  <div>
+    <!-- HTML -->
+  </div>
+</template>
+
+<script>
+  export default {
+    // JavaScript
+  }
+</script>
+
+<style>
+  /* CSS */
+</style>
+```
+
+### computed properties
+
+### Filters?
+  Capitalize
+
+### Lifecycle Hooks?
+
+### Notes and Gotchas:
+  >**Note** ☝ 
+  > Remember, in components `data` must be a function which returns an Object, or it will not work properly.
+  
+  >**Note** ☝
+  >You can't use self-closing components like `<my-component />` in Vue DOM templates, because it is not valid HTML. Still valid and recommended in single-file components.
 
 ### Run with it!
 
