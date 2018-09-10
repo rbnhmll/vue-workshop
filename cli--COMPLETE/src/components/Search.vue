@@ -4,13 +4,13 @@
     <form @submit.prevent="search">
       <input type="search" name="search" id="search" v-model="q" required>
       <label for="search">{{ selectedSearchMethod | capitalize }} search</label>
-      <SearchType @handleChange="$emit('handleChange', $event)" :selectedSearchMethod='selectedSearchMethod'/>
+      <search-type @handleChange="$emit('handleChange', $event)" :selectedSearchMethod='selectedSearchMethod'/>
     </form>
   </section>
 </template>
 
 <script>
-import SearchType from './SearchType';
+import SearchType from '@/components/SearchType.vue';
 
 export default {
   name: 'Search',
