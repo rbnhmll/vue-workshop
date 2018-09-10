@@ -13,10 +13,10 @@
 </template>
 
 <script>
-import Search from './components/Search';
-import Results from './components/Results';
-import Searching from './components/Searching';
-import Errors from './components/Errors';
+import Search from '@/components/Search';
+import Results from '@/components/Results';
+import Searching from '@/components/Searching';
+import Errors from '@/components/Errors';
 
 export default {
   name: 'App',
