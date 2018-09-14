@@ -50,6 +50,21 @@ Open this package up in your code editor of choice.
 * Reusable components, with their own template, scripts and styles.
 * All the best parts of React and Angular, without the bloat.
 
+### What are we going to build?
+
+Together we are going to build a simple single page application which searches for Github repos by keyword, and display them in a grid. The starter package includes two versions of the app, each with a `start` and `complete` version of the app:
+  
+  - `cdn--START`
+  - `cdn--COMPLETE`
+  - `cli--START`
+  - `cli--COMPLETE`
+
+To preview what our end goal will be, open the `cdn--COMPLETE` directory, and open `index.html` in your browser 
+
+We will be working mostly in the `cdn` version of the app to learn about the fundamentals of Vue, and will later learn about the CLI, and how to extend out application features.
+
+Let's get started!
+
 ---
 
 ## Get started with the Vue CDN
@@ -59,7 +74,7 @@ Open this package up in your code editor of choice.
   * **Development** version includes helpful console warnings. (we will be using this one.)
   * **Production** version is optimized for size and speed
 
-We're going to styart by opening up the project **cdn--START**. Here we have some pre-built styles and HTML to get us started building our application.
+We're going to start by opening up the project **cdn--START**. Here we have some pre-built styles and HTML to get us started building our application.
 
 ### Add CDN script
 
@@ -662,7 +677,7 @@ Let's take a look at both!
 
 ### Creating a project -- `vue create`
 
-To create a vue app we type `vue create` followed by the name of the project, giving you options to select a default template, or folly configure it to your needs.
+To create a vue app we type `vue create` followed by the name of the project, giving you options to select a default template, or fully configure it to your needs.
 
 ```bash
 vue create <project-name>
@@ -670,7 +685,24 @@ vue create <project-name>
 
 Let's create a `test` project
 
-This will begin a series of steps in your terminal to create your project. For this example, we will just choose the `default` option.
+This will begin a series of steps in your terminal to create your project. For this example, we will choose the `default` option.
+
+```bash
+Vue CLI v3.0.1
+? Please pick a preset: (Use arrow keys)
+❯ default (babel, eslint)
+  Manually select features
+```
+
+When complete you should get the message
+
+```bash
+🎉  Successfully created project test.
+👉  Get started with the following commands:
+
+ $ cd test
+ $ npm run serve
+```
 
 ### Creating a project -- `vue ui`
 
@@ -684,39 +716,61 @@ Once opened, you will see many of the same options as in the console, but in a m
 
 Let's create a `test` project again.
 
+
+
 ### Start Server
 
 With a project created, we can now start our Vue server, and see the. The CLI Service is built on top of webpack, but luckily we won't have to do anything to get it up and running, it's pre configured.
 
-`cd` into your project and run
+You can leave the UI running, or hit `control + c` to terminate it. `cd` into your project and run:
 
 ```bash
 npm run serve
 ```
 
-Your application is running at `localhost:8080/`
+Your application is now running at `localhost:8080/`
 
 >**Note** ☝ 
->To kill the server at any time, hit `constrol + c`
+>To kill the server at any time, hit `control + c`
+
+### Boilerplate files tour
+
+Inside of your test project, you will see these starter files and folders:
+
+- `/public`
+  - `favicon.ico`
+  - `index.html` 
+- `/src`
+  - `/assets`
+  - `/components`
+  - `App.vue`
+  - `main.js`
+- `.gitignore`
+- `babel.config.js`
+- `package-lock.json`
+- `package.json`
+- `README.md`
 
 ### Download example project starter files: `cli--START`
 
-To make the process more efficient, I have created a starter project for you, with all the work we have done previously.
+To make the process more efficient, I have created a starter project for you, with all the work we have done previously, broken into components.
 
 Open up `cli--START` in the starter files, or download them at [https://github.com/rbnhmll/vue-workshop](https://github.com/rbnhmll/vue-workshop)
 
-Locate and `cd` into this folder and run
+Locate and `cd` into this folder and run"
 
 ```bash
 npm run serve
 ```
 
-The application is running at `localhost:8080/`
+The application is now running at `localhost:8080/`
 
 >**Note** ☝ 
 >To kill the server at any time, hit `constrol + c`
 
 ### Getting to know the starter files
+
+This starter pack includes the same files as the boilerplate we created with the Vue CLI. The only difference is that I have created single file components for everything we worked on previously. Let's take a look.
 
 - `/public`
 - `/src`
@@ -731,9 +785,15 @@ The application is running at `localhost:8080/`
 
 ### Single File Components
 
-Single file components are written in `.vue` files, and consist of three sections: `<template>`, `<script>`, and `<style>`. These represent the component's `HTML`, `JavaScript`, and `CSS`.
+Single file components are written in `.vue` files, and consist of three sections:
 
-A typical start file will look like this:
+`<template>`
+`<script>`
+`<style>`
+
+These represent the component's `HTML`, `JavaScript`, and `CSS`.
+
+A typical starter file will look like this:
 
 ```html
 <template>
@@ -745,7 +805,7 @@ A typical start file will look like this:
 <script>
   export default {
     // JavaScript
-  }
+  };
 </script>
 
 <style>
@@ -753,12 +813,104 @@ A typical start file will look like this:
 </style>
 ```
 
-### computed properties
+Each section of these components pertain to that component alone.
+
+### Create a new Component: SearchType.vue
+
+To create a new component, we will create a new `.vue` files inside the `components` directory. We'll call it `SearchType.vue`.
+
+This purpose of this component is to enable us to switch between searching for **Repos** and **Developers**.
+
+Once created, we will input the base code above to get our component started.
+
+Let's add some starter code to give the component some structure:
+
+```html
+<template>
+  <div>
+    <h2>Search Type</h2>
+    <!-- Loop over searchMethods -->
+    <label for="">[[TYPE]]
+      <input type="radio" name="selectedSearchMethod" id="" value="">
+    </label>
+  </div>
+</template>
+```
+
+```html
+<style lang="sass" scoped>
+  // Some base styles so it looks 👌
+  h2
+    font-size: 2rem
+    margin-bottom: 0
+  label
+    margin: 0 10px
+</style>
+```
+
+### Add component to `Search.vue`
+
+In order to see this component in our app, we need to import it and render it on the page. We're going to use this component inside of `Search.vue`, because it will directly effect what we are searching for.
+
+First, let's import the component:
+
+```html
+<script>
+import SearchType from '@/components/SearchType.vue';
+
+export default {
+  ...
+};
+...
+</script>
+```
+
+>**Note** ☝
+  > Notice how we can use the `@` symbol as an alias for the `src` folder. This can make it a lot easier to find files, instead of having to go up the directory tree.
+
+Now with the component imported, we can add it to our template
+
+```html
+<template>
+  ...
+  <form @submit.prevent="search">
+    ...
+    <search-type />
+  </form>
+  ...
+</template>
+```
+
+>**Note** ☝
+  > It's best practice to add components to tjhe template using kabab case, so that they are inline with html standards. And since our component doesn't have any content, it can also be self-closing.
+
+We should now see some content inside of our form, displaying a radio button
+
+### Building the SearchType functionality
+
+Depending on which option is selected, we can change the type of search we want to perform. The two types of searches we want to perform are `repo` and `developer`. Let's put these as options inside out data Object, so we can loop over them.
+
+```html
+<script>
+export default {
+  name: 'SearchType',
+  data() {
+    return {
+      searchMethods: ['repo', 'developer'],
+    };
+  }
+};
+</script>
+```
+
+Now in our template, we can loop over these options in order to show the different radio buttons.
+
+
+
+### Computed properties
 
 ### Filters?
   Capitalize
-
-### Lifecycle Hooks?
 
 ### Notes and Gotchas:
   >**Note** ☝ 
