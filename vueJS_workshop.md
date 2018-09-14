@@ -67,7 +67,7 @@ Let's get started!
 
 ---
 
-## Get started with the Vue CDN
+## Getting started with the Vue CDN
 
 * Grab the [CDN](https://vuejs.org/v2/guide/#Getting-Started) or [download](https://vuejs.org/v2/guide/installation.html#Direct-lt-script-gt-Include) the .js file
 * Note: there are Development and Production versions of both.
@@ -123,12 +123,12 @@ Next, instantiate the Vue instance
 </body>
 ```
 
-* el: The id of the element our app should be rendered in
-* data (aka state): data saved within our app. This is an object.
+* `el`: The id of the element our app should be rendered in
+* `data`: (a.k.a. state) data saved within our app. This is an `Object`.
 
 ### Declarative Rendering
 
-Add some dynamic messages to the searching and error sections, by declaring a key and value on the data object.
+Add some dynamic messages to the searching and error sections, by declaring a key and value on the data `Object`.
 
 ```javascript
 const app = new Vue({
@@ -154,7 +154,7 @@ We can then render these messages inside of our `app` template using the `{{ pro
 ```
 
 > **Note** ☝
-> Notice that we can reference the property on the data object directly, without having to reference the main `app` object, like `app.data.searchingMessage`.
+> Notice that we can reference the property on the data `Object` directly, without having to reference the main `app` `Object`, like `app.data.searchingMessage`.
 
 ### Vue Directives (and arguments)
 
@@ -166,7 +166,7 @@ We can then render these messages inside of our `app` template using the `{{ pro
 
 ### Directives: `v-model`
 
-In order to search for repos on Github, we need to grab the query string, and pass it to the API call. Let's add the query as an empty string to our data object.
+In order to search for repos on Github, we need to grab the query string, and pass it to the API call. Let's add the query as an empty string to our data `Object`.
 
 ```javascript
 data: {
@@ -176,7 +176,9 @@ data: {
 }
 ```
 
-Now we need a way to get this information from the `input[type="search"]`, and save it to our `q` property for use later. But! At the same time, if we have a property saved in our data object already, we want to make sure that we update the input to reflect that data. The simplest way to achieve this is using two-way data minding with `v-model`
+Now we need a way to get this information from the `input[type="search"]`, and save it to our `q` property for use later.
+
+But! At the same time, if we have a property saved in our data `Object` already, we want to make sure that we update the input to reflect that data. The simplest way to achieve this is using two-way data minding with `v-model`
 
 ```html
 <form>
@@ -191,7 +193,7 @@ Open up the Vue devtools, and notice that as we type in the input, it automatica
 
 Now that we have the users search query, we want to use it to call our github API, and bring back some data. We'll create a couple of methods: the first is what we will call to fetch the data from the API, and the second is a method to reset our app before making another search call.
 
-We'll start by adding a `methods` property to our `app`. Methods is an `object`.
+We'll start by adding a `methods` property to our `app`. Methods is an `Object`.
 
 ```javascript
 const app = new Vue({
@@ -207,7 +209,7 @@ const app = new Vue({
 
 The endpoint we'll use to fetch this data is `https://api.github.com/search/repositories?q={query}`.
 
-We'll also add a couple of other properties to our state to keep track if we are currently searching, or if there has been an error. We also want to add a property to save our returned repos into. This will be an array.
+We'll also add a couple of other properties to our state to keep track if we are currently searching, or if there has been an error. We also want to add a property to save our returned repos into. This will be an `Array`.
 
 ```javascript
 data: {
@@ -248,7 +250,7 @@ methods: {
 }
 ```
 
-Next we will create the method `resetSearch` to reset the `errorhandling`, and return `repos` to an ampty array.
+Next we will create the method `resetSearch` to reset the `errorhandling`, and return `repos` to an ampty `Array`.
 
 ```javascript
 methods: {
@@ -274,7 +276,7 @@ We need to hook up our form, so that when it submits it calls the search method.
 </form>
 ```
 
-Now that our `search` method has been called, we should have up to 30 objects in our `repos` array.
+Now that our `search` method has been called, we should have up to 30 objects in our `repos` `Array`.
 
 ### Event modifiers
 
@@ -326,7 +328,7 @@ Using conditional rendering with `v-if`, we can decide to only show the results 
 
 ### Directives: `v-for`
 
-Now that we have some repos in our data, it's time to loop over them, and display them on the page. We can loop over an array of items in our `data` using `v-for`.
+Now that we have some repos in our data, it's time to loop over them, and display them on the page. We can loop over an `Array` of items in our `data` using `v-for`.
 
 Be use this directive on the element which needs to be repeated. In this case, the `<li>`.
 
@@ -418,7 +420,7 @@ First, we need to Register a new component, using `Vue.component()`. This method
 Vue.component('searching', {});
 ```
 
-Inside the config Object, we can add data specific to this component, such as a `template: String` and `data: Function`.
+Inside the config `Object`, we can add data specific to this component, such as a `template: String` and `data: Function`.
 
 ```javascript
 Vue.component('searching', {
@@ -463,7 +465,7 @@ Vue.component('searching', {
 ```
 
 >**Note** ☝ 
-> Since we are now including the `searchingMessage` in this component, we need to remember to remove it from the main Vue Object.
+> Since we are now including the `searchingMessage` in this component, we need to remember to remove it from the main Vue `Object`.
 
 Finally, we can render our component in our app, by using the component name as the element. Let's also include the `v-if` from before, but this time at the component level.
 
@@ -503,7 +505,7 @@ Vue.component('errors', {
 ```
 
 >**Note** ☝ 
-> Since we are now including the `errorMessage` in this component, we need to remember to remove it from the main Vue Object.
+> Since we are now including the `errorMessage` in this component, we need to remember to remove it from the main Vue `Object`.
 
 Now that we have a little practice building components, let's take care of the more complex components of our app: _Search_, and _Results_!
 
@@ -537,15 +539,15 @@ Vue.component('search', {
 ```
 
 >**Note** ☝ 
-> Since we are now including the `q` in this component, we need to remember to remove it from the main Vue Object.
+> Since we are now including the `q` in this component, we need to remember to remove it from the main Vue `Object`.
 
 Let's try out the app and make sure it still works! **Uh oh!** We nothing is happening when we search, and we have an error in the console which looks like `[Vue warn]: Property or method "search" is not defined on the instance but referenced during render. Make sure that this property is reactive, either in the data option, or for class-based components, by initializing the property` 🤔. But isn't it thought?
 
-The problem is that we are trying to call a function that doesn't exist on this component. We need to find a way to call up to the main Vue Object to trigger our `search method`, and send along our query, `q`.
+The problem is that we are trying to call a function that doesn't exist on this component. We need to find a way to call up to the main Vue `Object` to trigger our `search method`, and send along our query, `q`.
 
 ### Emit events
 
-Vue has an elegent way of handling these sorts of events, where we need to trigger soemthing in the parent Object, and pass along some arguments, using `$emit`.
+Vue has an elegant way of handling these sorts of events, where we need to trigger something in the parent `Object`, and pass along some arguments, using `$emit`.
 
 We can start by replacing the name of the method we were trying to call directly, with `$emit()`. This can take two arguments: an `eventName`, so we can reference the event by it later, and the `[...args]` or payload. We'll call our event "search", and pass our query `q` as the argument. 
 
@@ -602,7 +604,7 @@ Vue.component('results', {
 });
 ```
 
-We must also update our `search` method to expect `$event` payload to be passed in. We'll name it `q`, and since we are longer referencing `q` on the `data` Object, we can remove the `this.` from the url template string.
+We must also update our `search` method to expect `$event` payload to be passed in. We'll name it `q`, and since we are longer referencing `q` on the `data` `Object`, we can remove the `this.` from the url template string.
 
 ```javascript
 methods: {
@@ -623,7 +625,7 @@ Here we are referencing `repos`, but this component does not have access to it i
 
 In order to allow our `results` component access to the `repos` in the mina Vue Object, we need to pass "props" to the component.
 
-We do this using `v-bind`, similar to when we need to dynamically update an attribute. We start be giving our `results` element an attribute with the name we want to represent it, and pass in the `repos` in our data object as the argument. We can also use the short-form, as follows:
+We do this using `v-bind`, similar to when we need to dynamically update an attribute. We start be giving our `results` element an attribute with the name we want to represent it, and pass in the `repos` in our data `Object` as the argument. We can also use the short-form, as follows:
 
 ```html
 <results :repos="repos" v-if="repos.length"></results>
@@ -888,7 +890,7 @@ We should now see some content inside of our form, displaying a radio button
 
 ### Building the SearchType functionality
 
-Depending on which option is selected, we can change the type of search we want to perform. The two types of searches we want to perform are `repo` and `developer`. Let's put these as options inside out data Object, so we can loop over them.
+Depending on which option is selected, we can change the type of search we want to perform. The two types of searches we want to perform are `repo` and `developer`. Let's put these as options inside out data `Object`, so we can loop over them.
 
 ```html
 <script>
@@ -914,7 +916,7 @@ Now in our template, we can loop over these options in order to show the differe
 
 ### Notes and Gotchas:
   >**Note** ☝ 
-  > Remember, in components `data` must be a function which returns an Object, or it will not work properly.
+  > Remember, in components `data` must be a function which returns an `Object`, or it will not work properly.
   
   >**Note** ☝
   >You can't use self-closing components like `<my-component />` in Vue DOM templates, because it is not valid HTML. Still valid and recommended in single-file components.
