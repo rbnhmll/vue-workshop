@@ -1,6 +1,6 @@
 <template>
   <section class="search">
-    <h1>Search by Github {{selectedSearchMethod}}</h1>
+    <h1>Search by Github by {{ selectedSearchMethod | capitalize }}</h1>
     <form @submit.prevent="search">
       <input type="search" name="search" id="search" v-model="q" required>
       <label for="search">{{ selectedSearchMethod | capitalize }} search</label>
@@ -20,7 +20,9 @@ export default {
       q: '',
     };
   },
-  props: ['selectedSearchMethod'],
+  props: {
+    selectedSearchMethod: String
+  },
   methods: {
     async search() {
       this.$emit('handleFlags', {
