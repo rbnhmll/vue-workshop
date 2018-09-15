@@ -40,9 +40,6 @@ export default {
     handleFlags({key, val}) {
       this.flags[key] = val;
     },
-    handleChange({key, val}) {
-      this[key] = val;
-    },
     resetSearch() {
       this.flags.errorHandling = false;
       this.repos = [];
