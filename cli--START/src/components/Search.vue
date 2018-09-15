@@ -21,7 +21,7 @@ export default {
       q: '',
     };
   },
-  props: [],
+  props: {},
   methods: {
     async search() {
       this.$emit('handleFlags', {
@@ -32,15 +32,8 @@ export default {
       const response = await fetch(this.searchEndpoint);
       const json = await response.json();
 
-      // We need to define object based on search type,
-      // since it returns a different data structure
-
-      // let items;
-      // if (this.selectedSearchMethod === 'repo') {
-      //   items = json.items;
-      // } else if (this.selectedSearchMethod === 'developer') {
-      //   items = json;
-      // }
+      const items = json.items;
+      // We will need to define object based on search type, since it returns a different data structure
 
       this.$emit('handleFlags', {
         key: 'searching',
@@ -62,9 +55,7 @@ export default {
   },
   computed: {
     searchEndpoint() {
-      if (this.selectedSearchMethod === 'repo') {
-        return `https://api.github.com/search/repositories?q=${this.q}`;
-      }
+      return `https://api.github.com/search/repositories?q=${this.q}`;
       // Return a different endpoint if the search method changes
       // Developer endpint: https://api.github.com/users/${this.q}/repos
     },
