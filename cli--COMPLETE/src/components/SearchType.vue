@@ -2,7 +2,7 @@
   <div>
     <h2>Search Type</h2>
     <label v-for="(type, i) in searchMethods" :key="i" :for="type">{{ type | capitalize }}
-      <input type="radio" name="selectedSearchMethod" :id="type" :value="type" @change='updateSearchType' :checked="selectedSearchMethod === type">
+      <input type="radio" name="selectedSearchMethod" :id="type" :value="type" @change='updateSearchType($event)' :checked="selectedSearchMethod === type">
     </label>
   </div>
 </template>
@@ -17,10 +17,10 @@ export default {
   },
   props: ['selectedSearchMethod'],
   methods: {
-    updateSearchType(e) {
+    updateSearchType(event) {
       this.$emit('handleChange', {
-        key: e.target.name,
-        val: e.target.value
+        key: event.target.name,
+        val: event.target.value
       });
     },
   },
