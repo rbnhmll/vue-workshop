@@ -2,7 +2,6 @@
   <div id="app" class="wrapper">
     <Search
       @handleFlags="handleFlags($event)"
-      @handleChange="handleChange($event)"
       @resetSearch="resetSearch"
     />
     <!-- 👆 Pass down props to search -->
@@ -39,9 +38,6 @@ export default {
   methods: {
     handleFlags(key, val) {
       this.flags[key] = val;
-    },
-    handleChange(key, val) {
-      this[key] = val;
     },
     resetSearch() {
       this.flags.errorHandling = false;
