@@ -7,21 +7,26 @@
 Vue is a wonderful library for building single-page applications, web-apps, and enhancing front-end user experience of existing sites. Today we will be building a simple application to search for Github repos, first using the CDN, then followed by enahncing the process with the Vue CLI.
 
 ### What's you'll need to succeed in this workshop
-- Code editor of your choice (recommend VSCode)
+- Code editor of your choice (I recommend VSCode)
   - Vue syntax highlighter
+    - VSCode - (link to package)
+    - Sublime - (link to package)
+    - Atom - (link to package)
+    - Brackets - (link to package)
 - Terminal
 - NPM installed
 
 ### Getting started: Slides + Starter Files
 You will find all of the necessary starter files and resources in the following repo: [https://github.com/rbnhmll/vue-workshop/](https://github.com/rbnhmll/vue-workshop/)
 
-This package includes a number of files, including START and COMPLETE versions of both apps, and the class slides.
+This package includes a number of files, including **START** and **COMPLETE** versions of both apps, and these class notes. There's also some slides included which provide a cursory overview of the framework.
 
 >  vue-workshop
 >  &#8627; cdn--START
 >  &#8627; cdn--COMPLETE
 >  &#8627; cli--START
 >  &#8627; cli--COMPLETE
+>  &#8627; vueJS_workshop--notes.md
 >  &#8627; vueJS_workshop--slides
 >  &#8627; &#8627; vue-slides.html
 
