@@ -13,6 +13,7 @@ Vue is a wonderful library for building single-page applications, web-apps, and 
     - Sublime - (link to package)
     - Atom - (link to package)
     - Brackets - (link to package)
+- Vue.js Devtools
 - Terminal
 - NPM installed
 
@@ -38,7 +39,7 @@ Open this package up in your code editor of choice.
 
 * Javascript framework from building front-end UI
 * In the same category as React, Preact, Angular and Ember
-* Create more maintainable codebase
+* Helps you to create a more scalable and maintainable codebase
 
 ### Why Vue?
 
@@ -65,7 +66,7 @@ Open this package up in your code editor of choice.
 
 ### What are we going to build?
 
-Together we are going to build a simple single page application which searches for Github repos by keyword, and display them in a grid. The starter package includes two versions of the app, each with a `start` and `complete` version of the app:
+Together we are going to build a simple single page application which searches for Github repos by keyword, and display them in a grid. The starter package includes two versions of the app, each with a `START` and `COMPLETE` version of the app:
   
   - `cdn--START`
   - `cdn--COMPLETE`
@@ -74,7 +75,7 @@ Together we are going to build a simple single page application which searches f
 
 To preview what our end goal will be, open the `cdn--COMPLETE` directory, and open `index.html` in your browser 
 
-We will be working mostly in the `cdn` version of the app to learn about the fundamentals of Vue, and will later learn about the CLI, and how to extend out application features.
+We will be working mostly in the `cdn` version of the app to cover the fundamentals of Vue. Later we will learn about the CLI, and how to extend our application features.
 
 Let's get started!
 
@@ -82,35 +83,22 @@ Let's get started!
 
 ## Getting started with the Vue CDN
 
-* Grab the [CDN](https://vuejs.org/v2/guide/#Getting-Started) or [download](https://vuejs.org/v2/guide/installation.html#Direct-lt-script-gt-Include) the .js file
+* Grab the [CDN](https://vuejs.org/v2/guide/#Getting-Started) or [download](https://vuejs.org/v2/guide/installation.html#Direct-lt-script-gt-Include) the .js file.
 * Note: there are Development and Production versions of both.
-  * **Development** version includes helpful console warnings. (we will be using this one.)
-  * **Production** version is optimized for size and speed
+  * **Development** version includes helpful console warnings. (we will be using this one)
+  * **Production** version is optimized for size and speed.
 
-We're going to start by opening up the project **cdn--START**. Here we have some pre-built styles and HTML to get us started building our application.
+Start by opening up the project **cdn--START**. I have provided some starter HTML and CSS in order to speed along the process, and we will be building out all the functionality together.
 
 ### Add CDN script
 
 Add the CDN at the bottom of the body
 ```html
-...
+<body>
+  ...
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </body>
 ```
-
-### Vue.js devtools
-Install the Vue Devtools for you preferred browser
-
-[Chrome](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd?hl=en)
-[Firefox](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-
-Open up the browser inspector/devtools, and click on the Vue tab.
-
-### Devtools gotchas
-  * If the page uses a production/minified build of Vue.js, devtools inspection is disabled by default so the Vue pane won't show up.
-  * To make it work for pages opened via `file://` protocol, you need to check "Allow access to file URLs" for this extension in Chrome's extension management panel.
-
-  <small>* From Vue-devtools documentation: [https://github.com/vuejs/vue-devtools](https://github.com/vuejs/vue-devtools)</small>
 
 ### The Vue Instance
 
@@ -139,9 +127,34 @@ Next, instantiate the Vue instance
 * `el`: The id of the element our app should be rendered in
 * `data`: (a.k.a. state) data saved within our app. This is an `Object`.
 
+### Vue.js devtools
+
+We can confirm that our Vue app is initiating by checking the devtools. Install the Vue Devtools for you preferred browser
+
+[Chrome](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd?hl=en)
+[Firefox](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
+
+Open up the browser inspector/devtools, and click on the **Vue** tab.
+
+We'll be returning to those tools a bunch throught the process.
+
+### Devtools gotchas
+  * If the page uses a production/minified build of Vue.js, devtools inspection is disabled by default so the Vue pane won't show up.
+  * To make it work for pages opened via `file://` protocol, you need to check "*Allow access to file URLs*" for this extension in Chrome's extension management panel.
+
+  <small>* From Vue-devtools documentation: [https://github.com/vuejs/vue-devtools](https://github.com/vuejs/vue-devtools)</small>
+
+### State
+
+Before we start adding some infomration to our app, we need to understand an important feature of the Vue instance: `state`.
+
+The app's `state` keeps track of any dynamic data which may be used in different parts of the application. This could be pre-populated data, user input data, or data fetched from an API. You can think of `state` as your app's local storage.
+
+This data could be changing rapidly with every user interaction, and the `state` will reflect the current data in real-time.
+
 ### Declarative Rendering
 
-Add some dynamic messages to the searching and error sections, by declaring a key and value on the data `Object`.
+Let's add some dynamic messages to the searching and error sections, by declaring a key and value on the `data` `Object`, otherwise known as `state`.
 
 ```javascript
 const app = new Vue({
@@ -152,7 +165,8 @@ const app = new Vue({
   }
 });
 ```
-We can then render these messages inside of our `app` template using the `{{ propertyName }}` syntax.
+
+We can then render these messages inside of our `app` template using the mustache syntax, like `{{ propertyName }}`.
 
 ```html
   ...
@@ -167,9 +181,11 @@ We can then render these messages inside of our `app` template using the `{{ pro
 ```
 
 > **Note** ☝
-> Notice that we can reference the property on the data `Object` directly, without having to reference the main `app` `Object`, like `app.data.searchingMessage`.
+> Notice that we can reference the property on the `state` directly, without having to reference the main `app` `Object`, like `app.data.searchingMessage`.
 
 ### Vue Directives (and arguments)
+
+There are a number of `directives` in Vue which give us the ability to apply logic inside of our templates:
 
 * `v-model` (two-way data binding)
 * `v-on` (event binding) [shortcut: `@`]
@@ -179,7 +195,7 @@ We can then render these messages inside of our `app` template using the `{{ pro
 
 ### Directives: `v-model`
 
-In order to search for repos on Github, we need to grab the query string, and pass it to the API call. Let's add the query as an empty string to our data `Object`.
+In order to search for repos on Github, we need to grab the user input value from the search field, and pass it into the API call. Let's add a placeholder for this query as an empty string to our `data` `Object`, and call it `q`.
 
 ```javascript
 data: {
@@ -191,7 +207,9 @@ data: {
 
 Now we need a way to get this information from the `input[type="search"]`, and save it to our `q` property for use later.
 
-But! At the same time, if we have a property saved in our data `Object` already, we want to make sure that we update the input to reflect that data. The simplest way to achieve this is using two-way data minding with `v-model`
+But! At the same time, if we have a property saved in our `state` already, we want to make sure that we update the input to reflect that data 🤔.
+
+The simplest way to achieve this is using Vue's two-way data minding with `v-model`
 
 ```html
 <form>
@@ -200,11 +218,15 @@ But! At the same time, if we have a property saved in our data `Object` already,
 </form>
 ```
 
-Open up the Vue devtools, and notice that as we type in the input, it automatically updates the state. Also notice that if we change, or pre-populate the state, this is automatically updated in the bound input. This is the power of two-way data binding.
+Open up the Vue devtools, and notice that as we type in the input, it automatically updates the `state`
+
+Also notice that if we change, or pre-populate the state, this is automatically updated in the bound input. This is the power of two-way data binding.
 
 ### Methods
 
-Now that we have the users search query, we want to use it to call our github API, and bring back some data. We'll create a couple of methods: the first is what we will call to fetch the data from the API, and the second is a method to reset our app before making another search call.
+Now that we have the users search query, we want to use it to call our github API, and bring back some data. We'll create a couple of methods:
+
+The first method is what we will call to fetch the data from the API, and the second is a method to reset our app before making another API call.
 
 We'll start by adding a `methods` property to our `app`. Methods is an `Object`.
 
@@ -222,9 +244,10 @@ const app = new Vue({
 
 The endpoint we'll use to fetch this data is `https://api.github.com/search/repositories?q={query}`.
 
-We'll also add a couple of other properties to our state to keep track if we are currently searching, or if there has been an error. We also want to add a property to save our returned repos into. This will be an `Array`.
+We'll start by adding a couple of properties to our `state` to keep track of if we are currently `searching`, or if there has been an `error`. We also want to add a property to save our returned repos into. This will be an `Array`:
 
 ```javascript
+...
 data: {
   q: "",
   repos: [],
@@ -233,7 +256,10 @@ data: {
   errorHandling: false,
   errorMessage: "Oops, nothing here 💩"
 },
+...
 ```
+
+### Create `search` method
 
 Let's build our `search` method which will take care of the following steps:
   - Prevent the form form refreshing the page on submit
@@ -241,10 +267,11 @@ Let's build our `search` method which will take care of the following steps:
   - Call `resetSearch` (we'll build this method next)
   - Save the response in a `const`, and then convert to usable `json`
   - Change the searching propert to false, now that we're finished searching.
-  - If we got some responses, we want to save it to our `data` in `repos`
+  - If we got some responses, we want to save it to our `state` in `repos`
   - If we get no repos back, then we want to set the `errorHandling` to `true`.
 
 ```javascript
+...
 methods: {
   async search(e) {
     e.preventDefault();
@@ -261,11 +288,18 @@ methods: {
     }
   }
 }
+...
 ```
 
-Next we will create the method `resetSearch` to reset the `errorhandling`, and return `repos` to an ampty `Array`.
+> **Note** ☝ 
+> There are som more robust tools for making API calls, such as [Axios](https://github.com/axios/axios), which I would recommend looking into for production Vue apps. However, we'll be using `fetch` in these examples for simplicity.
+
+### Create `resetSearch` method
+
+Next we will create the method `resetSearch` to reset the `errorhandling`, and return `repos` to an empty `Array`.
 
 ```javascript
+...
 methods: {
   async search(q) {
     ...
@@ -275,21 +309,25 @@ methods: {
     this.repos = [];
   }
 }
+...
 ```
+
 >**Note** ☝ 
 >Notice the `this` keyword in our methods? This is how we will reference any data property or method from within another part of our app, instead of referencing `app`.
 
-### Directives: Event Handling with `v-on`
+### Directives: Event handling with `v-on`
 
 We need to hook up our form, so that when it submits it calls the search method. We can use the directive `v-on` to listed to DOM events, such as submit. We then pass in a reference to the method we want to be called.
 
 ```html
-<form v-on:submit="search">
-  ...
-</form>
+...
+  <form v-on:submit="search">
+    ...
+  </form>
+...
 ```
 
-Now that our `search` method has been called, we should have up to 30 objects in our `repos` `Array`.
+Now that our `search` method has been called, we should have up to 30 `Objects` in our `repos` `Array`.
 
 ### Event modifiers
 
@@ -303,9 +341,11 @@ Now, calling `preventDefault()` on the submit event is fine, but there's also a 
 We can tack on a modifier to the event handler, instead of stating it in the method.
 
 ```html
-<form v-on:submit.prevent="search">
-  ...
-</form>
+...
+  <form v-on:submit.prevent="search">
+    ...
+  </form>
+...
 ```
 
 Remove `e.preventDefault()` from our search method
@@ -341,7 +381,7 @@ Using conditional rendering with `v-if`, we can decide to only show the results 
 
 ### Directives: `v-for`
 
-Now that we have some repos in our data, it's time to loop over them, and display them on the page. We can loop over an `Array` of items in our `data` using `v-for`.
+Now that we have some repos in our data, it's time to loop over them, and display them on the page. We can loop over an `Array` of items in our `state` using `v-for`.
 
 Be use this directive on the element which needs to be repeated. In this case, the `<li>`.
 
@@ -433,7 +473,7 @@ First, we need to Register a new component, using `Vue.component()`. This method
 Vue.component('searching', {});
 ```
 
-Inside the config `Object`, we can add data specific to this component, such as a `template: String` and `data: Function`.
+Inside the config `Object`, we can add data specific to this component, such as a `template: String` and `data: Function` (`state`). 
 
 ```javascript
 Vue.component('searching', {
@@ -447,7 +487,7 @@ Vue.component('searching', {
 >**Note** ☝ 
 >Notice that the `data` property on our component look a little different than before? Because components are reusable, we can no longer declare our state as an `Object`.
 >
->If we did, every instance of that component would share the same data. Instead, we make `data` a `function`, which _returns_ an `Object`. This way, each component will have unique data!
+>If we did, every instance of that component would share the same data. Instead, we make `data` a `function`, which _returns_ an `Object`. This way, each component will have unique `state`!
 
 Now, we can move the HTML `searchingMessage` in our `app` to the `data` in our component.
 
@@ -559,9 +599,11 @@ Vue.component('search', {
 >**Note** ☝ 
 > Since we are now including the `q` in this component, we need to remember to remove it from the main Vue `Object`.
 
-Let's try out the app and make sure it still works! **Uh oh!** We nothing is happening when we search, and we have an error in the console which looks like `[Vue warn]: Property or method "search" is not defined on the instance but referenced during render. Make sure that this property is reactive, either in the data option, or for class-based components, by initializing the property` 🤔. But isn't it thought?
+Let's try out the app and make sure it still works!
 
-The problem is that we are trying to call a function that doesn't exist on this component. We need to find a way to call up to the main Vue `Object` to trigger our `search method`, and send along our query, `q`.
+**Uh oh!** Nothing is happening when we search, and we have an error in the console which looks like `[Vue warn]: Property or method "search" is not defined on the instance but referenced during render. Make sure that this property is reactive, either in the data option, or for class-based components, by initializing the property` 🤔. But isn't it thought?
+
+The problem is that we are trying to call a `Function` that doesn't exist on this component. We need to find a way to call up to the main Vue `Object` to trigger our `search` method, and send along our query, `q`.
 
 ### Emit events
 
@@ -622,7 +664,7 @@ Vue.component('results', {
 });
 ```
 
-We must also update our `search` method to expect `$event` payload to be passed in. We'll name it `q`, and since we are longer referencing `q` on the `data` `Object`, we can remove the `this.` from the url template string.
+We must also update our `search` method to expect `$event` payload to be passed in. We'll name it `q`, and since we are longer referencing `q` in the `state`, we can remove the `this.` from the url template string.
 
 ```javascript
 methods: {
