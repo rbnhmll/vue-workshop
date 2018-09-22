@@ -324,7 +324,7 @@ Next we will create the method `resetSearch` to reset the `errorhandling`, and r
 ...
 ```
 
->**Note** ☝ 
+> **Note** ☝ 
 >Notice the `this` keyword in our methods? This is how we will reference any data property or method from within another part of our app, instead of referencing `app`.
 
 ### *Directives*: Event handling with `v-on`
@@ -392,7 +392,7 @@ Using conditional rendering with `v-if`, we can decide to only show the results 
 ...
 ```
 
->**Note** ☝ 
+> **Note** ☝ 
 > There is a similar directive to `v-if` called `v-show`. The main difference is that while `v-if` will render the component conditionally, `v-show` will always render the component in the DOM, but toggle the `display` CSS property.
 
 ### Directives: `v-for`
@@ -429,7 +429,7 @@ Now we have a variable `repo` which represents each iteration. We can use this t
 ...
 ```
 
->**Note** ☝ 
+> **Note** ☝ 
 >While we can use the `{{ }}` syntax to render text content, we cannot use this _within_ attributes. Follow along to the next step to see how we `bind` data to these attributes.
 
 ### Directives: `v-bind`
@@ -548,7 +548,7 @@ Let's take the HTML for the `searching section`, and put it inside of our templa
 ...
 ```
 
->**Note** ☝
+> **Note** ☝
   > Remember, component templates must have a single root element.
 
 > **Note** ☝ 
@@ -635,7 +635,7 @@ Now that we have a little practice building components, let's take care of the m
 ...
 ```
 
->**Note** ☝ 
+> **Note** ☝ 
 > Since we are now including the `q` in this component, we need to remember to remove it from the main Vue `Object`.
 
 Let's try out the app and make sure it still works!
@@ -777,13 +777,15 @@ Check it out. Yay, our application works again!
 
 ## Creating an app using Vue CLI 3
 
-The **Vue CLI** (**C**ommand **L**ine **I**nterface) is the official tooling for spinning up a project with all the boilerplate needed for a fully functional web-application. If you have used `create-react-app` before, it is similar to this.
+The **Vue CLI** (**C**ommand **L**ine **I**nterface) is the official tool for spinning up a project with all the boilerplate needed for a fully functional web-application. If you have used `create-react-app` before, it is similar to this.
 
 ### Install Vue CLI
 
 In order to create a project with the Vue CLI, we need to first install it with `npm` or `yarn` in your terminal. We'll be using `npm` for all of these examples.
 
 Getting started instructions: [https://cli.vuejs.org/](https://cli.vuejs.org/),
+
+Open up your terminal, and run one of the following commands. I'll be using `npm`.
 
 ```bash
 npm install -g @vue/cli
@@ -800,16 +802,16 @@ There are two ways to create a new project with Vue CLI:
 Let's take a look at both!
 
 ### Creating a project -- `vue create`
-s
-To create a vue app we type `vue create` followed by the `<project-name>` of the project. This will start pup a series of configuration options to use either a preset, or fully configure it to your needs.
 
-Let's create a `test` project
+To create a new **Vue** app we type `vue create` followed by the `<project-name>` of the project. This will launch a series of configuration options, and you can choose either a preset, or fully configure it to your needs.
+
+Let's create a `test` project. I'm going to `cd` to my desktop, since this will be a temporary test. 
 
 ```bash
 vue create test
 ```
 
-This will begin a series of steps in your terminal to create your project. For this example, we will choose the `default` option.
+This will begin a series of steps in your terminal to create your project. For this example, we will choose the `default (babel, eslint)` option.
 
 ```bash
 Vue CLI v3.0.1
@@ -818,7 +820,7 @@ Vue CLI v3.0.1
   Manually select features
 ```
 
-When complete you should get the message
+When complete you should get the message:
 
 ```bash
 🎉  Successfully created project test.
@@ -828,11 +830,11 @@ When complete you should get the message
  $ npm run serve
 ```
 
-Follow the commands above to start your server and see your boilerplate app. Your application is now running at `localhost:8080/`
+Follow the commands above to start your server and see your boilerplate app. Your application is now running at [localhost:8080/](http://localhost:8080)
 
-Ok, now quit the server, and throw the test project in the trash 🗑. We're starting over!
+Ok, now quit the server, and throw the test project in the trash 🗑. We're starting over with `vue ui`!
 
->**Note** ☝ 
+> **Note** ☝ 
 >To kill the server at any time, hit `control + c`
 
 ### Creating a project -- `vue ui`
@@ -845,23 +847,35 @@ In the terminal, type:
 vue ui
 ```
 
-This will open up the GUI in the browser, and you will see many of the same options as in the console, but in a more clickable fashion.
+This will open Vue UI in the browser, and you will see many of the same options as in the console, but in a more clickable fashion.
 
 Let's walk through the steps to create a `test` project again.
 
+  1. Click the `Create` Tab
+  1. Navigate to location you want to store it on your computer
+  1. Click `Create New Project Here`
+  1. Name it
+  1. Select `Package Manager` (`npm`)
+  1. `Additional options`, `Git repository` (default)
+  1. Click `Next`
+  2. Select a preset (Manual)
+  3. Select your features
+  4. Configuration
+  5. Click `Create Project`
+
 ### Start Server
 
-With a project created, we can now start our Vue server, and see the results. The CLI Service is built on top of `webpack`, but luckily we won't have to do anything to get it up and running, it's pre configured.
+With a project created, we can now start our **Vue** server, and see the results. The CLI Service is built on top of `webpack`, but luckily we won't have to do anything to get it up and running, it's pre configured.
 
-You can leave the UI running, or hit `control + c` to terminate it. `cd` into your project and run:
+You can leave the UI running, or hit `control + c` to terminate it. It doesn't have to be running to launch your application. `cd` into your project and run:
 
 ```bash
 npm run serve
 ```
 
-Your application is now running at `localhost:8080/`
+Your application is now running at [localhost:8080/](http://localhost:8080)
 
->**Note** ☝ 
+> **Note** ☝ 
 >To kill the server at any time, hit `control + c`
 
 ### Boilerplate files tour
@@ -882,26 +896,32 @@ Inside of your test project, you will see these starter files and folders:
 - `package.json`
 - `README.md`
 
+You can again trash this test project if you want 🗑.
+
 ### Download example project starter files: `cli--START`
 
 To make the process more efficient, I have created a starter project for you, with all the work we have done previously, broken into components.
 
 Open up `cli--START` in the starter files, or download them at [https://github.com/rbnhmll/vue-workshop](https://github.com/rbnhmll/vue-workshop)
 
-Locate and `cd` into this folder and run"
+Locate and `cd` into this folder and run:
+
+```bash
+npm install
+```
+
+This will install all of the required `node_modules`. It can take a minute or two. Once completed, run:
 
 ```bash
 npm run serve
 ```
 
-The application is now running at `localhost:8080/`
+The application is now running at [localhost:8080/](http://localhost:8080)
 
->**Note** ☝ 
->To kill the server at any time, hit `control + c`
+> **Note** ☝ 
+> To kill the server at any time, hit `control + c`
 
 ### Adding features to our app
-
-This version of the app includes all of the features from the `cdn` version, but split into single file components, which we are going to take a look at shortly.
 
 I'm going to open up the final product (cli--COMPLETE) in the browser, and show you what features we are going to be adding.
 
@@ -911,7 +931,9 @@ Let's get started!
 
 ### Getting to know the starter files
 
-This starter pack includes the same files as the boilerplate we created with the Vue CLI. The only difference is that I have created single file components for everything we worked on previously. Let's take a look.
+This starter pack includes the same files as the boilerplate we created with the Vue CLI. The only difference is that I have created single file components for everything we worked on previously. 
+
+Let's take a look.
 
 - `/public`
 - `/src`
@@ -956,6 +978,9 @@ A typical starter file will look like this:
 
 Each section of these components pertain to that component alone.
 
+> **Note** ☝ 
+> If your syntax highlighting in `.vue` files is not working properly, you may still have to install the appropriate code editor package noted near the beginning of these notes.
+
 ### Create a new Component: SearchType.vue
 
 To make a new component, we will create a new `.vue` file inside the `components` directory. We'll call it `SearchType.vue`.
@@ -992,10 +1017,10 @@ And some basic styles:
 </style>
 ```
 
->**Note** ☝
-  > Note that we've have included the `lang` attrubute, and assigned `sass`. This will allow us to use the SASS syntax inside of our styles. The SASS package was pre-installed in these starter files.
-  >
-  > Additionally, we have a `scoped` attribute, which will insure that these styles pertain to this component alone. Without this, they would apply globally.
+> **Note** ☝
+> Note that we've have included the `lang` attribute, and assigned `sass`. This will allow us to use the SASS syntax inside of our styles. The SASS package was pre-installed in these starter files.
+>
+> Additionally, we have a `scoped` attribute, which will insure that these styles pertain to this component alone. Without this, they would apply globally.
 
 ### Add component to `Search.vue`
 
@@ -1015,8 +1040,8 @@ export default {
 </script>
 ```
 
->**Note** ☝
-  > Notice how we can use the `@` symbol as an alias for the `src` folder. This can make it a lot easier to find files, instead of having to go up the directory tree using `../`.
+> **Note** ☝
+> Notice how we can use the `@` symbol as an alias for the `src` folder. This can make it a lot easier to find files, instead of having to go up the directory tree using `../`. Also helps when you need to organize components into folders without breaking the imports.
 
 Now with the component imported, we can add it to our template
 
@@ -1032,14 +1057,16 @@ Now with the component imported, we can add it to our template
 </template>
 ```
 
->**Note** ☝
-  > It's best practice to add components to the template using kabab case, so that they are in line with html standards. And since our component doesn't have any content, it can also be a self-closing element.
+> **Note** ☝
+> It's best practice to add components to the template using kabab case, so that they are in line with html standards. And since our component doesn't have any content, it can also be a self-closing element.
 
-We should now see some content inside of our form, displaying a radio button. This is the basic template of our component.
+We should now see some content inside of our form, displaying a `radio` button. This is the basic template of our component.
 
 ### Building the SearchType functionality
 
-We want to give our user the ability to choose between `repo` and `developer`. Depending on which option is selected, we can change the type of search we want to perform. Let's put these as options inside our `SearchType` data `Object`, so we can loop over them later. `searchMethods` will be an `Array` of `Strings`.
+We want to give our user the ability to choose between `repo` and `developer`. Depending on which option is selected, we can change the type of search we want to perform.
+
+Let's put these as options inside our `SearchType` `state`, so we can loop over them later. `searchMethods` will be an `Array` of `Strings`.
 
 ```html
 <!-- SearchType.vue -->
@@ -1055,8 +1082,8 @@ export default {
 </script>
 ```
 
->**Note** ☝ 
-  > Remember, in components `data` must be a function which returns an `Object`, or it will not work properly.
+> **Note** ☝ 
+> Remember, in components `data` must be a function which returns an `Object`, or it will not work properly.
 
 Now in our template, we can loop over these options in order to show the different radio buttons. There's a few steps to hooking up these inputs correctly, so we'll go through it step by step.
 
@@ -1096,8 +1123,8 @@ The data for `searchMethods` doesn't have any unique identifiers, other than the
 </template>
 ```
 
->**Note** ☝ 
-  > Remember that `:key` is the shorthand for `v-bind:key`
+> **Note** ☝ 
+> Remember that `:key` is the shorthand for `v-bind:key`
 
 Now that we're looping over `searchMethods`, we can use the `type` to fill in some of the missing info like the label text, binding the label to the input using `for` and `id`, and setting a `value`.
 
@@ -1115,7 +1142,7 @@ Now that we're looping over `searchMethods`, we can use the `type` to fill in so
 
 ### Emit change event back to parent component
 
-You can now select the search type by radio button, but it doesn't really do anything yet. We need to pass this info back up to the main component, `App.vue`.
+You can now select the search type by radio button, but it doesn't really do anything yet. We need to pass this selection info back up to the main component, `App.vue` where our main application `state` is.
 
 We need to watch the radio buttons for a `change` event, and then pass the value up the chain to the `App` component `data` `Object`.
 
@@ -1134,8 +1161,8 @@ Start by watching for a change event on the radio inputs, and the calling a meth
 </template>
 ```
   
-  >**Note** ☝ 
-  > If you want access the original DOM event, you can pass it into a method using the special `$event` variable.
+> **Note** ☝ 
+> If you want access the original DOM event, you can pass it into a method using the special `$event` variable.
 
 Create the `updateSearchType` method:
 
@@ -1207,7 +1234,7 @@ Inside our `Search` component, we want to watch for an event called `handleChang
 </template>
 ```
 
-Now, `Search.vue` doesn't need this info, but it does need to continue passing the info back up to its parent, `App.vue`. We'll create another `$emit` event, and pass the `$event` as the payload.
+Now, `Search.vue` doesn't need this info directly, but it does need to continue passing the info back up to its parent component, `App.vue`. We'll create another `$emit` event, and pass the `$event` as the payload.
 
 ```html
 <!-- Search.vue -->
@@ -1221,7 +1248,7 @@ Now, `Search.vue` doesn't need this info, but it does need to continue passing t
 
 ### Watch for `handleChange` `$event` in `App.vue`
 
-Like before, we will watch for the `handleChange` `$event` in the `App` component. But in this case we are going to pass the payload to a `method` called `handleChange`.
+Like before, we will watch for the `handleChange` `$event` in the `App.vue` component. But in this case we are going to pass the payload to a `method` called `handleChange`.
 
 ```html
 <!-- App.vue -->
@@ -1236,7 +1263,7 @@ Like before, we will watch for the `handleChange` `$event` in the `App` componen
 </template>
 ```
 
-Create a `handleChange` method. It will accept the `$event` payload as an argument. We'll destructure it to pull the `key` and `val` properties off of it, and use that to set the property on the `data` `Object` for use later:
+Create a `handleChange` method. It will accept the `$event` payload as an argument. We'll destructure it to pull the `key` and `val` properties off, and use that to set the property on the `state` for use later:
 
 ```html
 <!-- App.vue -->
@@ -1267,12 +1294,12 @@ We set the default `selectedSearchMethod` to `repo`.
 
 If we check the Vue devtools, we should now be able to see the `selectedSearchMethod` property update when we select the Search Type.
 
->**Note** ☝ 
-  > There is currently a bug which sometimes prevents live update of the data object in the devtools.
+> **Note** ☝ 
+> There is currently a bug which sometimes prevents live update of the data object in the devtools.
 
-### Update Heading and input to reflect `selectedSearchMethod`
+### Update Heading and input label to reflect `selectedSearchMethod`
 
-We can now updat the text in the `Search.vue` `<h1>` to reflect the type of search we want to perform. In order for `Search.vue` to have access to `selectedSearchMethod`, we need to pass it as a `prop`, using `v-bind:`, or the `:` shorthand:
+We can now update the text in the `Search.vue` `<h1>` to reflect the type of search we want to perform. In order for `Search.vue` to have access to `selectedSearchMethod`, we need to pass it as a `prop`, using `v-bind:`, or the `:` shorthand:
 
 ```html
 <!-- App.vue -->
@@ -1329,7 +1356,7 @@ Reference the prop to update the `<h1>` and `<label>` content.
 
 ### Pre-select radio based on parent state
 
-The Search Type is updating nicely, but the radio button is not pre-selected on pageload. We'll pass the `selectedSearchMethod` prop down to `SearchType.vue`:
+The Search Type is updating nicely, but the radio button is not pre-selected on page load. We'll pass the `selectedSearchMethod` prop down to `SearchType.vue`:
 
 ```html
 <!-- Search.vue -->
@@ -1345,7 +1372,7 @@ The Search Type is updating nicely, but the radio button is not pre-selected on 
 </template>
 ```
 
-Now register the prop again, in `SearchType.vue`:
+Now register the expected prop in `SearchType.vue`:
 
 ```html
 <!-- SearchType.vue -->
@@ -1361,7 +1388,7 @@ export default {
 </script>
 ```
 
-In the template, we can check to see if the `selectedSearchMethod` is the same as the radio button `type`. If it is, we want to att the checked attribue using `v-bind:`, or the `:` shorthand:
+In the template, we can check to see if the `selectedSearchMethod` is the same as the radio button `type`. If it is, we want to add the checked attribute using `v-bind:`, or the `:` shorthand:
 
 ```html
 <!-- SearchType.vue -->
@@ -1379,12 +1406,12 @@ In the template, we can check to see if the `selectedSearchMethod` is the same a
 
 You'll notice that if you refresh the page, the "repo" option will now be pre-selected.
 
->**Note** ☝ 
-  > When binding to attributes which have optional arguments, like `checked`, Vue will apply the attribute if the statement is true, and will apply nothing if it is false.
+> **Note** ☝ 
+> When binding to attributes which have optional arguments, like `checked`, Vue will apply the attribute if the statement is true, and will apply nothing if it is false.
 
 ### Update the search function
 
-One issue still remains: our app's search functionality doesn't work when the Search Type is set to `developer`.
+One issue still remains: our app's search functionality doesn't work when the "Search Type" is set to `developer`.
 
 This is because there are different API end points to search for repos and developers:
 - Repos: `https://api.github.com/search/repositories?q=[QUERY]`
@@ -1407,7 +1434,7 @@ export default {
       const response = await fetch(this.searchEndpoint);
       const json = await response.json();
 
-      // const items = json.items;
+      // const items = json.items; <== updating this
       const items = this.selectedSearchMethod === 'repo' ?
                     json.items :
                     json;
@@ -1419,13 +1446,13 @@ export default {
 </script>
 ```
 
-Next we update our end point based on selectedSearchMethod`.
+Next we update our end point based on `selectedSearchMethod`.
 
 ### Computed properties
 
-`Computed` properties are similar to those stored inside the `data` `Object`, except that they are re-evaluated any time their dependencies change. The dependencies can be in `data`, or other `computed` properties. This can make it very convenient to keep a property up to date when other data changes.
+`computed` properties are similar to those stored inside the `state`, except that they are re-evaluated any time their dependencies change. The dependencies can be in the `state`, or other `computed` properties. This makes it very convenient to keep a property up to date when other data changes.
 
-If you look inside of `Search.vue`, we already have one `computed` property:
+If you look inside of `Search.vue`, we already have one `computed` property which returns the endpoint:
 
 ```html
 <!-- Search.vue -->
@@ -1443,10 +1470,10 @@ export default {
 </script>
 ```
 
-This end point will update every time the query input changes, giving us a dynamic end point to call.
+This endpoint will update every time the query input changes, giving us a dynamic end point to call.
 
->**Note** ☝ 
-  > It's important to note that a `computed` property is a `Function` that `returns` a value when referenced.
+> **Note** ☝ 
+> It's important to note that a `computed` property is a `Function` that _returns_ a value.
 
 Let's update the `searchEndpoint` `computed` property to change the endpoint based on the `selectedSearchMethod`:
 
@@ -1468,13 +1495,15 @@ export default {
 </script>
 ```
 
-Now our search works again for both `repos` and `developer`!
+Now our search works again for both `repo` and `developer`!
 
-### Filters: Capitalize
+### *Filters*: Capitalize
 
-One thing still isn't quite right! The `selectedSearchMethod` is in lowercase when when use it in the template. It would look better if it was Capitalized. We could do it by changing the data to use capitalized stings, but this would mean making changes to the actual data, and we don't want that. We could also wrap those words in `<span>` and capitalize them with CSS.
+One thing still isn't quite right!
 
-But there's a much more interesting way to do it in Vue, with `filters`.
+The `selectedSearchMethod` is in lowercase when when use it in the template. It would look better if it was Capitalized. We could do it by changing the data to use capitalized strings, but this would mean making changes to the actual data, and we don't want that. We could also wrap those words in `<span>` and capitalize them with CSS.
+
+But there's a much more interesting way to do it in **Vue**, using `filters`.
 
 A `filter` is used to apply text formatting on render, and can be used in both **mustache interpolations** and `v-bind:` expressions, and uses the pipe syntax:
 
@@ -1491,7 +1520,7 @@ import App from './App.vue'
 
 Vue.config.productionTip = false;
 
-// Custom filter to capitalize text
+// Custom filter to capitalize first letter
 Vue.filter('capitalize', function (value) {
   if (!value) return '';
   value = value.toString();
@@ -1510,7 +1539,7 @@ Once initiated, it will be available in all components. Let's update the `Search
 <!-- Search.vue -->
 <template>
   <section class="search">
-    <h1>Search by Github by {{ selectedSearchMethod }}</h1>
+    <h1>Search by Github by {{ selectedSearchMethod | capitalize }}</h1>
     <form @submit.prevent="search">
       <input type="search" name="search" id="search" v-model="q" required>
       <label for="search">{{ selectedSearchMethod | capitalize }} search</label>
@@ -1522,7 +1551,7 @@ Once initiated, it will be available in all components. Let's update the `Search
 
 ### 🔥🔥🔥 That's it! We did it! 🔥🔥🔥
 
-You now have a fully functional search application, and have learned the fundamental aspects of Vue.js!
+You now have a fully functional search application, and have learned the fundamental principals of Vue.js!
 
 ### But wait, there's more!
 
@@ -1539,5 +1568,5 @@ Vue has a bunch of additional tools which parallel other popular frameworks
 
 [THANK YOU MESSAGE]
 [WILL SEND OPTIONAL SURVEY]
-[IF YOU WOULD LIKE TO WRITE AN TESTIMONIAL]
+[IF YOU WOULD LIKE TO WRITE A TESTIMONIAL]
 [FOLLOW ME ON TWITTER, ETC.]
