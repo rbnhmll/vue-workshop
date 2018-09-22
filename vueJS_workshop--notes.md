@@ -4,18 +4,22 @@
 ---
 
 ### Welcome to Intro to Vue Workshop
-Vue is a wonderful library for building single-page applications, web-apps, and enhancing front-end user experience of existing sites. Today we will be building a simple application to search for Github repos, first using the CDN, then followed by enahncing the process with the Vue CLI.
+
+Vue is a wonderful library for building single-page applications, web-apps, and enhancing front-end user experience of existing sites.
+
+Today we will be building a simple application to search for Github repos, first using the `CDN`, then followed by adding functionality with the `Vue CLI`.
 
 ### What's you'll need to succeed in this workshop
-- Code editor of your choice (I recommend VSCode)
+
+- Code editor of choice (I recommend [VSCode](https://code.visualstudio.com/))
   - Vue syntax highlighter
-    - VSCode - (link to package)
-    - Sublime - (link to package)
-    - Atom - (link to package)
-    - Brackets - (link to package)
-- Vue.js Devtools
+    - VSCode: [Vue VS Code Extension Pack](https://marketplace.visualstudio.com/items?itemName=sdras.vue-vscode-extensionpack)
+    - Sublime - [Vue Syntax Highlight](https://github.com/vuejs/vue-syntax-highlight)
+    - Atom - [language-vue](https://atom.io/packages/language-vue)
+    - Brackets - [Brackets Vue](http://brackets.dnbard.com/extension/brackets.vue)
+- Vue.js Devtools (more about this below)
 - Terminal
-- NPM installed
+- [npm](https://www.npmjs.com/) installed
 
 ### Getting started: Slides + Starter Files
 You will find all of the necessary starter files and resources in the following repo: [https://github.com/rbnhmll/vue-workshop/](https://github.com/rbnhmll/vue-workshop/)
@@ -31,13 +35,13 @@ This package includes a number of files, including **START** and **COMPLETE** ve
 >  &#8627; vueJS_workshop--slides
 >  &#8627; &#8627; vue-slides.html
 
-Open this package up in your code editor of choice.
+Open this package up in your code editor.
 
 ---
 
 ### What is Vue?
 
-* Javascript framework from building front-end UI
+* Vue is a javaScript framework for building front-end UI and single page applications
 * In the same category as React, Preact, Angular and Ember
 * Helps you to create a more scalable and maintainable codebase
 
@@ -55,7 +59,7 @@ Open this package up in your code editor of choice.
   | **Vue 2.4.2**            | **58.8K** | **20.9K** |
   | Preact 7.2.0             | 16K       | 4K        |
 
-  \* Source: https://gist.github.com/Restuta/cda69e50a853aa64912d
+  \* [Source](https://gist.github.com/Restuta/cda69e50a853aa64912d)
 
 ### Features
 
@@ -75,7 +79,7 @@ Together we are going to build a simple single page application which searches f
 
 To preview what our end goal will be, open the `cdn--COMPLETE` directory, and open `index.html` in your browser 
 
-We will be working mostly in the `cdn` version of the app to cover the fundamentals of Vue. Later we will learn about the CLI, and how to extend our application features.
+We will be working mostly in the `cdn` version of the app to cover the fundamentals of **Vue**. Later we will learn about the CLI, and how to extend our application features.
 
 Let's get started!
 
@@ -83,8 +87,8 @@ Let's get started!
 
 ## Getting started with the Vue CDN
 
-* Grab the [CDN](https://vuejs.org/v2/guide/#Getting-Started) or [download](https://vuejs.org/v2/guide/installation.html#Direct-lt-script-gt-Include) the .js file.
-* Note: there are Development and Production versions of both.
+* Grab the [CDN](https://vuejs.org/v2/guide/#Getting-Started) or [download](https://vuejs.org/v2/guide/installation.html#Direct-lt-script-gt-Include) the `.js` file.
+* Note: there are **Development** and **Production** versions of both.
   * **Development** version includes helpful console warnings. (we will be using this one)
   * **Production** version is optimized for size and speed.
 
@@ -96,7 +100,7 @@ Add the CDN at the bottom of the body
 ```html
 <body>
   ...
-  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
 </body>
 ```
 
@@ -114,7 +118,7 @@ Next, instantiate the Vue instance
 
 ```html
 ...
-  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
   <script>
     const app = new Vue({
       el: "#app",
