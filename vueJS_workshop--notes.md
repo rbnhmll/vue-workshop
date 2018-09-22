@@ -1549,6 +1549,8 @@ Once initiated, it will be available in all components. Let's update the `Search
 </template>
 ```
 
+---
+
 ### 🔥🔥🔥 That's it! We did it! 🔥🔥🔥
 
 You now have a fully functional search application, and have learned the fundamental principals of Vue.js!
@@ -1563,10 +1565,11 @@ Vue has a bunch of additional tools which parallel other popular frameworks
 
 ---
 
-### Thank you for coming out!
-- [ ] Write thank you section here
+# Thank you for coming out!
 
-[THANK YOU MESSAGE]
-[WILL SEND OPTIONAL SURVEY]
-[IF YOU WOULD LIKE TO WRITE A TESTIMONIAL]
-[FOLLOW ME ON TWITTER, ETC.]
+I really appreciate you making the effort to join me to learn about Vue. I hope that you learned a lot, and are excited to start building fun things with Vue!
+
+To keep improving, I would love it if you would fill out this [optional Workshop Feedback Survey](https://docs.google.com/forms/d/e/1FAIpQLScEBms7qxaPhZj9mYqfwKKBcj41b3jQKJT68Pro-5wSm7-O5w/viewform?usp=sf_link)
+
+Also, you can find me on the internet:
+[Robin Hamill](https://www.robinhamill) | [Vue JS Workshop](https://www.vuejsworkshop.com/) | [Email](mailto:hi@robinhamill) | [Twitter](https://twitter.com/rbnhmll)
