@@ -29,11 +29,17 @@ This package includes a number of files, including **START** and **COMPLETE** ve
 
 **vue-workshop**
 &#8627; `cdn--START`
+
 &#8627; `cdn--COMPLETE`
+
 &#8627; `cli--START`
+
 &#8627; `cli--COMPLETE`
+
 &#8627; `vueJS_workshop--notes.md`
+
 &#8627; `vueJS_workshop--slides`
+
 &#8627; &#8627; `vue-slides.html`
 
 Open this package up in your code editor.
