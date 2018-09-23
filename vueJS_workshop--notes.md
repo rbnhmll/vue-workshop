@@ -28,20 +28,13 @@ You will find all of the necessary starter files and resources in the following 
 This package includes a number of files, including **START** and **COMPLETE** versions of both apps, and these class notes. There's also some slides included which provide a cursory overview of the framework.
 
 **vue-workshop**
-
-&#8627; `cdn--START`
-
-&#8627; `cdn--COMPLETE`
-
-&#8627; `cli--START`
-
-&#8627; `cli--COMPLETE`
-
-&#8627; `vueJS_workshop--notes.md`
-
-&#8627; `vueJS_workshop--slides`
-
-&#8627; &#8627; `vue-slides.html`
+- &#8627; `cdn--START`
+- &#8627; `cdn--COMPLETE`
+- &#8627; `cli--START`
+- &#8627; `cli--COMPLETE`
+- &#8627; `vueJS_workshop--notes.md`
+- &#8627; `vueJS_workshop--slides`
+- &#8627; &#8627; `vue-slides.html`
 
 Open this package up in your code editor.
 
