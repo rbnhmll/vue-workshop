@@ -414,6 +414,105 @@ Use this directive on the element which needs to be repeated. In this case, the 
 
 Now we have a variable `repo` which represents each iteration. We can use this to fill in some of the dummy content on our cards.
 
+Here's an example of the data included in one of the returned repos:
+
+```json
+repos: Array[30]
+  0: Object
+    archive_url:"https://api.github.com/repos/vuejs/vue/{archive_format}{/ref}"
+    archived:false
+    assignees_url:"https://api.github.com/repos/vuejs/vue/assignees{/user}"
+    blobs_url:"https://api.github.com/repos/vuejs/vue/git/blobs{/sha}"
+    branches_url:"https://api.github.com/repos/vuejs/vue/branches{/branch}"
+    clone_url:"https://github.com/vuejs/vue.git"
+    collaborators_url:"https://api.github.com/repos/vuejs/vue/collaborators{/collaborator}"
+    comments_url:"https://api.github.com/repos/vuejs/vue/comments{/number}"
+    commits_url:"https://api.github.com/repos/vuejs/vue/commits{/sha}"
+    compare_url:"https://api.github.com/repos/vuejs/vue/compare/{base}...{head}"
+    contents_url:"https://api.github.com/repos/vuejs/vue/contents/{+path}"
+    contributors_url:"https://api.github.com/repos/vuejs/vue/contributors"
+    created_at:"2013-07-29T03:24:51Z"
+    default_branch:"dev"
+    deployments_url:"https://api.github.com/repos/vuejs/vue/deployments"
+    description:"🖖 A progressive, incrementally-adoptable JavaScript framework for building UI on the web."
+    downloads_url:"https://api.github.com/repos/vuejs/vue/downloads"
+    events_url:"https://api.github.com/repos/vuejs/vue/events"
+    fork:false
+    forks:16135
+    forks_count:16135
+    forks_url:"https://api.github.com/repos/vuejs/vue/forks"
+==> full_name:"vuejs/vue"
+    git_commits_url:"https://api.github.com/repos/vuejs/vue/git/commits{/sha}"
+    git_refs_url:"https://api.github.com/repos/vuejs/vue/git/refs{/sha}"
+    git_tags_url:"https://api.github.com/repos/vuejs/vue/git/tags{/sha}"
+    git_url:"git://github.com/vuejs/vue.git"
+    has_downloads:true
+    has_issues:true
+    has_pages:false
+    has_projects:true
+    has_wiki:false
+    homepage:"http://vuejs.org"
+    hooks_url:"https://api.github.com/repos/vuejs/vue/hooks"
+==> html_url:"https://github.com/vuejs/vue"
+    id:11730342
+    issue_comment_url:"https://api.github.com/repos/vuejs/vue/issues/comments{/number}"
+    issue_events_url:"https://api.github.com/repos/vuejs/vue/issues/events{/number}"
+    issues_url:"https://api.github.com/repos/vuejs/vue/issues{/number}"
+    keys_url:"https://api.github.com/repos/vuejs/vue/keys{/key_id}"
+    labels_url:"https://api.github.com/repos/vuejs/vue/labels{/name}"
+    language:"JavaScript"
+    languages_url:"https://api.github.com/repos/vuejs/vue/languages"
+    license:Object
+    merges_url:"https://api.github.com/repos/vuejs/vue/merges"
+    milestones_url:"https://api.github.com/repos/vuejs/vue/milestones{/number}"
+    mirror_url:null
+==> name:"vue"
+    node_id:"MDEwOlJlcG9zaXRvcnkxMTczMDM0Mg=="
+    notifications_url:"https://api.github.com/repos/vuejs/vue/notifications{?since,all,participating}"
+    open_issues:313
+    open_issues_count:313
+    owner: Object
+  ==> avatar_url:"https://avatars1.githubusercontent.com/u/6128107?v=4"
+      events_url:"https://api.github.com/users/vuejs/events{/privacy}"
+      followers_url:"https://api.github.com/users/vuejs/followers"
+      following_url:"https://api.github.com/users/vuejs/following{/other_user}"
+      gists_url:"https://api.github.com/users/vuejs/gists{/gist_id}"
+      gravatar_id:""
+      html_url:"https://github.com/vuejs"
+      id:6128107
+  ==> login:"vuejs"
+      node_id:"MDEyOk9yZ2FuaXphdGlvbjYxMjgxMDc="
+      organizations_url:"https://api.github.com/users/vuejs/orgs"
+      received_events_url:"https://api.github.com/users/vuejs/received_events"
+      repos_url:"https://api.github.com/users/vuejs/repos"
+      site_admin:false
+      starred_url:"https://api.github.com/users/vuejs/starred{/owner}{/repo}"
+      subscriptions_url:"https://api.github.com/users/vuejs/subscriptions"
+      type:"Organization"
+      url:"https://api.github.com/users/vuejs"
+    private:false
+    pulls_url:"https://api.github.com/repos/vuejs/vue/pulls{/number}"
+    pushed_at:"2018-09-21T13:10:43Z"
+    releases_url:"https://api.github.com/repos/vuejs/vue/releases{/id}"
+    score:159.14955
+    size:23754
+    ssh_url:"git@github.com:vuejs/vue.git"
+    stargazers_count:114632
+    stargazers_url:"https://api.github.com/repos/vuejs/vue/stargazers"
+    statuses_url:"https://api.github.com/repos/vuejs/vue/statuses/{sha}"
+    subscribers_url:"https://api.github.com/repos/vuejs/vue/subscribers"
+    subscription_url:"https://api.github.com/repos/vuejs/vue/subscription"
+    svn_url:"https://github.com/vuejs/vue"
+    tags_url:"https://api.github.com/repos/vuejs/vue/tags"
+    teams_url:"https://api.github.com/repos/vuejs/vue/teams"
+    trees_url:"https://api.github.com/repos/vuejs/vue/git/trees{/sha}"
+    updated_at:"2018-09-23T18:20:31Z"
+    url:"https://api.github.com/repos/vuejs/vue"
+    watchers:114632
+    watchers_count:114632
+  ...
+```
+
 ```html
 ...
   <li class="repo" v-for="repo in repos">
