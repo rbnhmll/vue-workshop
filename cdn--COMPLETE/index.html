@@ -14,7 +14,7 @@
 <body>
   <div id="app" class="wrapper">
 
-    <search @search="search($event)"></search>
+    <search @search-event="search($event)"></search>
     <results :repos="repos" v-if="repos.length"></results>
     <searching v-if="searching"></searching>
     <errors v-if="errorHandling"></errors>
@@ -29,7 +29,7 @@
       template: `
         <section class="search">
           <h1>Search for Github repo</h1>
-          <form @submit.prevent="$emit('search', q)">
+          <form @submit.prevent="$emit('search-event', q)">
             <input
               id="search"
               name="search"

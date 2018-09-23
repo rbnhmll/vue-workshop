@@ -144,11 +144,12 @@ Open up the browser inspector/devtools, and click on the **Vue** tab.
 
 We'll be returning to those tools a bunch throughout the process.
 
-### Devtools gotchas
-  * If the page uses a production/minified build of Vue.js, devtools inspection is disabled by default so the Vue pane won't show up.
-  * To make it work for pages opened via `file://` protocol, you need to check "*Allow access to file URLs*" for this extension in Chrome's extension management panel.
-
-  <small>* From Vue-devtools documentation: [https://github.com/vuejs/vue-devtools](https://github.com/vuejs/vue-devtools)</small>
+> **Devtools gotchas** ☝ 
+> If the page uses a production/minified build of Vue.js, devtools inspection is disabled by default so the Vue pane won't show up.
+>
+> To make it work for pages opened via `file://` protocol, you need to check "*Allow access to file URLs*" for this extension in Chrome's extension management panel.
+>
+> <small>* From Vue-devtools documentation: [https://github.com/vuejs/vue-devtools](https://github.com/vuejs/vue-devtools)</small>
 
 ### State
 
@@ -304,7 +305,7 @@ Let's build a `search` method which will take care of the following steps:
 ```
 
 > **Note** ☝ 
-> There are som more robust tools for making API calls, such as [Axios](https://github.com/axios/axios), which I would recommend looking into for production Vue applications. However, we'll be using `fetch` in these examples for simplicity.
+> There are some more robust tools for making API calls, such as [Axios](https://github.com/axios/axios), which I would recommend looking into for production Vue applications. However, we'll be using `fetch` in these examples for simplicity.
 
 ### Create `resetSearch` method
 
@@ -655,7 +656,7 @@ We can start by replacing the name of the method we were trying to call directly
   Vue.component('search', {
     template: `
       ...
-      <form @submit.prevent="$emit('search', q)">
+      <form @submit.prevent="$emit('search-event', q)">
         ...
       </form>
       ...
@@ -669,11 +670,29 @@ Now in our HTML, when we reference the search component, we can listed for our c
 
 ```html
 ...
-  <search @search="search($event)"></search>
+  <search @search-event="search($event)"></search>
 ...
 ```
 
 By doing so we are passing the `q` to the `search` method.
+
+> **Note** ☝ 
+> It's worth nothing that HTML attribute names are case sensitive, and the browser will treat any uppercase letters as lowercase. So when using in-DOM templates like with the CDN, we must remember to use kabab-case on prop attributes.
+
+We must also update our `search` method to expect the `$event` payload to be passed in. We'll name it `q`, and since we are no longer referencing `q` from the `state`, we can remove the `this.` from the url template string. We're using the passing in argument `q` instead.
+
+```javascript
+...
+  methods: {
+    async search(q) {
+    ...
+      const response = await fetch(`https://api.github.com/search/repositories?q=${q}`);
+      ...
+    },
+    ...
+  }
+...
+```
 
 Let's convert our remaining _results_ section into its own component.
 
@@ -711,21 +730,6 @@ Let's convert our remaining _results_ section into its own component.
 ...
 ```
 
-We must also update our `search` method to expect the `$event` payload to be passed in. We'll name it `q`, and since we are no longer referencing `q` from the `state`, we can remove the `this.` from the url template string.
-
-```javascript
-...
-  methods: {
-    async search(q) {
-    ...
-      const response = await fetch(`https://api.github.com/search/repositories?q=${q}`);
-      ...
-    },
-    ...
-  }
-...
-```
-
 Let's try out the app and make sure it still works! 
 
 **Uh oh!** Another error, similar to before `[Vue warn]: Property or method "repos" is not defined on the instance but referenced during render. Make sure that this property is reactive, either in the data option, or for class-based components, by initializing the property`.
@@ -734,11 +738,11 @@ Here we are referencing `repos`, but this component does not have access to it i
 
 ### Props
 
-In order to allow our `results` component access to the `repos` in the mina Vue Object, we need to pass "props" to the component.
+In order to allow our `results` component access to the `repos` in the main **Vue** `Object`, we need to pass `props` to the component.
 
-`props` is short for "properties", and is used to pass data to components, similar to function arguments.
+`props` is short for "properties", and is used to pass data to components, similar to the way we pass arguments to functions.
 
-We pass a `prop` to a component using `v-bind`, similar to when we need to dynamically update an attribute. We start be giving our `results` element an attribute with the name we want to represent it, and pass in the `repos` in our data `Object` as the argument. We can also use the short-form, as follows:
+We pass a `prop` to a component using `v-bind`, similar to when we need to dynamically update an attribute. We start be giving our `results` component an attribute with the name we want to represent it, and pass in the `repos` in our data `Object` as the argument. We can also use the short-form, as follows:
 
 ```html
 ...
@@ -747,7 +751,7 @@ We pass a `prop` to a component using `v-bind`, similar to when we need to dynam
 ```
 
 > **Note** ☝ 
-> We use `v-bind` or `:` to pass dymamic props to a component. But you can also pass hard-coded props by omiting the prefix, like `title="Vue JS Workshop"`. In this case, the `prop` is treated as a `String`.
+> We use `v-bind` or `:` to pass dynamic props to a component. But you can also pass hard-coded props by omitting the prefix, like `title="Vue JS Workshop"`. In this case, the `prop` is treated as a `String`.
 
 In the component itself, we need to register the prop, so that the component knows what to expect. In its simplest form, `props` can be represented by an `Array` of `Strings`.
 
@@ -767,9 +771,6 @@ However, you can also make `props` an `Object`, with the key being the name of t
   });
 ...
 ```
-
-> **Note** ☝ 
-> It's worth nothing that HTML attribute names are case sensitive, and the browser will treat any uppercase letters as lowercase. So when using in-DOM templates like with the CDN, we must remember to use kabab-case on prop attributes.
 
 Check it out. Yay, our application works again!
 
