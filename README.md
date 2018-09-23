@@ -4,6 +4,9 @@
 
 ## Contains:
 
-* CDN starter and completed files
-* vue-cli starter and completed files
-* Slides
+- CDN starter and completed files
+- vue-cli starter and completed files
+- Slides
+- Class notes
+
+Access class notes [here](https://github.com/rbnhmll/vue-workshop/blob/master/vueJS_workshop--notes.md)
