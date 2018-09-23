@@ -52,15 +52,16 @@ Open this package up in your code editor.
 * It's mostly just HTML, CSS, javascript.
 * Size:
   Relatively small library compared with others
-  | Library                  | Minified  | GZipped   |
-  | ------------------------ | :-------: | :-------: |
-  | Angular 2                | 566K      | 111K      |
-  | Ember 2.2.0              | 435K      | 111K      |
-  | React 16.2.0 + React DOM | 97.5K     | 31.8K     |
-  | **Vue 2.4.2**            | **58.8K** | **20.9K** |
-  | Preact 7.2.0             | 16K       | 4K        |
+  
+| Library                  | Minified  | GZipped   |
+| ------------------------ | :-------: | :-------: |
+| Angular 2                | 566K      | 111K      |
+| Ember 2.2.0              | 435K      | 111K      |
+| React 16.2.0 + React DOM | 97.5K     | 31.8K     |
+| **Vue 2.4.2**            | **58.8K** | **20.9K** |
+| Preact 7.2.0             | 16K       | 4K        |
 
-  \* [Source](https://gist.github.com/Restuta/cda69e50a853aa64912d)
+\* [Source](https://gist.github.com/Restuta/cda69e50a853aa64912d)
 
 ### Features
 
