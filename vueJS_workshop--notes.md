@@ -28,6 +28,7 @@ You will find all of the necessary starter files and resources in the following 
 This package includes a number of files, including **START** and **COMPLETE** versions of both apps, and these class notes. There's also some slides included which provide a cursory overview of the framework.
 
 **vue-workshop**
+
 &#8627; `cdn--START`
 
 &#8627; `cdn--COMPLETE`
