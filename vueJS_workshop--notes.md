@@ -894,6 +894,9 @@ npm install -g @vue/cli
 yarn global add @vue/cli
 ```
 
+> **Note** ☝ 
+> Vue CLI requires [Node.js](https://nodejs.org/en/) version `8.9` or above (`8.11.0+` recommended).
+
 ### Creating a project
 
 There are two ways to create a new project with Vue CLI:
@@ -906,7 +909,7 @@ Let's take a look at both!
 
 To create a new **Vue** app we type `vue create` followed by the `<project-name>` of the project. This will launch a series of configuration options, and you can choose either a preset, or fully configure it to your needs.
 
-Let's create a `test-project` project. I'm going to `cd` to my desktop, since this will be a temporary test. 
+Let's create a `test-project` project. I'm going to `cd` to my desktop, since this will be a temporary example. 
 
 ```bash
 vue create test-project
@@ -924,7 +927,7 @@ Vue CLI v3.0.4
 When complete you should get the message:
 
 ```bash
-🎉  Successfully created project test.
+🎉  Successfully created project test-project.
 👉  Get started with the following commands:
 
  $ cd test-project
