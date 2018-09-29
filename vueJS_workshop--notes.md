@@ -1130,7 +1130,7 @@ And some basic styles:
 
 In order to see this component in our app, we need to import it and render it on the page. We're going to use this component inside of `Search.vue`, because it will directly effect what we are searching for.
 
-First, let's import the component:
+First, let's import and register the component:
 
 ```html
 <!-- SearchType.vue -->
@@ -1139,6 +1139,9 @@ import SearchType from '@/components/SearchType.vue';
 
 export default {
   ...
+  components: {
+    SearchType,
+  }
 };
 ...
 </script>
@@ -1385,8 +1388,8 @@ export default {
   ...
   methods: {
     ...
-    handleChange({key, val}) {
-      this[key] = val;
+    handleChange(event) {
+      this[event.key] = event.val;
     },
   },
 };

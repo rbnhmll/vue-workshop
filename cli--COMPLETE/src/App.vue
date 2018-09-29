@@ -37,12 +37,15 @@ export default {
     };
   },
   methods: {
-    handleFlags({key, val}) {
-      this.flags[key] = val;
+    handleFlags(event) {
+      this.flags[event.key] = event.val;
     },
     resetSearch() {
       this.flags.errorHandling = false;
       this.repos = [];
+    },
+    handleChange(event) {
+      this[event.key] = event.val;
     },
   },
 };
