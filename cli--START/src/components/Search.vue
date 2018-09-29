@@ -57,7 +57,7 @@ export default {
     searchEndpoint() {
       return `https://api.github.com/search/repositories?q=${this.q}`;
       // Return a different endpoint if the search method changes
-      // Developer endpint: https://api.github.com/users/${this.q}/repos
+      // Developer endpoint: https://api.github.com/users/${this.q}/repos
     },
   },
 };
