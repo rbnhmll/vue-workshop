@@ -906,16 +906,16 @@ Let's take a look at both!
 
 To create a new **Vue** app we type `vue create` followed by the `<project-name>` of the project. This will launch a series of configuration options, and you can choose either a preset, or fully configure it to your needs.
 
-Let's create a `test` project. I'm going to `cd` to my desktop, since this will be a temporary test. 
+Let's create a `test-project` project. I'm going to `cd` to my desktop, since this will be a temporary test. 
 
 ```bash
-vue create test
+vue create test-project
 ```
 
 This will begin a series of steps in your terminal to create your project. For this example, we will choose the `default (babel, eslint)` option.
 
 ```bash
-Vue CLI v3.0.1
+Vue CLI v3.0.4
 ? Please pick a preset: (Use arrow keys)
 ❯ default (babel, eslint)
   Manually select features
@@ -927,7 +927,7 @@ When complete you should get the message:
 🎉  Successfully created project test.
 👉  Get started with the following commands:
 
- $ cd test
+ $ cd test-project
  $ npm run serve
 ```
 
@@ -950,7 +950,7 @@ vue ui
 
 This will open Vue UI in the browser, and you will see many of the same options as in the console, but in a more clickable fashion.
 
-Let's walk through the steps to create a `test` project again.
+Let's walk through the steps to create a `test-project` project again.
 
   1. Click the `Create` Tab
   1. Navigate to location you want to store it on your computer
@@ -1670,7 +1670,7 @@ Vue has a bunch of additional tools which parallel other popular frameworks
 
 I really appreciate you making the effort to join me to learn about Vue. I hope that you learned a lot, and are excited to start building fun things with Vue!
 
-To keep improving, I would love it if you would fill out this [optional Workshop Feedback Survey](https://docs.google.com/forms/d/e/1FAIpQLScEBms7qxaPhZj9mYqfwKKBcj41b3jQKJT68Pro-5wSm7-O5w/viewform?usp=sf_link)
+To help me keep improving this course, I would love it if you would fill out this optional [Workshop Feedback Survey](https://docs.google.com/forms/d/e/1FAIpQLScEBms7qxaPhZj9mYqfwKKBcj41b3jQKJT68Pro-5wSm7-O5w/viewform?usp=sf_link)
 
 Also, you can find me on the internet:
 [Robin Hamill](https://www.robinhamill) | [Vue JS Workshop](https://www.vuejsworkshop.com/) | [Email](mailto:hi@robinhamill) | [Twitter](https://twitter.com/rbnhmll)
