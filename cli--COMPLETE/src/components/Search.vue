@@ -1,6 +1,6 @@
 <template>
   <section class="search">
-    <h1>Search by Github by {{ selectedSearchMethod | capitalize }}</h1>
+    <h1>Search by Github {{ selectedSearchMethod | capitalize }}</h1>
     <form @submit.prevent="search">
       <input type="search" name="search" id="search" v-model="q" required>
       <label for="search">{{ selectedSearchMethod | capitalize }} search</label>
