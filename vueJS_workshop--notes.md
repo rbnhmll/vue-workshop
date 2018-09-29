@@ -90,9 +90,11 @@ Let's get started!
 ## Getting started with the Vue CDN
 
 * Grab the [CDN](https://vuejs.org/v2/guide/#Getting-Started) or [download](https://vuejs.org/v2/guide/installation.html#Direct-lt-script-gt-Include) the `.js` file.
-* Note: there are **Development** and **Production** versions of both.
-  * **Development** version includes helpful console warnings. (we will be using this one)
-  * **Production** version is optimized for size and speed.
+
+> **Note** ☝
+> There are **Development** and **Production** versions of both.
+>  * **Development** version includes helpful console warnings. (we'll be using this one)
+>  * **Production** version is optimized for size and speed.
 
 Start by opening up the project **cdn--START**. I have provided some starter HTML and CSS in order to speed along the process, and we will be building out all the functionality together.
 
@@ -1027,9 +1029,9 @@ The application is now running at [localhost:8080/](http://localhost:8080)
 
 ### Adding features to our app
 
-I'm going to open up the final product (cli--COMPLETE) in the browser, and show you what features we are going to be adding.
+I'm going to open up the final product (`cli--COMPLETE`) in the browser, and show you what features we are going to be adding.
 
-The goal is to expand the functionality of our app so we can toggle between searching for repos, and searching for repos by developer.
+The goal is to expand the functionality of our app so we can toggle between searching for `repos`, and searching for repos by `developer`.
 
 Let's get started!
 
@@ -1557,9 +1559,9 @@ Next we update our end point based on `selectedSearchMethod`.
 
 ### Computed properties
 
-`computed` properties are similar to those stored inside the `state`, except that they are re-evaluated any time their dependencies change. The dependencies can be in the `state`, or other `computed` properties. This makes it very convenient to keep a property up to date when other data changes.
+`computed` properties are similar to those stored inside the `state`, except that they are re-evaluated any time their dependencies change. Dependencies can be in the `state`, or other `computed` properties. This makes it very convenient to keep a property up to date when other data changes.
 
-If you look inside of `Search.vue`, we already have one `computed` property which returns the endpoint:
+If you look inside of `Search.vue`, we are currently hard-coding the api endpoint in the `search` method. We can change this to a `computed` property which `returns` the endpoint, and reference it inside the `search` method:
 
 ```html
 <!-- Search.vue -->
@@ -1568,6 +1570,14 @@ If you look inside of `Search.vue`, we already have one `computed` property whic
 export default {
   name: 'Search',
   ...
+  methods: {
+    async search() {
+      ...
+      // const response = await fetch(`https://api.github.com/search/repositories?q=${this.q}`);
+      const response = await fetch(this.searchEndpoint);
+      ...
+    },
+  },
   computed: {
     searchEndpoint() {
       return `https://api.github.com/search/repositories?q=${this.q}`;
@@ -1577,12 +1587,12 @@ export default {
 </script>
 ```
 
-This endpoint will update every time the query input changes, giving us a dynamic end point to call.
+At this point, endpoint will update every time the query input changes, giving us a dynamic end point to call.
 
 > **Note** ☝ 
 > It's important to note that a `computed` property is a `Function` that _returns_ a value.
 
-Let's update the `searchEndpoint` `computed` property to change the endpoint based on the `selectedSearchMethod`:
+Let's enhance the `searchEndpoint` `computed` property further, to change the endpoint based on the `selectedSearchMethod`:
 
 ```html
 <!-- Search.vue -->
@@ -1666,13 +1676,13 @@ You now have a fully functional search application, and have learned the fundame
 
 Vue has a bunch of additional tools which parallel other popular frameworks
 
-* Vuex (like Redux)
-* Vue-router (like React-router)
-* Nuxt.js (SSR, like Next)
+* [Vuex](https://vuex.vuejs.org/) (like Redux)
+* [Vue-router](https://router.vuejs.org/) (like React-router)
+* [Nuxt.js](https://nuxtjs.org/) (SSR, like Next)
 
 ---
 
-# Thank you for coming out!
+# Thank you for coming out! 😍
 
 I really appreciate you making the effort to join me to learn about Vue. I hope that you learned a lot, and are excited to start building fun things with Vue!
 
