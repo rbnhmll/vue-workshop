@@ -29,7 +29,11 @@ export default {
         val: true,
       });
       this.$emit('resetSearch');
-      const response = await fetch(this.searchEndpoint);
+      const response = await fetch(`https://api.github.com/search/repositories?q=${this.q}`);
+      
+      // There's a different endpoint if the search method changes
+      // Developer endpoint: https://api.github.com/users/${this.q}/repos
+
       const json = await response.json();
 
       const items = json.items;
@@ -51,13 +55,6 @@ export default {
           val: true,
         });
       }
-    },
-  },
-  computed: {
-    searchEndpoint() {
-      return `https://api.github.com/search/repositories?q=${this.q}`;
-      // Return a different endpoint if the search method changes
-      // Developer endpoint: https://api.github.com/users/${this.q}/repos
     },
   },
 };
