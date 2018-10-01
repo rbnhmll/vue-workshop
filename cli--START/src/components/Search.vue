@@ -1,9 +1,9 @@
 <template>
   <section class="search">
-    <h1>Search by Github [[ selected Search Method ]]</h1>
+    <h1>Search by Github [[ selectedSearchMethod ]]</h1>
     <form @submit.prevent="search">
       <input type="search" name="search" id="search" v-model="q" required>
-      <label for="search">[[selectedSearchMethod]] search</label>
+      <label for="search">[[ selectedSearchMethod ]] search</label>
       <!-- Add component to template -->
       <!-- Continue to pass down props -->
     </form>
@@ -21,7 +21,7 @@ export default {
       q: '',
     };
   },
-  props: [],
+  props: {},
   methods: {
     async search() {
       this.$emit('handleFlags', {
@@ -29,18 +29,15 @@ export default {
         val: true,
       });
       this.$emit('resetSearch');
-      const response = await fetch(this.searchEndpoint);
+      const response = await fetch(`https://api.github.com/search/repositories?q=${this.q}`);
+      
+      // There's a different endpoint if the search method changes
+      // Developer endpoint: https://api.github.com/users/${this.q}/repos
+
       const json = await response.json();
 
-      // We need to define object based on search type,
-      // since it returns a different data structure
-
-      // let items;
-      // if (this.selectedSearchMethod === 'repo') {
-      //   items = json.items;
-      // } else if (this.selectedSearchMethod === 'developer') {
-      //   items = json;
-      // }
+      const items = json.items;
+      // We will need to define object based on search type, since it returns a different data structure
 
       this.$emit('handleFlags', {
         key: 'searching',
@@ -58,15 +55,6 @@ export default {
           val: true,
         });
       }
-    },
-  },
-  computed: {
-    searchEndpoint() {
-      if (this.selectedSearchMethod === 'repo') {
-        return `https://api.github.com/search/repositories?q=${this.q}`;
-      }
-      // Return a different endpoint if the search method changes
-      // Developer endpint: https://api.github.com/users/${this.q}/repos
     },
   },
 };
