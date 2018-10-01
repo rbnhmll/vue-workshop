@@ -12,14 +12,19 @@
 </head>
 
 <body>
-  <div id="" class="wrapper">
+  <div id="app" class="wrapper">
     <!-- Add ID for app -->
 
     <section class="search">
       <h1>Search for Github repo</h1>
       <form>
         <!-- Handle form submit -->
-        <input type="search" name="search" id="search" required>
+        <input 
+          type="search" 
+          name="search" 
+          id="search" 
+          required
+          v-model="q">
         <!-- Bind search query to data -->
         <label for="search">Repo search</label>
       </form>
@@ -48,12 +53,12 @@
 
     <section class="searching">
       <!-- Show conditionally with v-if -->
-      <p>[[ A Searching... MESSAGE ]]</p>
+      <p>{{ searchingMessage }}</p>
     </section>
 
     <section class="errors">
       <!-- Show conditionally with v-if -->
-      <h2>[[ AN ERROR MESSAGE ]]</h2>
+      <h2>{{ errorMessage }}</h2>
     </section>
 
   </div>
@@ -62,8 +67,18 @@
 
   <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script> -->
   <script>
+    const app = new Vue({
+      el: "#app",
+      data: {
+        q:"",
+        searchingMessage: "Searching...",
+        errorMessage: "Oops, nothing here"
+      }
+    });
+
   // Vue code will go here
   // Our API endpoint: https://api.github.com/search/repositories?q={query}
+    
   </script>
 </body>
 

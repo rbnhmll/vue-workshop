@@ -265,12 +265,14 @@ We'll start by adding a couple of properties to our `state` to keep track of whe
 ```javascript
 ...
   data: {
-    q: "",
-    repos: [],
-    searching: false,
+    q:"",
     searchingMessage: "Searching...",
-    errorHandling: false,
-    errorMessage: "Oops, nothing here 💩"
+    repos:[],
+    errorMessage: "Oops, nothing here",
+    search:{
+      isSearching: true,
+      hasError: false
+    }
   },
 ...
 ```
@@ -289,20 +291,20 @@ Let's build a `search` method which will take care of the following steps:
 ```javascript
 ...
   methods: {
-    async search(event) {
-      event.preventDefault();
-      this.searching = true;
+    async searchRepos(event) {
+      this.search.isSearching = true;
       this.resetSearch();
       const response = await fetch(`https://api.github.com/search/repositories?q=${this.q}`);
 
       const json = await response.json();
-      this.searching = false;
-      if (json.items.length) {
+      this.search.isSearching = false;
+
+      if (json.items.length){
         this.repos = json.items;
       } else {
-        this.errorHandling = true;
+        this.search.hasError = true;
       }
-    }
+    },
   }
 ...
 ```
@@ -317,7 +319,7 @@ Next we will create the method `resetSearch` to reset the `errorhandling`, and r
 ```javascript
 ...
   methods: {
-    async search(q) {
+    async searchRepos(q) {
       ...
     },
     resetSearch() {
@@ -337,7 +339,7 @@ We need the form to call the `search` method on `submit`. We can use the directi
 
 ```html
 ...
-  <form v-on:submit="search">
+  <form v-on:submit="searchRepos">
     ...
   </form>
 ...
@@ -349,7 +351,7 @@ Now that our `search` method has been called, we should have up to 30 `Objects` 
 
 Now, calling `event.preventDefault()` on the submit event is fine, but there's also a **Vue** way of modifying these types of events, which is more concise. These are called `event modifiers`, and are appended to the `event` using dot notation.
 
-`v-on:submit.prevent="search"`
+`v-on:submit.prevent="searchRepos"`
   * Prevent default submit behaviour (page refresh).
 
 `v-model.number="example"`
@@ -359,7 +361,7 @@ We can tack on a modifier to the event handler, instead of stating it in the met
 
 ```html
 ...
-  <form v-on:submit.prevent="search">
+  <form v-on:submit.prevent="searchRepos">
     ...
   </form>
 ...
@@ -370,7 +372,7 @@ Remove `event.preventDefault()` from the `search` method
 ```javascript
 ...
   methods: {
-    async search() {
+    async searchRepos() {
       // event.preventDefault(); <== Remove this line!
     ...
 ...
