@@ -14,10 +14,10 @@
 <body>
   <div id="app" class="wrapper">
 
-    <search @search-event="search($event)"></search>
+    <search @search-event="searchRepos($event)"></search>
     <results :repos="repos" v-if="repos.length"></results>
-    <searching v-if="searching"></searching>
-    <errors v-if="errorHandling"></errors>
+    <searching v-if="search.isSearching"></searching>
+    <errors v-if="search.hasError"></errors>
 
   </div>
 
@@ -94,7 +94,7 @@
       `,
       data() {
         return {
-          errorMessage: "Oops, nothing here 💩",
+          errorMessage: "Oops, nothing here",
         };
       },
     });
@@ -103,25 +103,27 @@
       el: '#app',
       data: {
         repos: [],
-        searching: false,
-        errorHandling: false,
+        search: {
+          isSearching: false,
+          hasError: false,
+        }
       },
       methods: {
-        async search(q) {
-          this.searching = true;
+        async searchRepos(q) {
+          this.search.isSearching = true;
           this.resetSearch();
           const response = await fetch(`https://api.github.com/search/repositories?q=${q}`);
 
           const json = await response.json();
-          this.searching = false;
+          this.search.isSearching = false;
           if (json.items.length) {
             this.repos = json.items;
           } else {
-            this.errorHandling = true;
+            this.search.hasError = true;
           }
         },
         resetSearch() {
-          this.errorHandling = false;
+          this.search.hasError = false;
           this.repos = [];
         }
       }
