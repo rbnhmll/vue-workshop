@@ -1,7 +1,7 @@
 <template>
   <section class="search">
     <h1>Search by Github [[ selectedSearchMethod ]]</h1>
-    <form @submit.prevent="search">
+    <form @submit.prevent="searchRepos">
       <input type="search" name="search" id="search" v-model="q" required>
       <label for="search">[[ selectedSearchMethod ]] search</label>
       <!-- Add component to template -->
@@ -23,9 +23,9 @@ export default {
   },
   props: {},
   methods: {
-    async search() {
-      this.$emit('handleFlags', {
-        key: 'searching',
+    async searchRepos() {
+      this.$emit('handleSearch', {
+        key: 'isSearching',
         val: true,
       });
       this.$emit('resetSearch');
@@ -39,8 +39,8 @@ export default {
       const items = json.items;
       // We will need to define object based on search type, since it returns a different data structure
 
-      this.$emit('handleFlags', {
-        key: 'searching',
+      this.$emit('handleSearch', {
+        key: 'isSearching',
         val: false,
       });
 
@@ -50,8 +50,8 @@ export default {
           val: items,
         });
       } else {
-        this.$emit('handleFlags', {
-          key: 'errorHandling',
+        this.$emit('handleSearch', {
+          key: 'hasError',
           val: true,
         });
       }

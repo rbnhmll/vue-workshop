@@ -367,7 +367,7 @@ We can tack on a modifier to the event handler, instead of stating it in the met
 ...
 ```
 
-Remove `event.preventDefault()` from the `search` method
+Remove `event.preventDefault()` from the `searchRepos` method
 
 ```javascript
 ...
@@ -1160,16 +1160,16 @@ Now with the component imported, we can add it to our template
 <!-- SearchType.vue -->
 <template>
   ...
-  <form @submit.prevent="search">
+  <form @submit.prevent="searchRepos">
     ...
-    <search-type />
+    <SearchType />
   </form>
   ...
 </template>
 ```
 
 > **Note** ☝
-> It's best practice to add components to the template using kabab case, so that they are in line with html standards. And since our component doesn't have any content, it can also be a self-closing element.
+> While it's best practice to add components to the template using kabab case when using the CDN, it is a common pattern to use PascalCase when using the CLI. And since our component doesn't have any content, it can also be a self-closing element.
 
 We should now see some content inside of our form, displaying a `radio` button. This is the basic template of our component.
 
@@ -1340,7 +1340,7 @@ Inside our `Search` component, we want to watch for an event called `handleChang
 <template>
   <section class="search">
     ...
-      <search-type @handleChange="" />
+      <SearchType @handleChange="" />
     ...
 </template>
 ```
@@ -1352,7 +1352,7 @@ Now, `Search.vue` doesn't need this info directly, but it does need to continue 
 <template>
   <section class="search">
     ...
-      <search-type @handleChange="$emit('handleChange', $event)" />
+      <SearchType @handleChange="$emit('handleChange', $event)" />
     ...
 </template>
 ```
@@ -1367,7 +1367,7 @@ Like before, we will watch for the `handleChange` `$event` in the `App.vue` comp
   ...
     <Search
       @handleChange="handleChange($event)"
-      @handleFlags="handleFlags($event)"
+      @handleSearch="handleSearch($event)"
       @resetSearch="resetSearch"
     />
   ...
@@ -1418,7 +1418,7 @@ We can now update the text in the `Search.vue` `<h1>` to reflect the type of sea
   <div id="app" class="wrapper">
     <Search
       @handleChange="handleChange($event)"
-      @handleFlags="handleFlags($event)"
+      @handleSearch="handleSearch($event)"
       @resetSearch="resetSearch"
       :selectedSearchMethod="selectedSearchMethod"
     />
@@ -1456,7 +1456,7 @@ Reference the prop to update the `<h1>` and `<label>` content.
 <template>
   <section class="search">
     <h1>Search by Github {{ selectedSearchMethod }}</h1>
-    <form @submit.prevent="search">
+    <form @submit.prevent="searchRepos">
       ...
       <label for="search">{{ selectedSearchMethod }} search</label>
       ...
@@ -1474,9 +1474,9 @@ The Search Type is updating nicely, but the radio button is not pre-selected on 
 <template>
   <section class="search">
     ...
-    <form @submit.prevent="search">
+    <form @submit.prevent="searchRepos">
       ...
-      <search-type @handleChange="$emit('handleChange', $event)"
+      <SearchType @handleChange="$emit('handleChange', $event)"
       :selectedSearchMethod='selectedSearchMethod' />
     </form>
   </section>
@@ -1530,7 +1530,7 @@ This is because there are different API end points to search for repos and devel
 
 This means that depending on what we are searching for we need to be able to change the end point dynamically. In addition to this, each endpoint returns the data in a different way, and we need to account for this.
 
-To prepare for how the data comes back to us, let's make a small change to our `search` method:
+To prepare for how the data comes back to us, let's make a small change to our `searchRepos` method:
 
 ```html
 <!-- Search.vue -->
@@ -1540,7 +1540,7 @@ export default {
   name: 'Search',
   ...
   methods: {
-    async search() {
+    async searchRepos() {
       ...
       const response = await fetch(this.searchEndpoint);
       const json = await response.json();
@@ -1563,7 +1563,7 @@ Next we update our end point based on `selectedSearchMethod`.
 
 `computed` properties are similar to those stored inside the `state`, except that they are re-evaluated any time their dependencies change. Dependencies can be in the `state`, or other `computed` properties. This makes it very convenient to keep a property up to date when other data changes.
 
-If you look inside of `Search.vue`, we are currently hard-coding the api endpoint in the `search` method. We can change this to a `computed` property which `returns` the endpoint, and reference it inside the `search` method:
+If you look inside of `Search.vue`, we are currently hard-coding the api endpoint in the `searchRepos` method. We can change this to a `computed` property which `returns` the endpoint, and reference it inside the `searchRepos` method:
 
 ```html
 <!-- Search.vue -->
@@ -1573,7 +1573,7 @@ export default {
   name: 'Search',
   ...
   methods: {
-    async search() {
+    async searchRepos() {
       ...
       // const response = await fetch(`https://api.github.com/search/repositories?q=${this.q}`);
       const response = await fetch(this.searchEndpoint);
@@ -1662,7 +1662,7 @@ Once initiated, it will be available in all components. Let's update the `Search
     <form @submit.prevent="search">
       <input type="search" name="search" id="search" v-model="q" required>
       <label for="search">{{ selectedSearchMethod | capitalize }} search</label>
-      <search-type @handleChange="$emit('handleChange', $event)" :selectedSearchMethod='selectedSearchMethod'/>
+      <SearchType @handleChange="$emit('handleChange', $event)" :selectedSearchMethod='selectedSearchMethod'/>
     </form>
   </section>
 </template>

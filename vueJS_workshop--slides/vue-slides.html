@@ -180,7 +180,8 @@
 							</pre>
 						</li>
 						<li class="fragment">or go to
-							<a href="https://vuejs.org/v2/guide/installation.html">https://vuejs.org/v2/guide/installation.html</a> to download the files.
+							<a href="https://vuejs.org/v2/guide/installation.html">https://vuejs.org/v2/guide/installation.html</a> to
+							download the files.
 						</li>
 					</ul>
 					<small class="fragment">[
@@ -237,10 +238,12 @@
 									data: {
 										q: '',
 										repos: [],
-										searching: false,
 										searchingMessage: "Searching...",
-										errorHandling: false,
-										errorMessage: "Oops, nothing here 💩"
+										errorMessage: "Oops, nothing here",
+										search: {
+											isSearching: false,
+											hasError: false,
+										}
 									}
 								});
 							</script>
@@ -254,17 +257,17 @@
 							<script>
 							...
 								methods: {
-									async search() {
-										this.searching = true;
+									async searchRepos() {
+										this.search.isSearching = true;
 										this.resetSearch();
 										const resp = await fetch(`https://api.github.com/search/repositories?q=${this.q}`);
 
 										const json = await resp.json();
-										this.searching = false;
+										this.search.isSearching = false;
 										if (json.items.length) {
 											this.repos = json.items;
 										} else {
-											this.errorHandling = true;
+											this.search.hasError = true;
 										}
 									}
 								}
@@ -282,7 +285,7 @@
 									methods: {
 									...
 										resetSearch() {
-											this.errorHandling = false;
+											this.search.hasError = false;
 											this.repos = [];
 										}
 									}
@@ -309,7 +312,7 @@
 						<code data-trim>
 							<template>
 							...
-							<form @submit.prevent="search">
+							<form @submit.prevent="searchRepos">
 								<input type="search" name="search" id="search" placeholder="Repo Search" v-model="q">
 							</form>
 							...
@@ -382,10 +385,10 @@
 							<Element class="results" v-if="repos.length">
 								...
 							</Element>
-							<Element class="searching" v-if="searching">
+							<Element class="searching" v-if="search.isSearching">
 								...
 							</Element>
-							<Element class="errors" v-if="errorHandling">
+							<Element class="errors" v-if="search.hasError">
 								...
 							</Element>
 							...
@@ -411,10 +414,12 @@
 						<sup>*</sup>
 					</h3>
 					<ul>
-						<li>If the page uses a production/minified build of Vue.js, devtools inspection is disabled by default so the Vue pane
+						<li>If the page uses a production/minified build of Vue.js, devtools inspection is disabled by default so the Vue
+							pane
 							won't show up.</li>
 						<li>To make it work for pages opened via
-							<code>file://</code> protocol, you need to check "Allow access to file URLs" for this extension in Chrome's extension management panel.</li>
+							<code>file://</code> protocol, you need to check "Allow access to file URLs" for this extension in Chrome's
+							extension management panel.</li>
 					</ul>
 					<small>
 						<sup>*</sup>From Vue-devtools documentation:
@@ -443,7 +448,8 @@
 							</pre>
 						</li>
 						<li class="fragment">
-							<code>[template-name]</code> can be webpack || webpack-simple || browserify || browserify-simple || pwa || simple</li>
+							<code>[template-name]</code> can be webpack || webpack-simple || browserify || browserify-simple || pwa ||
+							simple</li>
 					</ul>
 				</section>
 				<section>

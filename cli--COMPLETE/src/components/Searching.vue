@@ -1,5 +1,5 @@
 <template>
-  <section class="searching" v-if="flags.searching">
+  <section class="searching" v-if="search.isSearching">
     <p>Searching...</p>
   </section>
 </template>
@@ -7,7 +7,7 @@
 <script>
 export default {
   name: 'Searching',
-  props: ['flags'],
+  props: ['search'],
 };
 </script>
 

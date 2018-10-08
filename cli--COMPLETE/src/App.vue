@@ -1,14 +1,14 @@
 <template>
   <div id="app" class="wrapper">
     <Search
-      @handleFlags="handleFlags($event)"
+      @handleSearch="handleSearch($event)"
       @handleChange="handleChange($event)"
       @resetSearch="resetSearch"
       :selectedSearchMethod="selectedSearchMethod"
     />
     <Results :repos='repos'/>
-    <Searching :flags='flags'/>
-    <Errors :flags='flags'/>
+    <Searching :search='search'/>
+    <Errors :search='search'/>
   </div>
 </template>
 
@@ -30,18 +30,18 @@ export default {
     return {
       selectedSearchMethod: 'repo',
       repos: [],
-      flags: {
-        searching: false,
-        errorHandling: false,
+      search: {
+        isSearching: false,
+        hasError: false,
       },
     };
   },
   methods: {
-    handleFlags(event) {
-      this.flags[event.key] = event.val;
+    handleSearch(event) {
+      this.search[event.key] = event.val;
     },
     resetSearch() {
-      this.flags.errorHandling = false;
+      this.search.hasError = false;
       this.repos = [];
     },
     handleChange(event) {

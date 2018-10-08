@@ -1,6 +1,6 @@
 <template>
-  <section class="errors" v-if="flags.errorHandling">
-    <h2>{{errorMessage}}</h2>
+  <section class="errors" v-if="search.hasError">
+    <h2>{{ errorMessage }}</h2>
   </section>
 </template>
 
@@ -9,10 +9,10 @@ export default {
   name: 'Errors',
   data() {
     return {
-      errorMessage: 'Oops, nothing here 💩',
+      errorMessage: 'Oops, nothing here',
     };
   },
-  props: ['flags'],
+  props: ['search'],
 };
 </script>
 

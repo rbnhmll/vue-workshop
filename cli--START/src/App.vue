@@ -1,13 +1,13 @@
 <template>
   <div id="app" class="wrapper">
     <Search
-      @handleFlags="handleFlags($event)"
+      @handleSearch="handleSearch($event)"
       @resetSearch="resetSearch"
     />
     <!-- 👆 Pass down props to search -->
     <Results :repos='repos'/>
-    <Searching :flags='flags'/>
-    <Errors :flags='flags'/>
+    <Searching :search='search'/>
+    <Errors :search='search'/>
   </div>
 </template>
 
@@ -29,18 +29,18 @@ export default {
     return {
       // add selectedSearchMethod type to state
       repos: [],
-      flags: {
-        searching: false,
-        errorHandling: false,
+      search: {
+        isSearching: false,
+        hasError: false,
       },
     };
   },
   methods: {
-    handleFlags(event) {
-      this.flags[event.key] = event.val;
+    handleSearch(event) {
+      this.search[event.key] = event.val;
     },
     resetSearch() {
-      this.flags.errorHandling = false;
+      this.search.hasError = false;
       this.repos = [];
     },
   },

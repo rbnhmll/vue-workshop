@@ -1,7 +1,7 @@
 <template>
   <section class="search">
     <h1>Search by Github {{ selectedSearchMethod | capitalize }}</h1>
-    <form @submit.prevent="search">
+    <form @submit.prevent="searchRepos">
       <input type="search" name="search" id="search" v-model="q" required>
       <label for="search">{{ selectedSearchMethod | capitalize }} search</label>
       <search-type @handleChange="$emit('handleChange', $event)" :selectedSearchMethod='selectedSearchMethod'/>
@@ -24,9 +24,9 @@ export default {
     selectedSearchMethod: String
   },
   methods: {
-    async search() {
-      this.$emit('handleFlags', {
-        key: 'searching',
+    async searchRepos() {
+      this.$emit('handleSearch', {
+        key: 'isSearching',
         val: true,
       });
       this.$emit('resetSearch');
@@ -40,8 +40,8 @@ export default {
         items = json;
       }
 
-      this.$emit('handleFlags', {
-        key: 'searching',
+      this.$emit('handleSearch', {
+        key: 'isSearching',
         val: false,
       });
 
@@ -51,8 +51,8 @@ export default {
           val: items,
         });
       } else {
-        this.$emit('handleFlags', {
-          key: 'errorHandling',
+        this.$emit('handleSearch', {
+          key: 'hasError',
           val: true,
         });
       }
