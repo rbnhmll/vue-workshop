@@ -172,7 +172,7 @@ Let's add some dynamic messages to the searching and error sections of the app, 
     el: "#app",
     data: {
       searchingMessage: "Searching...",
-      errorMessage: "Oops, nothing here 💩"
+      errorMessage: "Oops, nothing here"
     }
   });
 ...
@@ -214,7 +214,7 @@ In order to search for repos on Github, we need to grab the user input value fro
   data: {
     q: "",
     searchingMessage: "Searching...",
-    errorMessage: "Oops, nothing here 💩"
+    errorMessage: "Oops, nothing here"
   }
 ...
 ```
@@ -251,7 +251,7 @@ We'll start by adding a `methods` `property` to our app. `methods` is an `Object
     data: {
       q: "",
       searchingMessage: "Searching...",
-      errorMessage: "Oops, nothing here 💩"
+      errorMessage: "Oops, nothing here"
     },
     methods: {}
   });
@@ -260,47 +260,49 @@ We'll start by adding a `methods` `property` to our app. `methods` is an `Object
 
 The endpoint we'll use to fetch this data is `https://api.github.com/search/repositories?q={query}`.
 
-We'll start by adding a couple of properties to our `state` to keep track of when we are currently `searching`, or when there has been an `error`. We also need to add a property to save our returned repos into. This will be an `Array`:
+We'll start by adding a couple of properties to our `state` to keep track of when we the `search` `isSearching`, or when it `hasError`. We also need to add a property to save our returned repos into. This will be an `Array`:
 
 ```javascript
 ...
   data: {
     q: "",
     repos: [],
-    searching: false,
     searchingMessage: "Searching...",
-    errorHandling: false,
-    errorMessage: "Oops, nothing here 💩"
+    errorMessage: "Oops, nothing here",
+    search: {
+      isSearching: false,
+      hasError: false,
+    }
   },
 ...
 ```
 
-### Create `search` method
+### Create `searchRepos` method
 
-Let's build a `search` method which will take care of the following steps:
+Let's build a `searchRepos` method which will take care of the following steps:
   - Prevent the form form refreshing the page on submit
-  - Set our `searching` property to `true`
+  - Set our `search.isSearching` property to `true`
   - Call `resetSearch` (we'll build this `method` next)
   - Parse the response into usable `json`
-  - Change the `searching` property to false, when finished searching.
+  - Change the `search.isSearching` property to false, when finished searching.
   - If we got some responses, we want to save it to our `state` in `repos`
-  - If we get no repos back, then we want to set the `errorHandling` to `true`.
+  - If we get no repos back, then we want to set the `search.hasError` to `true`.
 
 ```javascript
 ...
   methods: {
-    async search(event) {
+    async searchRepos(event) {
       event.preventDefault();
-      this.searching = true;
+      this.search.isSearching = true;
       this.resetSearch();
       const response = await fetch(`https://api.github.com/search/repositories?q=${this.q}`);
 
       const json = await response.json();
-      this.searching = false;
+      this.search.isSearching = false;
       if (json.items.length) {
         this.repos = json.items;
       } else {
-        this.errorHandling = true;
+        this.search.hasError = true;
       }
     }
   }
@@ -312,16 +314,16 @@ Let's build a `search` method which will take care of the following steps:
 
 ### Create `resetSearch` method
 
-Next we will create the method `resetSearch` to reset the `errorhandling`, and return `repos` to an empty `Array` when starting a new search.
+Next we will create the method `resetSearch` to reset the `search.hasError`, and return `repos` to an empty `Array` when starting a new search.
 
 ```javascript
 ...
   methods: {
-    async search(q) {
+    async searchRepos(event) {
       ...
     },
     resetSearch() {
-      this.errorHandling = false;
+      this.search.hasError = false;
       this.repos = [];
     }
   }
@@ -333,33 +335,33 @@ Next we will create the method `resetSearch` to reset the `errorhandling`, and r
 
 ### *Directives*: Event handling with `v-on`
 
-We need the form to call the `search` method on `submit`. We can use the directive `v-on` to listed to DOM events, such as `submit`. We then reference the name of the method we want to call.
+We need the form to call the `searchRepos` method on `submit`. We can use the directive `v-on` to listed to DOM events, such as `submit`. We then reference the name of the method we want to call.
 
 ```html
 ...
-  <form v-on:submit="search">
+  <form v-on:submit="searchRepos">
     ...
   </form>
 ...
 ```
 
-Now that our `search` method has been called, we should have up to 30 `Objects` in our `repos` `Array`. Check in out in the DevTools.
+Now that our `searchRepos` method has been called, we should have up to 30 `Objects` in our `repos` `Array`. Check in out in the DevTools.
 
 ### Event modifiers
 
 Now, calling `event.preventDefault()` on the submit event is fine, but there's also a **Vue** way of modifying these types of events, which is more concise. These are called `event modifiers`, and are appended to the `event` using dot notation.
 
-`v-on:submit.prevent="search"`
+`v-on:submit.prevent="searchRepos"`
   * Prevent default submit behaviour (page refresh).
 
-`v-model.number="example"`
+`v-model.number="calculateAge"`
   * Forces a chosen data type.
 
 We can tack on a modifier to the event handler, instead of stating it in the method.
 
 ```html
 ...
-  <form v-on:submit.prevent="search">
+  <form v-on:submit.prevent="searchRepos">
     ...
   </form>
 ...
@@ -370,15 +372,15 @@ Remove `event.preventDefault()` from the `search` method
 ```javascript
 ...
   methods: {
-    async search() {
-      // event.preventDefault(); <== Remove this line!
+    async searchRepos() {
+      // event.preventDefault(); <== Remove this line! And notice the `event` argument is gone too.
     ...
 ...
 ```
 
 ### *Directives*: Conditional Rendering with `v-if`
 
-Using conditional rendering with `v-if`, we can decide to only show the results section if there are repos, and `searching` and `errorHandling` sections when applicable.
+Using conditional rendering with `v-if`, we can decide to only show the results section if there are repos, and `search.isSearching` and `search.hasError` sections when applicable.
 
 ```html
 ...
@@ -386,11 +388,11 @@ Using conditional rendering with `v-if`, we can decide to only show the results 
     ...
   </section>
   ...
-  <section class="searching" v-if="searching">
+  <section class="searching" v-if="search.isSearching">
     <p>{{ searchingMessage }}</p>
   </section>
 
-  <section class="errors" v-if="errorHandling">
+  <section class="errors" v-if="search.hasError">
     <h2>{{ errorMessage }}</h2>
   </section>
 ...
@@ -414,7 +416,7 @@ Use this directive on the element which needs to be repeated. In this case, the 
 ...
 ```
 
-Now we have a variable `repo` which represents each iteration. We can use this to fill in some of the dummy content on our cards.
+Now we have a variable `repo` which represents the current repo in our loop. We can use this to replace some of the dummy content on our cards.
 
 Here's an example of the data included in one of the returned repos:
 
@@ -567,7 +569,7 @@ Let's update our code as follows:
 
 ```html
 ...
-<form @submit="search">
+<form @submit="searchRepos">
   ...
 </form>
 ...
@@ -632,7 +634,7 @@ Now, we can move the HTML `searchingMessage` in our `app` to the `data` in our c
 ...
 ```
 
-Let's take the HTML for the `searching section`, and put it inside of our template. You can use back-ticks ( \` \` ) in order make them multi-line.
+Let's take the HTML for the `searching section`, and put it inside of our template. You can use back-ticks ( \` \` ) in order make them multi-line, with template literals!.
 
 ```javascript
 ...
@@ -663,7 +665,7 @@ Finally, we can render our component in our app, by using the component `name` a
 ...
   <div id="app" class="wrapper">
     ...
-    <searching v-if="searching"></searching>
+    <searching v-if="search.isSearching"></searching>
     ...
   </div>
 ...
@@ -677,8 +679,8 @@ Let's do the same thing for the `errors` section.
 ...
   <div id="app" class="wrapper">
     ...
-    <searching v-if="searching"></searching>
-    <errors v-if="errorHandling"></errors>
+    <searching v-if="search.isSearching"></searching>
+    <errors v-if="search.hasError"></errors>
     ...
   </div>
 ...
@@ -693,7 +695,7 @@ Let's do the same thing for the `errors` section.
     `,
     data() {
       return {
-        errorMessage: "Oops, nothing here 💩",
+        errorMessage: "Oops, nothing here",
       };
     },
   });
@@ -717,7 +719,7 @@ Now that we have a little practice building components, let's take care of the m
     template: `
       <section class="search">
         <h1>Search for Github repo</h1>
-        <form @submit.prevent="search">
+        <form @submit.prevent="searchRepos">
           <input
             type="search"
             name="search"
@@ -743,15 +745,15 @@ Now that we have a little practice building components, let's take care of the m
 
 Let's try out the app and make sure it still works!
 
-**Uh oh!** Nothing is happening when we search, and we have an error in the console which looks like `[Vue warn]: Property or method "search" is not defined on the instance but referenced during render. Make sure that this property is reactive, either in the data option, or for class-based components, by initializing the property` 🤔. But isn't it thought?
+**Uh oh!** Nothing is happening when we search, and we have an error in the console which looks like `[Vue warn]: Property or method "searchRepos" is not defined on the instance but referenced during render. Make sure that this property is reactive, either in the data option, or for class-based components, by initializing the property` 🤔. But isn't it thought?
 
-The problem is that we are trying to call a `Function` that doesn't exist on this component. We need to find a way to call up to the main **Vue** `Object` to trigger our `search` method, and send along our query, `q`.
+The problem is that we are trying to call a `Method` that doesn't exist on this component. We need to find a way to call up to the main **Vue** `Object` to trigger our `searchRepos` method, and send along our query, `q`.
 
 ### Emit events
 
 **Vue** has an elegant way of handling these sorts of events, where we need to trigger something in the parent `Object`, and pass along some arguments, using `$emit`.
 
-We can start by replacing the name of the method we were trying to call directly, with `$emit()`. This will take two arguments: an `eventName`, so we can reference the event by name later, and the `[...args]` or payload. We'll call our event "search", and pass our query `q` as the argument. 
+We can start by replacing the name of the method we were trying to call directly, with `$emit()`. This will take two arguments: an `eventName`, so we can reference the event by name later, and the `[...args]` or payload. We'll call our event "search-event", and pass our query `q` as the second argument. 
 
 ```javascript
 ...
@@ -768,25 +770,25 @@ We can start by replacing the name of the method we were trying to call directly
 ...
 ```
 
-Now in our HTML, when we reference the search component, we can listed for our custom event called `search`. This is done the same way we listen for standard events with `v-on` or `@`, but referencing the custom name of the event, `search`. The argument that is expected is represented by the special `$event` property, containing the `payload` that was passed through.
+Now in our HTML, when we reference the search component, we can listed for our custom event called `search-event`. This is done the same way we listen for standard events with `v-on` or `@`, but referencing the custom name of the event, `search-event`. The argument that is expected is represented by the special `$event` property, containing the `payload` that was passed through.
 
 ```html
 ...
-  <search @search-event="search($event)"></search>
+  <search @search-event="searchRepos($event)"></search>
 ...
 ```
 
-By doing so we are passing the `q` to the `search` method.
+By doing so we are passing the `q` to the `searchRepos` method.
 
 > **Note** ☝ 
 > It's worth nothing that HTML attribute names are case sensitive, and the browser will treat any uppercase letters as lowercase. So when using in-DOM templates like with the CDN, we must remember to use kabab-case on prop attributes.
 
-We must also update our `search` method to expect the `$event` payload to be passed in. We'll name it `q`, and since we are no longer referencing `q` from the `state`, we can remove the `this.` from the url template string. We're using the passing in argument `q` instead.
+We must also update our `searchRepos` method to expect the `$event` payload to be passed in. We'll name it `q`, and since we are no longer referencing `q` from the `state`, we can remove the `this.` from the url template string. We're using the passing in argument `q` instead.
 
 ```javascript
 ...
   methods: {
-    async search(q) {
+    async searchRepos(q) {
     ...
       const response = await fetch(`https://api.github.com/search/repositories?q=${q}`);
       ...
@@ -857,7 +859,7 @@ We pass a `prop` to a component using `v-bind`, similar to when we need to dynam
 
 In the component itself, we need to register the prop, so that the component knows what to expect. In its simplest form, `props` can be represented by an `Array` of `Strings`.
 
-However, you can also make `props` an `Object`, with the key being the name of the prop, and the value being the prop type, such as `String`, `Array`, `Object` etc. This can help offer useful warnings if passing an unexpected prop type.
+However, you can also make `props` an `Object`, with the `key` being the name of the prop, and the `value` being the prop `type`, such as `String`, `Array`, `Object` etc. This can help offer useful warnings if passing an unexpected prop type.
 
 ```javascript
 ...
