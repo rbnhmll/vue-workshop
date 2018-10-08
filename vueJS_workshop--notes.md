@@ -1659,7 +1659,7 @@ Once initiated, it will be available in all components. Let's update the `Search
 <template>
   <section class="search">
     <h1>Search Github by {{ selectedSearchMethod | capitalize }}</h1>
-    <form @submit.prevent="search">
+    <form @submit.prevent="searchRepos">
       <input type="search" name="search" id="search" v-model="q" required>
       <label for="search">{{ selectedSearchMethod | capitalize }} search</label>
       <SearchType @handleChange="$emit('handleChange', $event)" :selectedSearchMethod='selectedSearchMethod'/>
