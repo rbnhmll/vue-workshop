@@ -277,9 +277,21 @@ We'll start by adding a couple of properties to our `state` to keep track of whe
 ...
 ```
 
-### Create `searchRepos` method
+### Creating methods
+  Let's build two methods, called `searchRepos` and `resetSearch`
 
-Let's build a `searchRepos` method which will take care of the following steps:
+```javascript
+...
+  methods: {
+    searchRepos() {},
+    resetSearch() {}
+  }
+...
+```
+
+### `searchRepos` method
+
+ The `searchRepos` method which will take care of the following steps:
   - Prevent the form form refreshing the page on submit
   - Set our `search.isSearching` property to `true`
   - Call `resetSearch` (we'll build this `method` next)
@@ -287,6 +299,8 @@ Let's build a `searchRepos` method which will take care of the following steps:
   - Change the `search.isSearching` property to false, when finished searching.
   - If we got some responses, we want to save it to our `state` in `repos`
   - If we get no repos back, then we want to set the `search.hasError` to `true`.
+
+
 
 ```javascript
 ...
@@ -304,7 +318,8 @@ Let's build a `searchRepos` method which will take care of the following steps:
       } else {
         this.search.hasError = true;
       }
-    }
+    },
+    resetSearch() {}
   }
 ...
 ```
@@ -312,7 +327,7 @@ Let's build a `searchRepos` method which will take care of the following steps:
 > **Note** ☝ 
 > There are some more robust tools for making API calls, such as [Axios](https://github.com/axios/axios), which I would recommend looking into for production Vue applications. However, we'll be using `fetch` in these examples for simplicity.
 
-### Create `resetSearch` method
+### `resetSearch` method
 
 Next we will create the method `resetSearch` to reset the `search.hasError`, and return `repos` to an empty `Array` when starting a new search.
 
