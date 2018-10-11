@@ -760,7 +760,7 @@ Now that we have a little practice building components, let's take care of the m
 
 Let's try out the app and make sure it still works!
 
-**Uh oh!** Nothing is happening when we search, and we have an error in the console which looks like `[Vue warn]: Property or method "searchRepos" is not defined on the instance but referenced during render. Make sure that this property is reactive, either in the data option, or for class-based components, by initializing the property` 🤔. But isn't it thought?
+⚠️ **Uh oh!** Nothing is happening when we search, and we have an error in the console which looks like `[Vue warn]: Property or method "searchRepos" is not defined on the instance but referenced during render. Make sure that this property is reactive, either in the data option, or for class-based components, by initializing the property` 🤔. But isn't it thought?
 
 The problem is that we are trying to call a `Method` that doesn't exist on this component. We need to find a way to call up to the main **Vue** `Object` to trigger our `searchRepos` method, and send along our query, `q`.
 
@@ -851,7 +851,7 @@ Let's convert our remaining _results_ section into its own component.
 
 Let's try out the app and make sure it still works! 
 
-**Uh oh!** Another error, similar to before `[Vue warn]: Property or method "repos" is not defined on the instance but referenced during render. Make sure that this property is reactive, either in the data option, or for class-based components, by initializing the property`.
+⚠️ **Uh oh!** Another error, similar to before `[Vue warn]: Property or method "repos" is not defined on the instance but referenced during render. Make sure that this property is reactive, either in the data option, or for class-based components, by initializing the property`.
 
 Here we are referencing `repos`, but this component does not have access to it in the component. Let's solve this in the next step, using `props`.
 
