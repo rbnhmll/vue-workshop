@@ -937,7 +937,7 @@ vue create test-project
 This will begin a series of steps in your terminal to create your project. For this example, we will choose the `default (babel, eslint)` option.
 
 ```bash
-Vue CLI v3.0.4
+Vue CLI v3.0.5
 ? Please pick a preset: (Use arrow keys)
 ❯ default (babel, eslint)
   Manually select features
