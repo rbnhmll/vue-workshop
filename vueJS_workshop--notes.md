@@ -798,13 +798,17 @@ By doing so we are passing the `q` to the `searchRepos` method.
 > **Note** ☝ 
 > It's worth nothing that HTML attribute names are case sensitive, and the browser will treat any uppercase letters as lowercase. So when using in-DOM templates like with the CDN, we must remember to use kabab-case on prop attributes.
 
-We must also update our `searchRepos` method to expect the `$event` payload to be passed in. We'll name it `q`, and since we are no longer referencing `q` from the `state`, we can remove the `this.` from the url template string. We're using the passing in argument `q` instead.
+We must also update our `searchRepos` method to expect the `$event` payload to be passed in. We'll name the argument `q`.
+
+> ⚠️ **Gotcha Alert** ⚠️
+> Since we are no longer referencing `q` from the `state`, we can remove `this.` from the url template string. Remember, `this` refers to the parent `Object`: either the main Vue `Object`, or the current `component`. We want to use the argument being passed into this method instead.
 
 ```javascript
 ...
   methods: {
-    async searchRepos(q) {
+    async searchRepos(q) { // <== The argument we expect, called `q`
     ...
+      // const response = await fetch(`https://api.github.com/search/repositories?q=${this.q}`); <== remove `this.`
       const response = await fetch(`https://api.github.com/search/repositories?q=${q}`);
       ...
     },
