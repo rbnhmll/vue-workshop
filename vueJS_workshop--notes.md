@@ -1393,7 +1393,9 @@ Like before, we will watch for the `handleChange` `$event` in the `App.vue` comp
 </template>
 ```
 
-Create a `handleChange` method. It will accept the `$event` payload as an argument. We'll destructure it to pull the `key` and `val` properties off, and use that to set the property on the `state` for use later:
+First, we'll set the default `selectedSearchMethod` to `repo` ion our `state`.
+
+Next, create a `handleChange` method. It will accept the `$event` payload as an argument. Then grab the `key` and `val` properties, and use that to set the property on the `state` for use later
 
 ```html
 <!-- App.vue -->
@@ -1420,12 +1422,10 @@ export default {
 ...
 ```
 
-We set the default `selectedSearchMethod` to `repo`.
-
 If we check the Vue devtools, we should now be able to see the `selectedSearchMethod` property update when we select the Search Type.
 
 > **Note** ☝ 
-> There is currently a bug which sometimes prevents live update of the data object in the devtools.
+> There is currently a bug which sometimes prevents live update of the data object in the devtools. There's a refresh button in the upper right corner of the tools.
 
 ### Update Heading and input label to reflect `selectedSearchMethod`
 
@@ -1537,7 +1537,7 @@ In the template, we can check to see if the `selectedSearchMethod` is the same a
 You'll notice that if you refresh the page, the "repo" option will now be pre-selected.
 
 > **Note** ☝ 
-> When binding to attributes which have optional arguments, like `checked`, Vue will apply the attribute if the statement is true, and will apply nothing if it is false.
+> When binding to attributes which have optional arguments, like `checked`, Vue will apply the attribute if the statement is `true`, and will apply nothing if it is `false`.
 
 ### Update the search function
 
@@ -1561,7 +1561,7 @@ export default {
   methods: {
     async searchRepos() {
       ...
-      const response = await fetch(this.searchEndpoint);
+      const response = await fetch(`https://api.github.com/search/repositories?q=${this.q}`);
       const json = await response.json();
 
       // const items = json.items; <== updating this
