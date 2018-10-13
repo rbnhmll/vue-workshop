@@ -1545,7 +1545,7 @@ One issue still remains: our app's search functionality doesn't work when the "S
 
 This is because there are different API end points to search for repos and developers:
 - Repos: `https://api.github.com/search/repositories?q=[QUERY]`
-- Repos: `https://api.github.com/users/[QUERY]/repos`
+- Developers: `https://api.github.com/users/[QUERY]/repos`
 
 This means that depending on what we are searching for we need to be able to change the end point dynamically. In addition to this, each endpoint returns the data in a different way, and we need to account for this.
 
