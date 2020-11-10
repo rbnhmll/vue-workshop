@@ -1,26 +1,34 @@
 <template>
   <div>
     <h2>Search Type</h2>
-    <label v-for="(type, i) in searchMethods" :key="i" :for="type">{{ type | capitalize }}
-      <input type="radio" name="selectedSearchMethod" :id="type" :value="type" @change='updateSearchType($event)' :checked="selectedSearchMethod === type">
+    <label v-for="(type, i) in searchMethods" :key="i" :for="type"
+      >{{ type | capitalize }}
+      <input
+        type="radio"
+        name="selectedSearchMethod"
+        :id="type"
+        :value="type"
+        @change="updateSearchType($event)"
+        :checked="selectedSearchMethod === type"
+      />
     </label>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'SearchType',
+  name: "SearchType",
   data() {
     return {
-      searchMethods: ['repo', 'developer'],
+      searchMethods: ["repo", "developer"],
     };
   },
-  props: ['selectedSearchMethod'],
+  props: ["selectedSearchMethod"],
   methods: {
     updateSearchType(event) {
-      this.$emit('handleChange', {
+      this.$emit("handleChange", {
         key: event.target.name,
-        val: event.target.value
+        val: event.target.value,
       });
     },
   },
@@ -28,9 +36,9 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-  h2
-    font-size: 2rem
-    margin-bottom: 0
+h2
+  font-size: 2rem
+  margin-bottom: 0
   label
     margin: 0 10px
 </style>

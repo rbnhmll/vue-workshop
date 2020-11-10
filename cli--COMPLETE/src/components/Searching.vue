@@ -6,15 +6,13 @@
 
 <script>
 export default {
-  name: 'Searching',
-  props: ['search'],
+  name: "Searching",
+  props: ["search"],
 };
 </script>
 
 <style lang="sass" scoped>
-
 .searching
   text-align: center
   font-weight: 600
-
 </style>
