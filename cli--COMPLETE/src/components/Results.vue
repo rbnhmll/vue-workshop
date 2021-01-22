@@ -2,18 +2,14 @@
   <section class="results" v-if="repos.length">
     <h2>Matching Repos</h2>
     <ul>
-      <li v-for="(repo, i) in repos" :key='i' class="repo">
+      <li v-for="(repo, i) in repos" :key="i" class="repo">
         <a :href="repo.html_url" class="repo__link">
           <div class="repo__image">
-            <img :src="repo.owner.avatar_url" :alt="repo.full_name">
+            <img :src="repo.owner.avatar_url" :alt="repo.full_name" />
           </div>
           <div class="repo__meta">
-            <p>
-              <strong>Dev:</strong> {{ repo.owner.login }}
-            </p>
-            <p>
-              <strong>Repo:</strong> {{ repo.name }}
-            </p>
+            <p><strong>Dev:</strong> {{ repo.owner.login }}</p>
+            <p><strong>Repo:</strong> {{ repo.name }}</p>
           </div>
         </a>
       </li>
@@ -23,13 +19,12 @@
 
 <script>
 export default {
-  name: 'Results',
-  props: ['repos'],
+  name: "Results",
+  props: ["repos"],
 };
 </script>
 
 <style lang="sass" scoped>
-
 .results
   ul
     display: grid
@@ -38,7 +33,7 @@ export default {
     list-style-type: none
     margin: 0
     padding: 0
-    
+
 .repo
   border: 2px solid var(--grey)
   border-radius: 5px
@@ -66,5 +61,4 @@ export default {
   align-items: center
   p
     margin: 0
-
 </style>

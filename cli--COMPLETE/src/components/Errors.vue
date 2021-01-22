@@ -6,16 +6,15 @@
 
 <script>
 export default {
-  name: 'Errors',
+  name: "Errors",
   data() {
     return {
-      errorMessage: 'Oops, nothing here',
+      errorMessage: "Oops, nothing here",
     };
   },
-  props: ['search'],
+  props: ["search"],
 };
 </script>
 
 <style lang='sass' scoped>
-
 </style>
