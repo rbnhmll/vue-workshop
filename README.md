@@ -12,4 +12,4 @@
   - [cli--COMPLETE](https://github.com/rbnhmll/vue-workshop/tree/master/cli--COMPLETE)
 - [Slides](https://github.com/rbnhmll/vue-workshop/tree/master/vueJS_workshop--slides) outlining Vue features.
 
-### Access class notes [here](https://github.com/rbnhmll/vue-workshop/blob/master/vueJS_workshop--notes.md)!
+### Access class notes [here](https://notes.vuejsworkshop.com/)!
